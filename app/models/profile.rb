@@ -12,8 +12,6 @@ class Profile
   field :date_of_birth, type: Date
   field :facebook, type: String
   field :twitter_handle, type: String
-
-validates :first_name, :permanent_address, :country, :state, :city, :contact_number, :presence => true
-
+  validates :first_name, :permanent_address, :country, :state, :city, :contact_number, :presence => true
 end
 
