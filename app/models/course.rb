@@ -8,10 +8,7 @@ class Course
   field :course_period, type: Boolean
   field :start_date, type: Date
   field :end_date, type: Date
-
-validates :name, :description, :course_date, :start_date, :end_date, :presence => true
-
-has_many :parts
-
+  validates :name, :description, :course_date, :start_date, :end_date, :presence => true
+  has_many :parts
 end
 

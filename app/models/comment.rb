@@ -5,6 +5,5 @@ class Comment
   validates :description, :presence => true
 
   belongs_to :request
-
 end
 
