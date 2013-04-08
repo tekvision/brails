@@ -5,6 +5,8 @@ class Topic
   field :sub_topic, type: Integer
   validates :topic_number, :title, :presence => true
   belongs_to :chapter
+
   has_one :content
+  
 end
 
