@@ -1,0 +1,10 @@
+%h1 link to profile
+%table
+  %tr
+    %th create new profile
+
+  - @users.each do |user|
+    %tr
+      %td= user.email
+    
+= link_to 'create new profile', new_path(current_user)

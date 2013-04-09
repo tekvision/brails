@@ -1,0 +1,20 @@
+= simple_form_for(@profile) do |f|
+  = f.error_notification
+
+  .form-inputs
+  %fieldset
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :nick_name
+    = f.input :permanent_address
+    = f.input :local_address
+    = f.input :country
+    = f.input :state
+    = f.input :city
+    = f.input :contact_number
+    = f.input :date_of_birth
+    = f.input :facebook
+    = f.input :twitter_handle
+        
+  .form-actions
+    = f.button :submit
