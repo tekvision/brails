@@ -1,0 +1,15 @@
+%h1 Chapter list
+%table
+  %tr
+    %th Chapter number
+    %th name
+    %th
+    %th
+
+  - @chapters.each do |chapter|
+    %tr
+      %td= chapter.chapter_number
+      %td= chapter.name
+      %td= link_to "Show", chapter_path(chapter)
+      %td= link_to "Edit", edit_chapter_path(chapter)
+  

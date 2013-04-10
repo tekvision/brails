@@ -7,7 +7,8 @@ Brails::Application.routes.draw do
     :root_path => 'home#index'
   }
   resources :users
-
+  resources :chapters
+  resources :parts
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

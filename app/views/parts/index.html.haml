@@ -1,0 +1,18 @@
+%h1 Parts list
+
+%table
+  %tr
+    %th Part number
+    %th Name
+
+  - @parts.each do |part|
+    %tr
+      %td= part.part_number
+      %td= part.name
+      %td= link_to 'Show', part
+      %td= link_to 'Edit', edit_part_path(part)
+      %td= link_to 'Destroy', part, :method => :delete, :data => { :confirm => 'Are you sure?' }
+ 
+%br
+
+= link_to 'New Part', new_part_path

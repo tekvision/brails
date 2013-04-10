@@ -1,0 +1,10 @@
+= simple_form_for @chapter  do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :part, :collection => Part.all.entries, :prompt => "Select part"
+    = f.input :chapter_number
+    = f.input :name
+    = f.input :description, as: :text 
+  .form-actions
+    = f.button :submit

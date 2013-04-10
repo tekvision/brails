@@ -1,0 +1,12 @@
+%h1 Chapter details
+%table
+  %tr
+    %th Chapter numberh 
+    %th Name
+    %th Description
+  %tr
+    %td= @chapter.chapter_number
+    %td= @chapter.name
+    %td= @chapter.description
+
+= link_to "Back", chapters_path
