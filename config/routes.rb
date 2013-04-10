@@ -9,6 +9,9 @@ Brails::Application.routes.draw do
   resources :users
   resources :chapters
   resources :parts
+  resources :profiles
+  resources :comments
+  match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

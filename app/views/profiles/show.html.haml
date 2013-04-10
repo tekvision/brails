@@ -1,0 +1,29 @@
+%h1 Profile details
+  %table
+    %tr
+       %th First Name
+       %th Last Name
+       %th Nick Name
+       %th Parmanent Address
+       %th Local Address
+       %th State
+       %th City
+       %th Contact Number
+       %th Date Of Birth
+       %th Facebook
+       %th Twittter handle
+  
+   %tr
+      %td= @profile.first_name
+      %td= @profile.last_name
+      %td= @profile.nick_name
+      %td= @profile.permanent_address
+      %td= @profile.local_address
+      %td= @profile.country
+      %td= @profile.state
+      %td= @profile.city
+      %td= @profile.contact_number
+      %td= @profile.date_of_birth
+      %td= @profile.facebook
+      %td= @profile.twitter_handle
+   = link_to "Back", profiles_path

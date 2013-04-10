@@ -1,0 +1,9 @@
+%table
+  %tr
+    %th description
+
+  - @comments.each do |comment|
+    %tr
+      %td= @comment.description
+      %td= link_to 'Show', @comment
+      %td= link_to 'Edit', edit_comment_path(comment)
