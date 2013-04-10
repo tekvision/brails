@@ -1,0 +1,36 @@
+%h1 course Details
+%table
+  %tr
+    %th Name
+    %th Short Name
+    %th Description
+    %th Index
+    %th Course_date
+    %th Course_period
+    %th Start_date
+    %th end_date
+ 
+  %tr
+    %td master in computer science
+    %td MCS
+    %td master in computer science
+    %td index
+    %td 12-05-2011
+    %td true
+    %td 21-06-2011
+    %td 21-04-2013
+    %td= link_to "show", show_course_path
+ 
+    
+  %tr
+    %td master in computer application
+    %td MCA
+    %td master in computer application
+    %td index
+    %td 10-05-2011
+    %td true
+    %td 21-06-2011
+    %td 12-05-2013
+    %td= link_to "show", show_course_path
+
+= link_to "Back", courses_path   

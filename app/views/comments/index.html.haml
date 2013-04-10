@@ -1,9 +1,13 @@
+%h1 Comment Details
 %table
   %tr
-    %th description
+    %th Description
+    
+  %tr
+    %td Introduction of Computer Basics
+    %td= link_to "show", show_comment_path
+  %tr
+    %td Introduction of Input & Output Devices
+    %td= link_to "show", show_comment_path
 
-  - @comments.each do |comment|
-    %tr
-      %td= @comment.description
-      %td= link_to 'Show', @comment
-      %td= link_to 'Edit', edit_comment_path(comment)
+ 
