@@ -22,6 +22,7 @@ gem "mongoid", "~> 3.0.0"
 group :development, :test do
   gem 'mailcatcher'
   gem "rspec-rails", ">= 2.0.1"
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 gem 'jquery-rails'
