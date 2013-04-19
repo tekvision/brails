@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'Required fields' do
+    it 'should have email'
+    it 'should have password'
+  end
+
+  context 'Associations' do
+    it 'Should embed one profile'
+    it 'should have many requests'
+  end
 end
