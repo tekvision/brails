@@ -14,6 +14,6 @@ class Profile
   field :twitter_handle, type: String
   validates :first_name, :permanent_address, :country, :state, :city, :contact_number, :presence => true
 
-  embedded_in :user
+  #embedded_in :user
 end
 

@@ -1,26 +1,27 @@
-%h1 Profile Information
-%label Name
+%h1 Course Information
+%label *Name
 %input 
 %br
 %label Short Name
 %input
 %br
-%label Description
+%label *Description
 %input
 %br
 %label Index
 %input
 %br
-%label Course Date
+%label *Course Date
 %input 
 %br  
 %label Course Period
+%br 
+= check_box_tag :course_period
+%br 
+%label *Start_date
 %input 
 %br  
-%label Start_date
-%input 
-%br  
-%label End_date
+%label *End_date
 %input 
 %br  
 

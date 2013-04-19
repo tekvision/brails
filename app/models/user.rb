@@ -45,7 +45,7 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
   has_many :requests  
-  embeds_one :profile
+  #embeds_one :profile
 
  end
  
