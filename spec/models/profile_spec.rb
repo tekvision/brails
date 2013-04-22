@@ -14,7 +14,6 @@ describe Profile do
       it 'should have date of birth'
       it 'should have facebook'
       it 'should have twitter handle'
-   end
   end
 
    context 'required fields' do
@@ -24,11 +23,10 @@ describe Profile do
       it 'should have state'
       it 'should have city'
       it 'should have contact number'
-    end
    end
+  
   
     context 'associations' do
       it 'embeded in user'
-     end
     end
 end
