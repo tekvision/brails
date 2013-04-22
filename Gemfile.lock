@@ -69,6 +69,10 @@ GEM
       bson (~> 1.8.5)
     builder (3.0.4)
     cancan (1.6.9)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -139,6 +143,8 @@ GEM
       moped (~> 1.2)
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
+    mongoid-paperclip (0.0.8)
+      paperclip (>= 2.3.6)
     mongoid-simple-roles (0.0.1)
       bson_ext (~> 1.6)
       mongoid (~> 3.0.3)
@@ -151,6 +157,12 @@ GEM
     nokogiri (1.5.9-x86-mingw32)
     origin (1.0.11)
     orm_adapter (0.4.0)
+    paperclip (3.4.1)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -250,6 +262,7 @@ DEPENDENCIES
   jquery-rails
   mailcatcher
   mongoid (~> 3.0.0)
+  mongoid-paperclip
   mongoid-simple-roles
   mongoid_slug
   rails (= 3.2.12)

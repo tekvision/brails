@@ -4,8 +4,8 @@ describe Content do
   context 'fields' do
      it 'should have content body'
      it 'should have content type'
-   end
-   end
+    end
+  end
 
  context 'required fields' do
      it 'should have content body'
