@@ -19,6 +19,7 @@ context 'role as a Admin'
        it 'should logged in'
     end
    it 'should redirected to storyBoardPage after logged in'
+   it 'should invite another admin'
 end
 
 end
