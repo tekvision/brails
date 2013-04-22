@@ -39,7 +39,7 @@ gem 'mongoid-simple-roles'
 gem 'cancan'
 gem 'country_select'
 gem "bootstrap-sass-rails"
-gem "mongoid-paperclip", :require => "mongoid_paperclip"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
