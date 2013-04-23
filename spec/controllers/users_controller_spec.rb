@@ -8,7 +8,7 @@ context 'role as a Guest' do
 end
 
 
-context 'role as a Student'
+context 'role as a Student' do
    before do
       it 'should logged in'
    end
@@ -23,18 +23,19 @@ context 'role as a Student'
    end
 end
 
-context 'role as a Admin'
+context 'role as a Admin' do
     before do
        it 'should logged in'
     end
+
     it 'should keep the details of login Student'
     it 'should redirected to storyBoardPage after logged in'
     it 'should keeps an account of documentation details & maintain information'
     it 'should manage administration role & provide support'
     it 'should conduct performance review of student'
-    it 'should make standard work schedule'
+    it 'should make standard work of schedule'
     it 'should able to answer the queries'
     it 'should conduct the tests'
     it 'should provide certificate after conducting tests'
-  end
+ end
 end

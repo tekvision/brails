@@ -9,6 +9,7 @@ context 'listing story boards' do
        it 'should redirect to new page'
        it 'should create new story'
        it 'should redirect to index page after creating the story'
+       it 'should display new record an index page'
     end
 
     it 'edit story' do
@@ -18,8 +19,12 @@ context 'listing story boards' do
     end
 
     it 'delete story' do
-        it 'should redirect to edit page'
-	it 'should delete story'
-        it 'should redirects to index page after deleting'
+	it 'should generate alert box'
+	it 'should confirm message'
+	it 'should ok and cancel button'
+	it 'should not delete after clicking cancel button'
+	it 'should delete after clicking ok button'
+        it 'after redirects to index page'
+
     end
 end
