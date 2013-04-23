@@ -15,6 +15,6 @@ describe Request do
 
   context 'associations' do
      it 'should have many comments'
-   end
   end
+
 end

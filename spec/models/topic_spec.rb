@@ -16,4 +16,5 @@ describe Topic do
     it 'should have one content'
     it 'Should belongs to story'
   end
+
 end
