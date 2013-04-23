@@ -5,14 +5,12 @@ describe Request do
      it 'should have title'
      it 'should have body'
      it 'should have status'
-   end
   end
 
   context 'required fields' do
      it 'should have title'
      it 'should have body'
      it 'should have status'
-   end
   end
 
   context 'associations' do
