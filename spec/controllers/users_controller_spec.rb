@@ -15,10 +15,15 @@ context 'role as a Student' do
    it 'should see the list of storyBoard'
    it 'should choose the storyBoard'
    it 'should redirected to storyBoardPage after logged in'
-   it 'should be an Beginner student' do
+   it 'if Beginner Student' do
        it 'should starts from basics'
    end
-   it 'should be an Advanced student' do
+
+   it 'if Intermediate Student'
+       it 'should starts from anywhere'
+   end
+
+   it 'if Advance Student' do
        it 'should skip the basic part and starts form advance concepts'
    end
 end
@@ -28,14 +33,7 @@ context 'role as a Admin' do
        it 'should logged in'
     end
 
-    it 'should keep the details of login Student'
     it 'should redirected to storyBoardPage after logged in'
-    it 'should keeps an account of documentation details & maintain information'
-    it 'should manage administration role & provide support'
-    it 'should conduct performance review of student'
-    it 'should make standard work of schedule'
     it 'should able to answer the queries'
-    it 'should conduct the tests'
-    it 'should provide certificate after conducting tests'
- end
+   end
 end

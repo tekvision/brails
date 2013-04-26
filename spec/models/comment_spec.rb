@@ -7,12 +7,12 @@ describe Comment do
    end
   
 
-  context 'required fields' do
+   context 'required fields' do
       it 'should have description'
    end
   
 
-  context 'associations' do
+   context 'associations' do
       it 'should belongs to request'
-  end
+   end
 end

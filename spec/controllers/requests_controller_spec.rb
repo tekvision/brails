@@ -1,15 +1,26 @@
 require 'spec_helper'
 
 describe RequestsController do
- context 'list of Requests' do
-    it 'should be Student' do
-        it 'should give request to comments'
-	it 'should request for any topic'
-    end
 
-    it 'should be Admin' do
-         it 'should reply for requests'
-         it 'should be able to answer the queries'
-    end
+ context 'create request' do
+     it 'should redirects to new page after clicking on create button'
+     it 'admin & student can create request'
+     it 'redirects to index page after creating request'
+ end
+
+ context 'edit request' do
+     it 'should redirects to edit page'
+     it 'should edit request only who has created'
+     it 'should redirects to index page after editing the request'
+ end
+
+ context 'delete request' do
+        it 'admin should delete the request'
+        it 'should generate alert box'
+	it 'should confirm message'
+	it 'should have ok and cancel buttons'
+	it 'should not delete after clicking cancel button'
+	it 'should delete after clicking on ok button'
+        it 'should redirects to index page after deleting request'
  end
 end

@@ -13,7 +13,7 @@ describe Topic do
   end
 
   context 'associations' do
-    it 'should content'
+    it 'should have content'
   end
 
 end
