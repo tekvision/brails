@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -32,7 +32,7 @@ gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "bson_ext"
 gem 'mongoid_slug'
-gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
+#gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
 gem 'simple_form'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'mongoid-simple-roles'
