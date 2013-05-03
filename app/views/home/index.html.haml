@@ -1,22 +1,6 @@
-%h1 Wellcome to BRails
-= link_to 'Log out', destroy_user_session_path, method: :delete
-
 #game-levels{role: 'grid'}
-  .row{role: 'row'}
-    #level-1.span3.well.level{role: 'gridcell'}
-      1
-    #level-2.span3.well.level{role: 'gridcell'}
-      2
-    #level-3.span3.well.level{role: 'gridcell'}
-      3
-    #level-4.span3.well.level{role: 'gridcell'}
-      4
-  .row{role: 'row'}
-    #level-5.span3.well.level{role: 'gridcell'}
-      5
-    #level-6.span3.well.level{role: 'gridcell'}
-      6
-    #level-7.span3.well.level{role: 'gridcell'}
-      7
-    #level-8.span3.well.level{role: 'gridcell'}
-      8
+  - (1..8).to_a.each_slice(4) do |levels|
+    .row{role: 'row'}
+      - levels.each do |level|
+        .span3.well.level{role: 'gridcell', id: "level_#{level}"}= level
+         
