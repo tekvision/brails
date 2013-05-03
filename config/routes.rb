@@ -24,6 +24,7 @@ Brails::Application.routes.draw do
   match '/contents/show' => 'contents#show_content', :via => :get , as: :show_content
   match '/requests/show' => 'requests#show_request', :via => :get , as: :show_request
   match '/comments/show' => 'comments#show_comment', :via => :get , as: :show_comment
+  match '/section' => 'home#section', :via => :get 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
