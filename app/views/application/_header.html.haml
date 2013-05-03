@@ -1,0 +1,16 @@
+#navbar-top
+  .navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner
+      .container
+        .row
+          .span9
+            Brails
+          .span3.pull-right
+            %ul.nav.pull-right
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  test@brails.com
+                  %b.caret
+                %ul.dropdown-menu
+                  %li= link_to 'Edit profile', '#' 
+                  %li= link_to "Logout", '#', method: :delete
