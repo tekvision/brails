@@ -12,7 +12,7 @@ describe Content do
   end
 
   context 'associations' do
-     it 'should have one topic'     
+     it 'should have one topic'
   end
 
 end
