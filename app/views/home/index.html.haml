@@ -1,6 +1,11 @@
 #game-levels{role: 'grid'}
-  - (1..8).to_a.each_slice(4) do |levels|
+  - (1..10).to_a.each_slice(5) do |levels|
     .row{role: 'row'}
-      - levels.each do |level|
-        .span3.well.level{role: 'gridcell', id: "level_#{level}"}= level
+      %ul.thumbnails
+        - levels.each do |level|
+          %li.span3
+            .thumbnail.well
+              .level= level 
+              .caption
+                %h3 Coins
          
