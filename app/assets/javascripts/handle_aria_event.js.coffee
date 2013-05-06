@@ -21,8 +21,8 @@ AriaEvent = (element, max_row, max_col) ->
   @main_element = $(element)
   $(element).attr('tab-index', 0)
    
-  @maxrow = max_row 
-  @maxcol = 
+  @maxrow = Number(max_row)
+  @maxcol = Number(max_col)
   @keys = keyCodes
   $('#row_0_col_0').attr('tabindex', "0")
   console.log "In Left and right key are in progress"
@@ -32,10 +32,6 @@ AriaEvent.prototype.bindhandler = ()->
   $row_event = @main_element.find('.row[role="row"] .span3')
   $row_event.bind 'keyup', (e)->
     console.log "key up"
-    thisObj.bind_grid_cell($(this), e)
-  
-  $row_event.bind 'keypress', (e)->
-    console.log('key press 1')
     thisObj.bind_grid_cell($(this), e)
   
  
@@ -53,19 +49,52 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       e.stopPropagation
       return false
       break
-    when 37
-      $newCell = $curCell.prev()  
-      $newCell.attr("tabindex", "0").focus() 
+    when 37 #left key 
+      $newCell = $curCell.prev()
+      if $newCell.length  
+        $newCell.attr("tabindex", "0").focus() 
+      else
+        row_number = $curCell.attr('id').split('_')[1] 
+        col_number = $curCell.attr('id').split('_')[3]
+        if row_number > 0
+          new_row_number = Number(row_number) - 1
+          $newCell = $("#row_#{new_row_number}_col_#{@maxcol-1}")
+          $newCell.attr("tabindex", "0").focus() 
+        else
+          col_count_last_row = $("#row_index_#{@maxrow - 1} .thumbnails").children('li.span3').size() - 1 
+          $newCell = $("#row_#{@maxrow - 1}_col_#{col_count_last_row}")
+          console.log $newCell
+          $newCell.attr("tabindex", "0").focus()
+       
+      $curCell.removeAttr("tabindex")
       e.stopPropagation
       return false
       break
-    when 38
+    when 38 #Up key
       break   
-    when 39
+    when 39 #right key
       $newCell = $curCell.next()
-      $newCell.attr("tabindex", "0").focus()
+      if $newCell.length
+        $newCell.attr("tabindex", "0").focus()
+      else
+        row_number = $curCell.attr('id').split('_')[1] 
+        col_number = $curCell.attr('id').split('_')[3]
+        console.log "max row"
+        console.log @maxrow
+        console.log row_number
+        if row_number < (@maxrow - 1)
+          console.log "inside if "
+          new_row_number = Number(row_number) + 1
+          $newCell = $("#row_#{new_row_number}_col_0")
+          $newCell.attr("tabindex", "0").focus()
+        else
+          $newCell = $('#row_0_col_0') 
+          $newCell.attr("tabindex", "0").focus()   
+      
       $curCell.removeAttr("tabindex")
+      e.stopPropagation
       break
+
 $(document).ready ->
   app = new AriaEvent('#game-levels', $("#game-levels .row[role='row']").size(), 5)
   app.bindhandler()   
