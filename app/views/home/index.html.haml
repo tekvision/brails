@@ -1,11 +1,13 @@
-#game-levels{role: 'grid'}
-  - (1..10).to_a.each_slice(5) do |levels|
-    .row{role: 'row'}
-      %ul.thumbnails
-        - levels.each do |level|
-          %li.span3
-            .thumbnail.well
-              .level= level 
-              .caption
-                %h3 Coins
+.row
+  #game-levels{role: 'grid'}
+    - (1..10).to_a.each_slice(5) do |levels|
+      .row{role: 'row'}
+        %ul.thumbnails
+          - levels.each do |level|
+            %li.span3
+              .thumbnail.well{role: 'gridcell', 'aria-labelled-by' => "level-#{level}", 'aria-described-by' => "level-#{level}-title"}
+                .level{id: "level-#{level}"}= level 
+                .hide{id: "level-#{level}-title"}= "level #{level}"
+                .caption
+                  %h3 Coins
          
