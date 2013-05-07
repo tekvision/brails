@@ -17,47 +17,55 @@ keyCodes = ->
   @del = 46
   @f2 = 113 
 
-AriaEvent = (element, max_row) ->
+AriaEvent = (element, max_row, max_col) ->
   @main_element = $(element)
   $(element).attr('tab-index', 0)
+   
   @maxrow = max_row 
-  @keys = keyCodes     
+  @maxcol = 
+  @keys = keyCodes
+  $('#row_0_col_0').attr('tabindex', "0")
   console.log "In Left and right key are in progress"
 
 AriaEvent.prototype.bindhandler = ()->
   thisObj = this
-  $row_event = $(this).main_element().find('.row[role="row"]')
+  $row_event = @main_element.find('.row[role="row"] .span3')
   $row_event.bind 'keyup', (e)->
-    thisObj.bind_grid_cell(object, e)
+    console.log "key up"
+    thisObj.bind_grid_cell($(this), e)
   
   $row_event.bind 'keypress', (e)->
-    thisObj.bind_grid_cell(object, e)
+    console.log('key press 1')
+    thisObj.bind_grid_cell($(this), e)
   
-  $row_event.bind 'keypress', (e)->
-    thisObj.bind_grid_cell(object, e) 
  
 AriaEvent.prototype.bind_grid_cell = (id, e)->
-  $curCell = $(id) #Store the current cell object to prevent repeated DOM traversals 
-  if e.ctrlKey == true || e.altKey == true || e.shiftKey == true || this.editMode == true 
+  $curCell = id #Store the current cell object to prevent repeated DOM traversals 
+  console.log "key code"
+  console.log e.keyCode
+  if e.ctrlKey == true || e.altKey == true || e.shiftKey == true  
     return true 
-  
+  #TOdo: Need Add dynamic keycode 
   switch e.keyCode
     when @keys.enter, @keys.f2
-      
       # enter the edit mode for the cell 
       @enterEditMode $curCell
       e.stopPropagation
       return false
       break
-    when @keys.left
-      $newCell = $curCell.prev()
-        
-      $newCell = $newCell.prev()  
+    when 37
+      $newCell = $curCell.prev()  
       $newCell.attr("tabindex", "0").focus() 
       e.stopPropagation
       return false
       break
-   
+    when 38
+      break   
+    when 39
+      $newCell = $curCell.next()
+      $newCell.attr("tabindex", "0").focus()
+      $curCell.removeAttr("tabindex")
+      break
 $(document).ready ->
-  app = new AriaEvent('#game-levels', $("#game-levels .row[role='row']").size())
-     
+  app = new AriaEvent('#game-levels', $("#game-levels .row[role='row']").size(), 5)
+  app.bindhandler()   
