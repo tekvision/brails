@@ -1,0 +1,14 @@
+branches:
+  only:
+    - 'master'
+
+language: ruby
+
+rvm:
+  - 2.0.0
+
+env:
+  - DB=mongodb
+
+services: 
+  - mongodb

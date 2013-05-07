@@ -1,0 +1,31 @@
+.row
+  .well
+    = audio_tag "horse.ogg", :autoplay => true, :controls => true, id: 'audio'
+  #summary.hide
+    .hero-unit
+      %h3 Summary of sound track
+      %p What we have just seen:
+      %p lasooai loasioiad loiasodas
+      %p lasooai loasioiad loiasodas
+      %p lasooai loasioiad loiasodas
+
+    .well
+      %h3 Now tell me : How many bits in byte?
+    .hero-unit
+      %p
+        = radio_button_tag "option1", '1 byte has 8 bits'
+        1 byte has 8 bits
+      %p
+        = radio_button_tag "option1", '1 byte has 2 bits'
+        1 byte has 2 bits
+      %P
+        = radio_button_tag "option1", '1 byte has 10 bits'
+        1 byte has 10 bits
+      %p
+        %button.btn.btn-primary.btn-danger Don't Know
+        %button.btn.btn-primary.btn-success Confirm
+
+      %p#success
+        Excellent! Lets move on.
+      %p#fail
+        No! Listen to audio again
