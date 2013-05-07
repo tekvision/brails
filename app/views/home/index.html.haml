@@ -1,13 +1,16 @@
-.row
-  #game-levels{role: 'grid'}
+#grid-wrapper{role: 'application'}
+  #game-levels{role: 'grid',tabindex: '0'}
     - (1..10).to_a.each_slice(5) do |levels|
-      .row{role: 'row'}
-        %ul.thumbnails
+      .row
+        %ul.thumbnails{role: 'row'}
           - levels.each do |level|
-            %li.span3
-              .thumbnail.well{role: 'gridcell', 'aria-labelled-by' => "level-#{level}", 'aria-described-by' => "level-#{level}-title"}
-                .level{id: "level-#{level}"}= level 
-                .hide{id: "level-#{level}-title"}= "level #{level}"
-                .caption
+            %li.span3{role: 'gridcell', "aria-labelledby"=> "level_number_#{level}", "aria-describedby"=>"level_caption_#{level}"}
+              .thumbnail.well
+                .level{id: "level_number_#{level}"}= level 
+                .caption{id: "level_caption_#{level}"}
                   %h3 Coins
-         
+
+%p
+  out of application mode
+  %a{href: '#'} some link
+  again some text
