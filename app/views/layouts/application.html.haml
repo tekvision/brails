@@ -6,6 +6,5 @@
     = csrf_meta_tags
   %body
     = render 'header'
-    .main-container
-      .row
-        = yield
+    .main-container{role: 'application'}
+      = yield
