@@ -20,11 +20,11 @@ context 'listing story boards' do
 
     it 'delete story' do
 	it 'should generate alert box'
-	it 'should confirm message'
-	it 'should ok and cancel button'
+	it 'should  have confirm message'
+	it 'should have ok and cancel buttons'
 	it 'should not delete after clicking cancel button'
 	it 'should delete after clicking ok button'
-        it 'after redirects to index page'
+        it 'should redirects to index page after deleting'
 
     end
 end
