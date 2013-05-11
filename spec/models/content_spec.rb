@@ -6,13 +6,13 @@ describe Content do
      it 'should have content type'
   end
 
- context 'required fields' do
+  context 'required fields' do
      it 'should have content body'
      it 'should have content type'
   end
 
- context 'associations' do
-     it 'should have one topic'     
+  context 'associations' do
+     it 'should have one topic'
   end
 
 end
