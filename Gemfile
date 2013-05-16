@@ -18,6 +18,7 @@ group :development, :test do
   gem 'mailcatcher'
   gem "rspec-rails", ">= 2.0.1"
   gem "factory_girl_rails", "~> 4.0"
+  gem 'faker'
 end
 
 gem 'jquery-rails'

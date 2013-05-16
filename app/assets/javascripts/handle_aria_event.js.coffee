@@ -27,29 +27,15 @@ AriaEvent = (element, max_row) ->
 AriaEvent.prototype.bindhandler = ()->
   thisObj = this
   $row_event = $(this).find('.row[role="row"]')
-  $row_event.bind 'keyup', (e)->
-    thisObj.bind_grid_cell(object, e)
 
-  $row_event.bind 'keypress', (e)->
-    thisObj.bind_grid_cell(object, e)
-
-  $row_event.bind 'keypress', (e)->
+  $('#game-levels').delegate 'ul', 'keypress', (e) ->
+    alert 'Hello'
     thisObj.bind_grid_cell(object, e)
 
 AriaEvent.prototype.bind_grid_cell = (id, e)->
   $curCell = $(id) #Store the current cell object to prevent repeated DOM traversals
-  if e.ctrlKey == true || e.altKey == true || e.shiftKey == true || this.editMode == true
-    return true
   alert e.keyCode
   switch e.keyCode
-    when @keys.enter, @keys.f2
-
-      # enter the edit mode for the cell
-      @enterEditMode $curCell
-      e.stopPropagation
-      return false
-      break
-
     when @keys.left
       alert("you are moving left")
       #$newCell = $curCell.prev()
@@ -65,9 +51,4 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
 #	http://test.cita.illinois.edu/aria/grid/grid1.php#lsc1
 
 $(document).ready ->
-  #app = new AriaEvent('#game-levels', $("#game-levels ul[role='row']").size())
-  $("#grid-wrapper").keypress((e) ->
-    switch e.keyCode
-      when 37, 38, 39, 40 #got error for keyCodes.up and others
-        alert("Moving with arrow keys and screen reader doesn't interupt! :)")
-  )
+  app = new AriaEvent('#game-levels', $("#game-levels ul[role='row']").size())
