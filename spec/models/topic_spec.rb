@@ -13,7 +13,8 @@ describe Topic do
   end
 
   context 'associations' do
-    it 'should have content'
+    it 'should have one content'
+    it 'Should belongs to story'
   end
 
 end
