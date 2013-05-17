@@ -6,4 +6,12 @@ FactoryGirl.define do
     level_name 'Programming basic'
     cookies '10'
   end
+
+  factory :topics, :parent => 'level' do
+    association :level, :factory => :topic
+  end
+
+  factory :bonus_round, :parent => 'level' do
+    association :level, :factory => :bonus_round 
+  end
 end
