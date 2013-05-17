@@ -1,5 +1,5 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
-
+=begin
 FactoryGirl.define do
   factory :user do
    sequence(:email)      {|i | i.to_s + Faker::Internet.email}
@@ -8,3 +8,4 @@ FactoryGirl.define do
     roles "Admin"
   end
 end
+=end

@@ -1,12 +1,14 @@
 class Topic
   include Mongoid::Document
-  field :topic_number, type: Integer
-  field :title, type: String
-  field :sub_topic, type: Integer
-  validates :topic_number, :title, :presence => true
-  belongs_to :chapter
+  field :topic_name, type:string
+  field :cookies, type:Integer
+  field :topic_summary, type:string
 
   has_one :content
+  has_many :questions
   
+  has_many :subtopics, class_name: "Topic", :foreign_key =>"subtopic_id"
+  belongs_to :topic, class_name: "Topic"
+
 end
 
