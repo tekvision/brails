@@ -27,7 +27,7 @@ gem 'devise_invitable', '1.1.2'
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem 'mongoid_slug'
-#gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
+gem "rails_admin"
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'mongoid-simple-roles'

@@ -1,6 +1,13 @@
 Brails::Application.routes.draw do
-  get "home/index"
+  
 
+  
+
+  
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  get "home/index"
   devise_for :users, :path_names => {
     :sign_in => 'login', 
     :sign_out => 'logout', 
@@ -9,7 +16,6 @@ Brails::Application.routes.draw do
     :root_path => 'home#index'
   }
   resources :users
-  resources :chapters
   resources :parts
   resources :profiles
   resources :comments
@@ -17,6 +23,7 @@ Brails::Application.routes.draw do
   resources :topics
   resources :contents
   resources :requests
+  resources :levels
 
   match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
   match '/courses/show' => 'courses#show_course', :via => :get , as: :show_course
