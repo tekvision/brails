@@ -7,8 +7,4 @@ FactoryGirl.define do
     password_confirmation 'abcd1234'
     roles "Admin"
   end
-
-  factory :profile, :parent => 'user' do
-    association :user, :factory => :profile
-  end
 end
