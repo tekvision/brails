@@ -19,7 +19,6 @@ keyCodes = ->
 
 AriaEvent = (element, max_row, max_col) ->
   @main_element = $(element)
-  $(element).attr('tab-index', 0)
    
   @maxrow = Number(max_row)
   @maxcol = Number(max_col)
@@ -71,6 +70,27 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       return false
       break
     when 38 #Up key
+      row_number = $curCell.attr('id').split('_')[1] 
+      col_number = $curCell.attr('id').split('_')[3]
+ 
+      prev_cell =  $curCell.closest('.row[role="row"]').prev()
+      if prev_cell.length  
+        $newCell = prev_cell.find(".thumbnails li#row_#{row_number-1}_col_#{col_number}")   
+        if $newCell.length == 0
+          $newCell = prev_cell.find(".thumbnails li.span3").last()  
+        $newCell.attr("tabindex", "0").focus()
+        $curCell.removeAttr("tabindex")
+      else
+        next_cell = $curCell.closest('.row[role="row"]').next()
+        console.log next_cell
+        if next_cell.length
+          $newCell = prev_cell.find(".thumbnails li#row_#{row_number+1}_col_#{col_number}")   
+          if $newCell.length == 0
+            $newCell = prev_cell.find(".thumbnails li.span3").last()  
+          $newCell.attr("tabindex", "0").focus() 
+          $curCell.removeAttr("tabindex")
+      e.stopPropagation
+      return false
       break   
     when 39 #right key
       $newCell = $curCell.next()
@@ -94,7 +114,13 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       $curCell.removeAttr("tabindex")
       e.stopPropagation
       break
-
+    
+    when 90 #down
+       
+      e.stopPropagation
+      break
 $(document).ready ->
   app = new AriaEvent('#game-levels', $("#game-levels .row[role='row']").size(), 5)
+  
+  $('#row_0_col_0').attr('tabindex', "0")
   app.bindhandler()   

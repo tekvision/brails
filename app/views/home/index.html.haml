@@ -1,11 +1,12 @@
-#game-levels{role: 'grid'}
-  - (1..10).to_a.each_slice(5).with_index do |levels, row_index|
-    .row{role: 'row', id: "row_index_#{row_index}"}
-      %ul.thumbnails
-        - levels.each_with_index do |level, col_index|
-          %li.span3{id: "row_#{row_index}_col_#{col_index}"}
-            .thumbnail.well
-              .level= level 
-              .caption
-                %h3 Coins
-         
+#grid-wrapper{role: 'application'}
+  #game-levels{role: 'grid'}
+    - (1..10).to_a.each_slice(5).with_index do |levels, row_index|
+      .row{role: 'row', id: "row_index_#{row_index}"}
+        %ul.thumbnails
+          - levels.each_with_index do |level, col_index|
+            %li.span3{id: "row_#{row_index}_col_#{col_index}"}
+              .thumbnail.well
+                .level= level 
+                .caption
+                  %h3 Coins
+           
