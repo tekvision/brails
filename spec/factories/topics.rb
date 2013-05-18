@@ -7,12 +7,4 @@ FactoryGirl.define do
     subtopic_name "Multilevel array"
     topic_summary "topic points"
   end
-
-  factory :questions, :parent => 'topic' do
-    association :topic, :factory => :questions     
-  end
-
-  factory :content, :parent => 'topic' do
-    association :topic, :factory => :contents     
-  end
 end
