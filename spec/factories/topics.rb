@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :topic do
-    topic_name "Arrays, Hash"
+    title "Arrays, Hash"
     cookies '3'
-    subtopic_name "Multilevel array"
-    topic_summary "topic points"
+    summary "topic points"
   end
 end

@@ -1,9 +1,7 @@
 Brails::Application.routes.draw do
-  
 
-  
+  default_url_options :host => "localhost"
 
-  
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

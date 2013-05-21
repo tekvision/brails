@@ -1,8 +1,8 @@
 class Content
   include Mongoid::Document
+  field :title, type: String
   field :content_body, type: String
-  field :content_type, type: String
-  validates :content_body, :content_type, :presence => true
-  has_one :topic
+  field :sq_no, type: Integer
+
 end
 

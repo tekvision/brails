@@ -3,8 +3,7 @@
 FactoryGirl.define do
   factory :content do
     title 'Array and hashes'
-    type 'Audio'
     sq_no '1'
-    body_content 'AudioFile'
+    content_body 'AudioFile'
   end
 end

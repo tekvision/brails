@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :option do
+    label 'computer language'
+    value 'CL'
+    is_valid 'false'
   end
 end
