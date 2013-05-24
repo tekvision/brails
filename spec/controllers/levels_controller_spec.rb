@@ -7,6 +7,7 @@ describe LevelsController do
     @topic = create(:topic)
     @topic1 = create(:topic)
     @level = create(:level)
+    @br = build(:bonus_round)
   end
 
   it 'Should display the index' do
@@ -29,7 +30,15 @@ describe LevelsController do
   end
 
   context "When the level ends" do
-    it 'Should un-lock the bonus round'
+    it 'Should finished all the topics of the level' do
+      topics = [@topic, @topic1]
+      topics.size.should eq(2)
+    end
+
+    it 'Should un-lock the bonus round' do
+      level = @br.level
+      level.bonus_round.is_locked.should eq(false)
+    end
   end
 
 end

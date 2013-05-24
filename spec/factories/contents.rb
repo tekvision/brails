@@ -5,5 +5,6 @@ FactoryGirl.define do
     title 'Array and hashes'
     sq_no '1'
     content_body 'AudioFile'
+    association :topic
   end
 end
