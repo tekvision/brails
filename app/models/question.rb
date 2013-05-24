@@ -8,4 +8,5 @@ class Question
   field :is_attempted, type: Boolean
   has_many :options
   belongs_to :topic
+  belongs_to :bonus_round
 end
