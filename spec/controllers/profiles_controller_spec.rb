@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe ProfilesController do
 
-    context 'create profile' do
-         it "responds successfully with an HTTP 200 status code" do
+  context 'create profile' do
+    it "responds successfully with an HTTP 200 status code" do
       get :new
       expect(response).to be_success
       expect(response.status).to eq(200)
@@ -17,8 +17,9 @@ describe ProfilesController do
      it 'user should create new profile' do
        profile = build(:profile)
 #       post :create 
-p profile
-       
+    profile.delete{"_id"}   
+    p profile
+
      end
 
 #       it 'should redirect to index page after creating profile'
