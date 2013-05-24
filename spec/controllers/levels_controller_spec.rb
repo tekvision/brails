@@ -14,14 +14,14 @@ describe LevelsController do
     sign_in :user, @user
     @topic = create(:topic)
     @topic1 = create(:topic)
+    @level = create(:level)
   end
 
   it 'Should display the index' do
-    level = create(:level)
     get :index
     render_template('home#index')
     should respond_with(:success)
-    level.should_not be_nil
+    @level.should_not be_nil
   end
 
   it 'Should show number of cookies for the level' do
