@@ -7,6 +7,7 @@ FactoryGirl.define do
     cookies_count '2'
     attempts_count '3'
     is_attempted 'true'
-    option
+    association :topic
+    association :bonus_round
   end
 end
