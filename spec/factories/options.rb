@@ -5,5 +5,6 @@ FactoryGirl.define do
     label 'computer language'
     value 'CL'
     is_valid 'false'
+    association :question
   end
 end
