@@ -42,11 +42,24 @@ describe LevelsController do
       end
     end
 
-    describe "POST create" do
       it 'The save is successful', :fail => true do
         post :create, :level => @level.attributes      
-        assert_redirected_to levels_path
+        response.should render_template(:index)
         flash[:notice].should ==  I18n.t('level.created')
+      end
+    end
+
+  context 'Only admin can update level' do
+    before do
+      @user = create(:admin)
+      sign_in :user, @user
+    end
+
+    describe "GET edit" do
+      it "assigns the requested level as @level" do
+        level = Level.create! valid_attributes
+        get :edit, {:id => level.to_param}, valid_session
+        assigns(:level).should be_nil
       end
     end
   end
