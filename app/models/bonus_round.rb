@@ -3,4 +3,5 @@ class BonusRound
 
   field :extra_cookies, type: Integer
   has_many :questions
+  belongs_to :level
 end
