@@ -5,12 +5,4 @@ FactoryGirl.define do
     level_number '1'
     level_name 'Programming basic'
   end
-
-  factory :topics, :parent => 'level' do
-    association :level, :factory => :topic
-  end
-
-  factory :bonus_round, :parent => 'level' do
-    association :level, :factory => :bonus_round 
-  end
 end
