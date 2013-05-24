@@ -3,4 +3,5 @@ class Level
 
   field :level_number, type: Integer
   field :level_name, type: String
+  has_many :topics
 end
