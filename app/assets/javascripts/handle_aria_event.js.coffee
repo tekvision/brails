@@ -28,7 +28,8 @@ AriaEvent = (element, max_row, max_col) ->
 
 AriaEvent.prototype.bindhandler = ()->
   thisObj = this
-  $row_event = @main_element.find('.row[role="row"] .span3')
+  $row_event = @main_element.find('.row ul.thumbnails[role="row"] .span3')
+  console.log "aaaa"
   $row_event.bind 'keyup', (e)->
     console.log "key up"
     thisObj.bind_grid_cell($(this), e)
@@ -73,7 +74,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       row_number = $curCell.attr('id').split('_')[1] 
       col_number = $curCell.attr('id').split('_')[3]
  
-      prev_cell =  $curCell.closest('.row[role="row"]').prev()
+      prev_cell =  $curCell.closest('.row').prev()
       if prev_cell.length  
         $newCell = prev_cell.find(".thumbnails li#row_#{row_number-1}_col_#{col_number}")   
         if $newCell.length == 0
@@ -81,7 +82,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
         $newCell.attr("tabindex", "0").focus()
         $curCell.removeAttr("tabindex")
       else
-        next_cell = $curCell.closest('.row[role="row"]').next()
+        next_cell = $curCell.closest('.row').next()
         console.log next_cell
         if next_cell.length
           $newCell = prev_cell.find(".thumbnails li#row_#{row_number+1}_col_#{col_number}")   
@@ -120,7 +121,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       e.stopPropagation
       break
 $(document).ready ->
-  app = new AriaEvent('#game-levels', $("#game-levels .row[role='row']").size(), 5)
+  app = new AriaEvent('#game-levels', $("#game-levels .row").size(), 5)
   
   $('#row_0_col_0').attr('tabindex', "0")
   app.bindhandler()   
