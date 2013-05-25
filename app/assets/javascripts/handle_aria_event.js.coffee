@@ -120,9 +120,32 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       break
     
     when 40 #down
-       
+      row_number = $curCell.attr('id').split('_')[1] 
+      col_number = $curCell.attr('id').split('_')[3]
+ 
+      prev_cell =  $curCell.closest('.row').next()
+      if prev_cell.length  
+        $newCell = prev_cell.find(".thumbnails li#row_#{parseInt(row_number)+1}_col_#{col_number}")   
+        if $newCell.length == 0
+          $newCell = prev_cell.find(".thumbnails li.span3").last()  
+        $newCell.attr("tabindex", "0").focus()
+        $curCell.removeAttr("tabindex")
+      else
+        next_cell = $curCell.closest('.row').prev()
+        console.debug next_cell 
+        if next_cell.length
+          $newCell = next_cell.find(".thumbnails li#row_#{parseInt(row_number)-1}_col_#{col_number}")   
+          console.log $newCell
+             
+          if $newCell.length == 0
+            $newCell = next_cell.find(".thumbnails li.span3").last()
+ 
+          $newCell.attr("tabindex", "0").focus() 
+          $curCell.removeAttr("tabindex")
       e.stopPropagation
-      break
+      return false
+      break    
+
 $(document).ready ->
   app = new AriaEvent('#game-levels', $("#game-levels .row").size(), 5)
   
