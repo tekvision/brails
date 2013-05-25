@@ -76,18 +76,21 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
  
       prev_cell =  $curCell.closest('.row').prev()
       if prev_cell.length  
-        $newCell = prev_cell.find(".thumbnails li#row_#{row_number-1}_col_#{col_number}")   
+        $newCell = prev_cell.find(".thumbnails li#row_#{parseInt(row_number)-1}_col_#{col_number}")   
         if $newCell.length == 0
           $newCell = prev_cell.find(".thumbnails li.span3").last()  
         $newCell.attr("tabindex", "0").focus()
         $curCell.removeAttr("tabindex")
       else
         next_cell = $curCell.closest('.row').next()
-        console.log next_cell
+        console.debug next_cell 
         if next_cell.length
-          $newCell = prev_cell.find(".thumbnails li#row_#{row_number+1}_col_#{col_number}")   
+          $newCell = next_cell.find(".thumbnails li#row_#{parseInt(row_number)+1}_col_#{col_number}")   
+          console.log $newCell
+             
           if $newCell.length == 0
-            $newCell = prev_cell.find(".thumbnails li.span3").last()  
+            $newCell = next_cell.find(".thumbnails li.span3").last()
+ 
           $newCell.attr("tabindex", "0").focus() 
           $curCell.removeAttr("tabindex")
       e.stopPropagation
@@ -116,7 +119,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       e.stopPropagation
       break
     
-    when 90 #down
+    when 40 #down
        
       e.stopPropagation
       break
