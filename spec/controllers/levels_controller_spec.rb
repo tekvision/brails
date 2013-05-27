@@ -36,6 +36,12 @@ describe LevelsController do
       sign_in :user, @user
     end
 
+    it "responds successfully with an HTTP 200 status code" do
+      get :new
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
     describe "GET new" do
       it "assigns a new level as @level" do
         get :new, {}, valid_session
@@ -43,25 +49,48 @@ describe LevelsController do
       end
     end
 
-      it 'The save is successful', :fail => true do
-        post :create, :level => @level.attributes      
-        response.should render_template(:index)
-        flash[:notice].should ==  I18n.t('level.created')
+    it 'should redirect to new page' do
+      get :new
+      expect(response).to render_template("new")
+    end
+
+      it 'should create new level' do
+        level = build(:level).attributes
+	level.delete("_id")
+        post :create, {:level => level}
+	level = assigns(:level)
+#        response.should redirect_to(:action => 'index')
       end
     end
 
   context 'Only admin can update level' do
-    before do
+    before(:each) do
       @user = create(:admin)
       sign_in :user, @user
+    end 
+  
+    it 'should redirect to edit page' do
+      get :edit, {:id => @level.id}
+      expect(response).to be_success
+      expect(response.status).to eq(200)
     end
 
-    describe "GET edit" do
-      it "assigns the requested level as @level" do
-        level = Level.create! valid_attributes
-        get :edit, {:id => level.to_param}, valid_session
-        assigns(:level).should be_nil
-      end
+    it 'should edit existing level' do
+      get :edit, {:id => @level.id}
+      expect(response).to render_template("edit")
+    end
+
+    it 'should redirect to index page after updating' do
+      @level.level_name = 'Updated level_name'
+      level = @level.attributes
+      put :update, {:level => level, :id => @level.id}
+      @level1 = assigns(:level)
+    end
+
+    it "assigns the requested level as @level" do
+      level = Level.create! valid_attributes
+      get :edit, {:id => level.to_param}, valid_session
+      assigns(:level).should be_nil
     end
   end
 
