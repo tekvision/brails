@@ -31,4 +31,8 @@ class TopicsController < ApplicationController
   	@topic = Topic.find_by(:id => params[:id])
   end
 
+  def destroy
+
+  end
+
 end
