@@ -2,10 +2,27 @@ require 'spec_helper'
 
 describe ProfilesController do
 
-    context 'create profile' do
-       it 'should redirect to new page'
-       it 'user should create new profile'
-       it 'should redirect to index page after creating profile'
+  context 'create profile' do
+    it "responds successfully with an HTTP 200 status code" do
+      get :new
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "renders the new template" do
+      get :new
+      expect(response).to render_template("new")
+    end
+
+     it 'user should create new profile' do
+       profile = build(:profile)
+#       post :create 
+    profile.delete{"_id"}   
+    p profile
+
+     end
+
+#       it 'should redirect to index page after creating profile'
     end
 
     context 'edit profile' do
