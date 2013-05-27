@@ -22,6 +22,7 @@ Brails::Application.routes.draw do
   resources :contents
   resources :requests
   resources :levels
+  resources :questions
 
   match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
   match '/courses/show' => 'courses#show_course', :via => :get , as: :show_course

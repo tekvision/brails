@@ -99,12 +99,10 @@ describe LevelsController do
       @user = create(:admin)
       sign_in :user, @user
     end 
-    it 'should generate alert box'
-    it 'should confirm message'
-    it 'should have ok and cancel buttons'
-    it 'should not delete after clicking cancel button'
-    it 'should delete after clicking on ok button'
-    it 'should redirects to index page after deleting'
+
+    it 'Should delete' do
+      delete :destroy, id: @level.id
+    end
   end
 
   context "When clicking on the level" do
