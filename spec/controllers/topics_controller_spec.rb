@@ -12,7 +12,9 @@ describe TopicsController do
   end
 
   it 'Should render associated content' do
-pending
+topic = build(:topic)
+    topic.contents << build(:content, :topic => topic)
+    topic.contents.should_not be_nil
   end
 
   it 'Should show summary' do
@@ -21,7 +23,9 @@ pending
 
   context "When topic ends" do
     it 'Should show an exercise' do
-pending("Error is in association")
+      topic = build(:topic)
+      topic.questions << build(:question, :topic => topic)
+      topic.questions.should_not be_nil
     end
   end
 
