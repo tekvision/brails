@@ -94,6 +94,19 @@ describe LevelsController do
     end
   end
 
+  context "Only admin can destroy level" do
+    before(:each) do
+      @user = create(:admin)
+      sign_in :user, @user
+    end 
+    it 'should generate alert box'
+    it 'should confirm message'
+    it 'should have ok and cancel buttons'
+    it 'should not delete after clicking cancel button'
+    it 'should delete after clicking on ok button'
+    it 'should redirects to index page after deleting'
+  end
+
   context "When clicking on the level" do
     it 'Should show list of topics' do
       @topic.title.should_not be_nil
