@@ -12,7 +12,7 @@ describe TopicsController do
   end
 
   it 'Should render associated content' do
-    pending
+pending
   end
 
   it 'Should show summary' do
@@ -20,11 +20,12 @@ describe TopicsController do
   end
 
   context "When topic ends" do
-    it 'Should show an exercise'
+    it 'Should show an exercise' do
+pending("Error is in association")
+    end
   end
 
   context 'create topic' do
-
     it "responds successfully with an HTTP 200 status code" do
       get :new
       expect(response).to be_success
@@ -43,11 +44,9 @@ describe TopicsController do
       topic = assigns(:topic)
       response.should redirect_to(:action => 'show', :id => topic.id)
     end
-
   end
 
   context 'edit topic' do
-
     before(:each) do
       @topic = create(:topic)
     end
@@ -71,15 +70,12 @@ describe TopicsController do
       @topic1.title.should eq('Updated Title')
       response.should redirect_to(:action => 'show', :id => @topic1.id)
     end
-
   end
 
-  context 'delete topic' do
-    it 'should generate alert box'
-    it 'should confirm message'
-    it 'should have ok and cancel buttons'
-    it 'should not delete after clicking cancel button'
-    it 'should delete after clicking on ok button'
-    it 'should redirects to index page after deleting'
+  context 'When clicking on delete topic' do
+    it 'Should delete' do
+      post :destroy, id: @topic.id
+    end
   end
+
 end
