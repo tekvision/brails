@@ -94,6 +94,17 @@ describe LevelsController do
     end
   end
 
+  context "Only admin can destroy level" do
+    before(:each) do
+      @user = create(:admin)
+      sign_in :user, @user
+    end 
+
+    it 'Should delete' do
+      delete :destroy, id: @level.id
+    end
+  end
+
   context "When clicking on the level" do
     it 'Should show list of topics' do
       @topic.title.should_not be_nil
