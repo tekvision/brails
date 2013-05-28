@@ -70,7 +70,7 @@ describe QuestionsController do
       end
     end
 
-  context 'Only admin can update questionl' do
+  context 'Only admin can update question' do
     before(:each) do
       @user = create(:admin)
       sign_in :user, @user
