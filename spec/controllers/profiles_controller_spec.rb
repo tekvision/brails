@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe ProfilesController do
 
+  before do
+    @user = create(:user)
+    sign_in :user, @user
+    @profile = create(:profile)
+  end
+
   context 'create profile' do
     it "responds successfully with an HTTP 200 status code" do
       get :new
@@ -15,20 +21,28 @@ describe ProfilesController do
     end
 
      it 'user should create new profile' do
-       profile = build(:profile)
-#       post :create 
-    profile.delete{"_id"}   
-    p profile
-
+       profile = build(:profile).attributes
+       profile.delete("_id")   
+       post :create, { :profile => profile} 
+       profile = assigns(:profile)
+       render_template('profiles#index')
      end
-
-#       it 'should redirect to index page after creating profile'
     end
 
     context 'edit profile' do
-        it 'should redirect to edit page'
-	it 'should edit profile'
-	it 'should redirect to index page after updating profile'
+        it 'should redirect to edit page' do
+	  get :edit, {:id => @profile.id}
+          expect(response).to be_success
+          expect(response.status).to eq(200)
+	end
+
+	it 'should redirect to show page after updating profile' do
+	  @profile.first_name = 'Updated first name'
+          profile = @profile.attributes
+          put :update, {:profile => profile, :id => @profile.id}
+          @profile = assigns(:profile)
+          render_template('profile#show')	  
+	end
     end
 
     context 'delete profile' do
