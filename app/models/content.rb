@@ -4,6 +4,8 @@ class Content
   field :title, type: String
   field :content_body, type: String
   field :sq_no, type: Integer
-  belongs_to :topic, :polymorphic => true
+  field :content_type, type: String # one of [video, audio, text, image]
+
+  belongs_to :topic
 end
 

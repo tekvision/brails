@@ -3,9 +3,8 @@ class Question
 
   field :sq_no, type: Integer
   field :query, type: String
-  field :cookies_count, type: Integer
-  field :attempts_count, type: Integer
-  field :is_attempted, type: Boolean
+  field :cookies, type: Integer
+
   has_many :options
   belongs_to :topic
   belongs_to :bonus_round

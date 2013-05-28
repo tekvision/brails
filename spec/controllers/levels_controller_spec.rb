@@ -9,25 +9,21 @@ describe LevelsController do
     {}
   end
   
-  before do
-    @user = create(:user)
-    sign_in :user, @user
-    @topic = create(:topic)
-    @topic1 = create(:topic)
-    @level = create(:level)
-    @br = build(:bonus_round)
-  end
 
-  it 'Should display the index' do
-    get :index
-    render_template('home#index')
-    should respond_with(:success)
-    @level.should_not be_nil
-  end
+  describe "GET index action for logged in user" do
+    before do
+      @user = create(:user)
+      sign_in :user, @user
+      get :index
+    end
 
-  it 'Should show number of cookies for the level' do
-    level_cookies = @topic.cookies + @topic1.cookies
-    level_cookies.should_not be_nil
+    it 'Should display the levels' do
+      assigns(:levels).should_not be_nil
+    end
+
+    it 'Should show number of cookies for each level' do
+      assigns(:levels).first.cookies.should_not be_empty
+    end
   end
 
   context 'Only admin can create level' do

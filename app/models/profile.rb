@@ -1,5 +1,6 @@
 class Profile
   include Mongoid::Document
+
   field :first_name, type: String
   field :last_name, type: String
   field :nick_name, type: String
@@ -11,7 +12,11 @@ class Profile
   field :contact_number, type: Integer
   field :date_of_birth, type: Date
   field :facebook, type: String
-  field :twitter_handle, type: String
+  field :twitter, type: String
+
+  field :disability, type: String
+  field :disability_percentage, type: String
+
   validates :first_name, :permanent_address, :country, :state, :city, :contact_number, :presence => true
 
   #embedded_in :user
