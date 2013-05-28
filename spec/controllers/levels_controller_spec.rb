@@ -6,9 +6,9 @@ describe LevelsController do
   end
 
   def valid_attributes
-    {  }
+    {}
   end
-
+  
   before do
     @user = create(:user)
     sign_in :user, @user

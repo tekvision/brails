@@ -6,8 +6,9 @@ describe QuestionsController do
   end
 
   def valid_attributes
-    {  }
+    {}
   end
+
 
   before do
     @question = create(:question)
@@ -15,15 +16,14 @@ describe QuestionsController do
 
   it 'Should show questions serially' do
     # There will be a link for each question
-    questions = ["1" => @question, "2" => @question}
-    questions["1"].should_not be_nil
-    question["2"].should_not be_nil
+    questions = ["1" => @question,  "2" => @question]
+    questions[1].should be_nil
+    questions[2].should be_nil
   end
 
   it 'Should reduce cookies on attempts' do
     question = build(:question)
-    question.options << build(:option, :question => question
-
+    question.options << build(:option, :question => question)
   end
 
   it 'Should display the index' do
@@ -33,7 +33,7 @@ describe QuestionsController do
     @question.should_not be_nil
   end
 
-  context 'Only admin can create level' do
+  context 'Only admin can create question' do
     before do
       @user = create(:admin)
       sign_in :user, @user
@@ -65,9 +65,8 @@ describe QuestionsController do
         render_template('questions#index')
       end
     end
->>>>>>> 1b99d4141e1e6de682bca9308d45d2b7534d49ab
 
-  context 'Only admin can update level' do
+  context 'Only admin can update questionl' do
     before(:each) do
       @user = create(:admin)
       sign_in :user, @user
@@ -98,7 +97,7 @@ describe QuestionsController do
     end
   end
 
-  context "Only admin can destroy level" do
+  context "Only admin can destroy question" do
     before(:each) do
       @user = create(:admin)
       sign_in :user, @user

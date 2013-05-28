@@ -23,6 +23,7 @@ Brails::Application.routes.draw do
   resources :requests
   resources :levels
   resources :questions
+  resources :bonus_rounds
 
   match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
   match '/courses/show' => 'courses#show_course', :via => :get , as: :show_course
