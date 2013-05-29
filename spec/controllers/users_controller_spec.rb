@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe UsersController do
+  context "When user is not logged-in" do
+    it 'Should redirect to home page'
+      Should redirect_to home_path
+    end
+  end
 
   context 'role as a Guest' do
     it 'should see home page after visiting to the site'

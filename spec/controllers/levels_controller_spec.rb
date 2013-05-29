@@ -1,28 +1,35 @@
 require 'spec_helper'
 
 describe LevelsController do
-  def valid_session
-    {}
+  before do
+@level = create(:level)
   end
 
-  def valid_attributes
-    {}
-  end
-  
-
-  describe "GET index action for logged in user" do
+  context "GET index action for logged in user" do
     before do
       @user = create(:user)
       sign_in :user, @user
-      get :index
     end
 
     it 'Should display the levels' do
+      get :index
       assigns(:levels).should_not be_nil
     end
 
     it 'Should show number of cookies for each level' do
-      assigns(:levels).first.cookies.should_not be_empty
+      level = create(:level)
+      4.times {create(:topic, :level => level)}
+      cookies = 0
+      level.topics.each {|topic| cookies = cookies + topic.cookies}
+      level_cookies = {level.id => cookies}
+      get :index
+      assigns(:level_cookies).should eq(level_cookies)
+    end
+  end
+
+  context "When clicking on level" do
+    it 'Should show list of topics' do
+      assigns(:levels).topics.should_not be_nil
     end
   end
 
@@ -32,52 +39,35 @@ describe LevelsController do
       sign_in :user, @user
     end
 
-    it "responds successfully with an HTTP 200 status code" do
-      get :new
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    describe "GET new" do
-      it "assigns a new level as @level" do
-        get :new, {}, valid_session
-        assigns(:level).should be_nil
-      end
-    end
-
-    it 'should redirect to new page' do
-      get :new
+    it "assigns a new level as @level" do
+        get :new
+        assigns(:level).id.should_not be_nil
       expect(response).to render_template("new")
     end
 
-      it 'should create new level' do
-        level = build(:level).attributes
-	level.delete("_id")
-        post :create, {:level => level}
-	level = assigns(:level)
-#        response.should redirect_to(:action => 'index')
-      end
+    it 'should create new level' do
+      level = build(:level).attributes
+      level.delete("_id")
+      post :create, {:level => level}
+      level = assigns(:level)
+      level.should_not be_nil
     end
+  end
 
-  context 'Only admin can update level' do
+  context "Only admin can edit or update level" do
     before(:each) do
       @user = create(:admin)
       sign_in :user, @user
     end 
   
-    it 'should redirect to edit page' do
-      get :edit, {:id => @level.id}
+    it 'should edit as an action' do
+      level = assigns(:level)
+      get :edit, {:id => level.id}
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
 
-    it 'should edit existing level' do
-      get :edit, {:id => @level.id}
-      expect(response).to render_template("edit")
-    end
-
-    it 'should redirect to index page after updating' do
-      @level.level_name = 'Updated level_name'
+    it 'should update' do
       level = @level.attributes
       put :update, {:level => level, :id => @level.id}
       @level1 = assigns(:level)
