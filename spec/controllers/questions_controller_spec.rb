@@ -9,16 +9,25 @@ describe QuestionsController do
     {}
   end
 
-
-  before do
-    @question = create(:question)
+  describe "GET index action for logged in user" do
+    before do
+      @user = create(:user)
+      sign_in :user, @user
+      get :index
     end
 
-  it 'Should show questions serially' do
-    # There will be a link for each question
-    questions = {"1" => @question, "2" => @question}
-    questions["1"].should_not be_nil
-    questions["2"].should_not be_nil
+    it 'Should show questions serially' do
+      # There will be a link for each question
+      questions = {"1" => :question, "2" => :question}
+      questions["1".to_i].should_not be_nil
+      questions["2".to_i].should_not be_nil
+      assigns(:question).should_not be_nil
+    end
+
+    it 'Should display the questions' do
+      get :index      
+      assigns(:question).should_not be_nil
+    end
   end
 
   it 'Should reduce cookies on attempts' do
@@ -30,50 +39,41 @@ describe QuestionsController do
     cookies.should be < question.cookies_count
   end
 
-  it 'Should display the index' do
-    get :index
-    render_template('questions#index')
-    should respond_with(:success)
-    @question.should_not be_nil
-  end
-
   context 'Only admin can create question' do
     before do
       @user = create(:admin)
       sign_in :user, @user
-    end
-
-    it "responds successfully with an HTTP 200 status code" do
       get :new
-      expect(response).to be_success
-      expect(response.status).to eq(200)
+      post :create
     end
 
-    describe "GET new" do
-      it "assigns a new question as @question" do
-        get :new, {}, valid_session
-        assigns(:question).should be_nil
-      end
-    end
-
-    it 'should redirect to new page' do
+    it "Should assigns a new question as @question" do
       get :new
-      expect(response).to render_template("new")
+      should render_template(:new) 
+      assigns(:question).should_not be_nil
     end
 
-      it 'should create new question' do
-        question = build(:question).attributes
-	question.delete("_id")
-        post :create, {:question => question}
-	question = assigns(:question)
-        render_template('questions#index')
-      end
+    it "The save is successful" do
+     question = assigns(:question).should_not be_nil
+      post :create, {:question => question}
+      response.should redirect_to(:action => 'show', :id => question.id)
+      flash[:notice].should ==  I18n.t('question.created')
     end
+
+    it "The save fails" do
+      question = assigns(:question).should be_nil
+      post :create, {:question => question}
+      should render_template(:new) 
+      assigns(:question).should_not be_nil
+    end
+  end
 
   context 'Only admin can update question' do
     before(:each) do
       @user = create(:admin)
       sign_in :user, @user
+      get :edit
+      put :update
     end 
   
     it 'should redirect to edit page' do
@@ -83,7 +83,7 @@ describe QuestionsController do
     end
 
     it 'should edit existing question' do
-      get :edit, {:id => @question.id}
+      get :edit, {:id => :question.id}
       expect(response).to render_template("edit")
     end
 
@@ -95,9 +95,9 @@ describe QuestionsController do
     end
 
     it "assigns the requested question as @question" do
-      question = Question.create! valid_attributes
-      get :edit, {:id => question.to_param}, valid_session
-      assigns(:question).should be_nil
+      question = assigns(:question)
+      get :edit, {:id => question.to_param}
+      assigns(:question).should_not be_nil
     end
   end
 
