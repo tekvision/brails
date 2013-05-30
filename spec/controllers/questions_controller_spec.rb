@@ -1,17 +1,9 @@
 require 'spec_helper'
 
 describe QuestionsController do
-  def valid_session
-    {}
-  end
-
-  def valid_attributes
-    {}
-  end
-
   describe "GET index action for logged in user" do
     before do
-      @user = create(:user)
+      @user = create(:admin)
       sign_in :user, @user
       get :index
     end
@@ -61,7 +53,6 @@ describe QuestionsController do
     end
 
     it "The save fails" do
-      question = assigns(:question).should be_nil
       post :create, {:question => question}
       should render_template(:new) 
       assigns(:question).should_not be_nil

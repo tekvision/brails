@@ -1,52 +1,76 @@
 require 'spec_helper'
 
 describe TopicsController do
-  before do
-    @topic = create(:topic)
-  end
+  describe "GET show a topic" do
+    before do
+      @topic = create(:topic)
+      get :show, id: @topic.id
+    end 
 
-  it 'Should show the topic' do
-    get :show, id: @topic.id
-    respond_with(:success)
-    @topic.should_not be_nil
-  end
+    it 'Should show the topic' do
+      assigns(:topic).should be_valid
+    end
 
-  it 'Should render associated content' do
-topic = build(:topic)
-    topic.contents << build(:content, :topic => topic)
-    topic.contents.should_not be_nil
-  end
+    it 'should be published' do
+      assigns(:topic).published.should be_true
+    end 
 
-  it 'Should show summary' do
-    @topic.summary.should_not be_nil
-  end
+    it 'Should have associated content' do
+      assigns(:topic).contents.size.should > 0
+    end
 
-  context "When topic ends" do
-    it 'Should show an exercise' do
-      topic = build(:topic)
-      topic.questions << build(:question, :topic => topic)
-      topic.questions.should_not be_nil
+    it 'Should show summary' do
+      assigns(:topic).summary.should_not eq('')
     end
   end
 
-  context 'create topic' do
+  context "GET take_test action is invoked" do
+    before do
+      @topic = create(:topic)
+      get :take_test, @topic.id
+    end
+
+    it 'should show the topic questions' do
+      assigns(:questions).should eq(@topic.questions)
+    end
+
+    it 'each question should have multiple options'
+  end
+
+  context 'POST create attempt' do
+    before do
+      @topic = create(:topic)
+      post :attempts, attempt: { question_id: '???', option_id: '???' }
+    end
+
+    it "should have valid user"
+    it "should have valid topic"
+    it "should have valid question"
+    it "should have valid option"
+
+    context "with correct answer" do
+    end
+
+    context "with incorrect answer" do
+    end
+  end
+
+  context 'GET new topic action' do
     it "responds successfully with an HTTP 200 status code" do
       get :new
       expect(response).to be_success
-      expect(response.status).to eq(200)
+      assigns(:topic).should_not be_nil
     end
 
-    it 'should redirect to new page' do
-      get :new
-      expect(response).to render_template("new")
-    end
+  end
 
+  context 'POST create new topic' do
     it 'should create new topic' do
       topic = build(:topic).attributes
       topic.delete('_id')
       post :create, {:topic => topic}
-      topic = assigns(:topic)
-      response.should redirect_to(:action => 'show', :id => topic.id)
+      assigns(:topic).title.should eq(topic.title)
+      response.should redirect_to(:action => 'show', :id => assigns(:topic).id)
     end
   end
 
@@ -55,24 +79,19 @@ topic = build(:topic)
       @topic = create(:topic)
     end
     
-    it 'should redirect to edit page' do
+    it 'should be valid' do
       get :edit, {:id => @topic.id}
       expect(response).to be_success
-      expect(response.status).to eq(200)
+      assigns(:topic).should eq(@topic)
     end
 
-    it 'should edit existing topic' do
-      get :edit, {:id => @topic.id}
-      expect(response).to render_template("edit")
-    end
-
-    it 'should redirect to index page after updating' do
+    it 'should update the topic' do
       @topic.title = 'Updated Title'
       topic = @topic.attributes
       post :update, {:topic => topic, :id => @topic.id}
-      @topic1 = assigns(:topic)
-      @topic1.title.should eq('Updated Title')
-      response.should redirect_to(:action => 'show', :id => @topic1.id)
+      
+      assigns(:topic).title.should eq('Updated Title')
+      response.should redirect_to(:action => 'show', :id => assigns(:topic).id)
     end
   end
 
