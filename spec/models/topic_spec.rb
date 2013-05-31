@@ -5,6 +5,7 @@ describe Topic do
     it 'should have title'
     it 'Should have cookies'
     it 'Should have summary'
+    it 'Should have is_completed'
   end
 
   context 'required fields' do
