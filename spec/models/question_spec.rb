@@ -2,24 +2,25 @@ require 'spec_helper'
 
 describe Question do
   context "Fields" do
-    it 'Should have sequence number'
-    it 'Should have query'
-    it 'Should have cookies'
+    it { should have_field(:sequence_number).of_type(Integer)}
+    it { should have_field(:query).of_type(String)}
+    it { should have_field(:cookies).of_type(Integer)}
   end
 
 context "Required fields" do
-    it 'Should have sequence number'
-    it 'Should have query'
-    it 'Should have cookies'
+    it { should validate_presence_of(:sequence_number)}
+    it { should validate_presence_of(:query)}
+    it {should validate_presence_of(:cookies)}
   end
 
   context "Validations" do
-    it 'Should cookies greater than 0'
+    it { should validate_numericality_of(:cookies).to_allow(:only_integer => true, :greater_than => 0)}
+    it { should validate_numericality_of(:sequence_number).to_allow(:only_integer => true, :greater_than => 0)}
   end
 
   context "Associations" do
-    it 'Should have many options'
-    it 'Should belongs_to topic'
-    it 'Should belongs_to bonus round'
+    it { should have_many(:options).with_dependent(:destroy)}
+    it { should belong_to(:topic)}
+    it { should belong_to(:bonus_round)}
   end
 end

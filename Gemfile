@@ -20,6 +20,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
   gem 'shoulda'
+  gem 'mongoid-rspec'
 end
 
 gem 'jquery-rails'
