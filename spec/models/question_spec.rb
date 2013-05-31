@@ -5,7 +5,6 @@ describe Question do
     it { should have_field(:sequence_number).of_type(Integer)}
     it { should have_field(:query).of_type(String)}
     it { should have_field(:cookies).of_type(Integer)}
-    it { should have_field(:is_completed).of_type(Boolean)}
   end
 
 context "Required fields" do

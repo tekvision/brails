@@ -1,8 +1,13 @@
 require 'spec_helper'
 
 describe Level do
+  context 'fields' do
+    it { should have_field(:level_name).of_type(String)}
+    it { should have_field(:level_number).of_type(Integer)}
+  end
+  
   context "Required fields" do
-    it { should validate_presence_of(:level_number)}
+s    it { should validate_presence_of(:level_number)}
     it { should validate_presence_of(:level_name)}
     end
 

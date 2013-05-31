@@ -27,11 +27,11 @@ describe LevelsController do
     end
   end
 
-  context "When clicking on level" do
-    it 'Should show list of topics' do
-      assigns(:levels).topics.should_not be_nil
+    it 'Should show list of topics of the level' do
+      get :show_topics, :id => @level.id
+      assigns(:topics).should be_present
+      assigns(:topics).each {|topic| topic.level.id.should eq(@level.id)}
     end
-  end
 
   context 'Only admin can create level' do
     before do
@@ -49,7 +49,7 @@ describe LevelsController do
       level.delete("_id")
       post :create, {:level => level}
       level = assigns(:level)
-      level.should_not be_nil
+      level.should be_persisted
     end
   end
 
@@ -81,25 +81,29 @@ describe LevelsController do
 
     it 'Should delete' do
       delete :destroy, id: @level.id
+      assigns(:level).should be_nil
     end
   end
 
-  context "When clicking on the level" do
-    it 'Should show list of topics' do
-      @topic.title.should_not be_nil
-      @topic1.title.should_not be_nil
-    end
-  end
-
-  context "When the level ends" do
-    it 'Should finished all the topics of the level' do
-      topics = [@topic, @topic1]
-      topics.size.should eq(2)
-    end
-
+  context "When all topics of level are completed" do
     it 'Should un-lock the bonus round' do
-      level = @br.level
-      level.bonus_round.is_locked.should eq(false)
+      level = create(:level)
+      5.times { create(:topic, :is_completed => true, :level => level)}
+      create(:bonus_round, :level => level)
+      get :unLock_bonusRound, :id => level.id
+      assigns(:level).bonus_round.is_locked.should be_false
     end
   end
+
+  context "When any of the topic is not completed" do
+    it 'Should not un-lock the bonus round' do
+      flag=true
+      level = create(:level)
+      5.times {create(:topic, :is_completed => (flag = !flag), :level => level)}
+      create(:bonus_round, :level => level)
+      get :unLock_bonusRound, :id => level.id
+      assigns(:level).bonus_round.is_locked.should be_true
+    end
+  end
+
 end
