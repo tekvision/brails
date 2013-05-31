@@ -67,9 +67,10 @@ describe LevelsController do
 
     it 'should update' do
       level = @level.attributes
+      level.level_number = 10
       put :update, {:level => level, :id => @level.id}
       level1 = assigns(:level)
-      level1.should_not be_nil
+      level1.level_number.should eq(10)
     end
   end
 
