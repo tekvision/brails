@@ -42,7 +42,6 @@ describe LevelsController do
     it "assigns a new level as @level" do
         get :new
         assigns(:level).id.should_not be_nil
-      expect(response).to render_template("new")
     end
 
     it 'should create new level' do
@@ -61,22 +60,16 @@ describe LevelsController do
     end 
   
     it 'should edit as an action' do
+      get :edit, {:id => @level.id}
       level = assigns(:level)
-      get :edit, {:id => level.id}
-      expect(response).to be_success
-      expect(response.status).to eq(200)
+      level.should_not be_nil
     end
 
     it 'should update' do
       level = @level.attributes
       put :update, {:level => level, :id => @level.id}
-      @level1 = assigns(:level)
-    end
-
-    it "assigns the requested level as @level" do
-      level = Level.create! valid_attributes
-      get :edit, {:id => level.to_param}, valid_session
-      assigns(:level).should be_nil
+      level1 = assigns(:level)
+      level1.should_not be_nil
     end
   end
 

@@ -2,19 +2,21 @@ require 'spec_helper'
 
 describe Topic do
   context 'fields' do
-    it 'should have topic number'
     it 'should have title'
-    it 'should have sub topic'
+    it 'Should have cookies'
+    it 'Should have summary'
   end
 
   context 'required fields' do
-    it 'should have topic number'
     it 'should have title'
+    it 'Should have cookies'
+    it 'Should have summary'
   end
 
   context 'associations' do
-    it 'should have one content'
-    it 'Should belongs to story'
+    it 'Should belongs_to level'
+    it 'should have many contents'
+    it 'Should have many questions'
   end
 
 end

@@ -6,6 +6,7 @@ class LevelsController < ApplicationController
     end
 
   def new
+    @level = Level.new
   end
 
   def create
