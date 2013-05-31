@@ -1,22 +1,20 @@
 require 'spec_helper'
 
 describe Topic do
-  context 'fields' do
-    it 'should have title'
-    it 'Should have cookies'
-    it 'Should have summary'
+  context 'required fields' do
+    it { should validate_presence_of(:title)}
+    it { should validate_presence_of(:cookies)}
+    it { should validate_presence_of(:summary)}
   end
 
-  context 'required fields' do
-    it 'should have title'
-    it 'Should have cookies'
-    it 'Should have summary'
+  context 'Validations' do
+    it {should validate_numericality_of(:cookies).to_allow(:only_integer => true)}
   end
 
   context 'associations' do
-    it 'Should belongs_to level'
-    it 'should have many contents'
-    it 'Should have many questions'
+    it { should belong_to(:level)}
+    it { should have_many(:contents).with_dependent(:destroy)}
+    it { should have_many(:questions).with_dependent(:destroy)}
   end
 
 end
