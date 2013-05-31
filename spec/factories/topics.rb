@@ -5,6 +5,8 @@ FactoryGirl.define do
     title "Arrays, Hash"
     cookies '3'
     summary "topic points"
+    is_completed false
+
     association :level
   end
 end
