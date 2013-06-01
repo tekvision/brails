@@ -98,7 +98,7 @@ describe LevelsController do
 
   context "When any of the topic is not completed" do
     it 'Should not un-lock the bonus round' do
-      flag=true
+      flag = true
       level = create(:level)
       5.times {create(:topic, :is_completed => (flag = !flag), :level => level)}
       create(:bonus_round, :level => level)

@@ -7,7 +7,7 @@ describe Level do
   end
   
   context "Required fields" do
-s    it { should validate_presence_of(:level_number)}
+    it { should validate_presence_of(:level_number)}
     it { should validate_presence_of(:level_name)}
     end
 

@@ -27,10 +27,11 @@ describe TopicsController do
   context "GET take_test action is invoked" do
     before do
       @topic = create(:topic)
+      create(:questions, :topic => @topic)
       get :take_test, @topic.id
     end
 
-    it 'should show the topic questions' do
+    it 'should show the questions of the topic' do
       assigns(:questions).should eq(@topic.questions)
     end
 
