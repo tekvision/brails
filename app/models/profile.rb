@@ -13,11 +13,11 @@ class Profile
   field :date_of_birth, type: Date
   field :facebook, type: String
   field :twitter, type: String
-
   field :disability, type: String
   field :disability_percentage, type: String
 
   validates :first_name, :permanent_address, :country, :state, :city, :contact_number, :presence => true
+  validates :first_name,  :last_name, :format => {:with => /\A[a-zA-z]+\z/, :message => "Only letters allowed."}
 
   #embedded_in :user
 end

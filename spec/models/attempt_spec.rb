@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe Attempt do
   context "Fields" do
-    it 'Should have count'
-        it 'Should have solved'
+    it { should have_field(:count).of_type(Integer)}
+    it { should have_field(:solved).of_type(Boolean)}
   end
 
   context "Associations" do
-    it 'Should belongs_to user'
-        it 'Should belongs_to question'
+    it { should belong_to(:user)}
+    it { should belong_to(:question)}
   end
 end

@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe Option do
   context "Fields" do
-    it 'Should have label'
-    it 'Should have value'
-    it 'Should have is_attempted'
+    it { should have_field(:label).of_type(String)}
+    it { should have_field(:value).of_type(String)}
+    it { should have_field(:is_attempted).of_type(Boolean)}
   end
   
   context "Required fields" do
-    it 'Should have label'
-    it 'Should have is_attempted'
+    it { should validate_presence_of(:label)}
+    it { should validate_presence_of(:is_attempted)}
   end
 
   context "Associations" do
-    it 'Should belongs_to question'
+    it { should belong_to(:question)}
   end
 end
