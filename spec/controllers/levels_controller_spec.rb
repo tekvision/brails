@@ -89,10 +89,11 @@ describe LevelsController do
   context "When all topics of level are completed" do
     it 'Should un-lock the bonus round' do
       level = create(:level)
-      5.times { create(:topic, :is_completed => true, :level => level)}
+      5.times { create(:user_topics, :is_completed => true, :topic => create(:topic, :level => level))}
       create(:bonus_round, :level => level)
+      create(:bonus_cookies, :bonus_round => level.bonus_round)
       get :unLock_bonusRound, :id => level.id
-      assigns(:level).bonus_round.is_locked.should be_false
+      assigns(:level).bonus_round.bonus_cookie.is_locked.should be_false
     end
   end
 
@@ -100,10 +101,11 @@ describe LevelsController do
     it 'Should not un-lock the bonus round' do
       flag = true
       level = create(:level)
-      5.times {create(:topic, :is_completed => (flag = !flag), :level => level)}
+      5.times {create(:user_topics, :is_completed => (flag = !flag), :topic => create(:topic, :level => level))}
       create(:bonus_round, :level => level)
+      create(:bonus_cookies, :bonus_round => level.bonus_round)
       get :unLock_bonusRound, :id => level.id
-      assigns(:level).bonus_round.is_locked.should be_true
+      assigns(:level).bonus_round.bonus_cookie.is_locked.should be_true
     end
   end
 

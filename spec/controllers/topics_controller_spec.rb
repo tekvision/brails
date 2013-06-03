@@ -35,7 +35,9 @@ describe TopicsController do
       assigns(:questions).should eq(@topic.questions)
     end
 
-    it 'each question should have multiple options'
+    it 'each question should have multiple options' do
+
+    end
   end
 
   context 'POST create attempt' do
