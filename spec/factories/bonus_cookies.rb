@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :bonus_cooky, :class => 'BonusCookie' do
+    cookies "3"
+    association :user
+    association :bonus_round
   end
 end

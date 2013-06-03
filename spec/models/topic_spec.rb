@@ -12,6 +12,7 @@ describe Topic do
     it { should validate_presence_of(:title)}
     it { should validate_presence_of(:cookies)}
     it { should validate_presence_of(:summary)}
+    it { should validate_presence_of(:level_id)}
   end
 
   context 'Validations' do
@@ -22,5 +23,6 @@ describe Topic do
     it { should belong_to(:level)}
     it { should have_many(:contents).with_dependent(:destroy)}
     it { should have_many(:questions).with_dependent(:destroy)}
+    it { should have_one(:user_topic)}
   end
 end

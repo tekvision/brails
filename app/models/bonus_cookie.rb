@@ -4,6 +4,5 @@ class BonusCookie
   field :is_locked, type: Boolean, default: true
 
   belongs_to :user
-  belongs_to :level
   belongs_to :bonus_round
 end

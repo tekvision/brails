@@ -1,5 +1,7 @@
 class Content
   include Mongoid::Document
+  include Mongoid::Paperclip 
+  has_mongoid_attached_file :topic_content
 
   field :title, type: String
   field :content_body, type: String
