@@ -44,8 +44,11 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-  has_many :requests  
-  #embeds_one :profile
 
+  #embeds_one :profile
+  has_many :user_topics
+  has_many :attempts
+  has_many :user_cookies
+  has_many :bonus_cookies
  end
  

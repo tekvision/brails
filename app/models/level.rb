@@ -6,6 +6,7 @@ class Level
 
   has_many :topics, dependent: :destroy 
   has_one :bonus_round
+  has_one :bonus_cookie
 
   #validation
   validates :level_number, :level_name, :presence => true

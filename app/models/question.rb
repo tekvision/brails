@@ -8,4 +8,5 @@ class Question
   has_many :options
   belongs_to :topic
   belongs_to :bonus_round
+  has_one :attempt
 end
