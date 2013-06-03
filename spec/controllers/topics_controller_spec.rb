@@ -27,7 +27,8 @@ describe TopicsController do
   context "GET take_test action is invoked" do
     before do
       @topic = create(:topic)
-      create(:questions, :topic => @topic)
+      4.times {create(:question, :topic => @topic)}
+      @topic.questions.each {|question| 4.times {create(:option, :question => question)}}
       get :take_test, @topic.id
     end
 
@@ -36,25 +37,7 @@ describe TopicsController do
     end
 
     it 'each question should have multiple options' do
-
-    end
-  end
-
-  context 'POST create attempt' do
-    before do
-      @topic = create(:topic)
-      post :attempts, attempt: { question_id: '???', option_id: '???' }
-    end
-
-    it "should have valid user"
-    it "should have valid topic"
-    it "should have valid question"
-    it "should have valid option"
-
-    context "with correct answer" do
-    end
-
-    context "with incorrect answer" do
+      assigns(:questions)[0].options.size.should eq(@topic.questions[0].options.size)
     end
   end
 
@@ -76,7 +59,7 @@ describe TopicsController do
       response.should redirect_to(:action => 'show', :id => assigns(:topic).id)
     end
   end
-
+	
   context 'edit topic' do
     before(:each) do
       @topic = create(:topic)
@@ -101,6 +84,7 @@ describe TopicsController do
   context 'When clicking on delete topic' do
     it 'Should delete' do
       post :destroy, id: @topic.id
+      assigns(:topic).should be_nil
     end
   end
 

@@ -4,9 +4,7 @@ FactoryGirl.define do
   factory :question do
     sq_no '2'
     query 'What is Ruby?'
-    cookies_count '2'
-    attempts_count '1'
-    is_attempted 'true'
+    cookies '2'
     association :bonus_round
     association :topic
   end

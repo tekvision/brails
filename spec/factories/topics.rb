@@ -2,10 +2,9 @@
 
 FactoryGirl.define do
   factory :topic do
-    title "Arrays, Hash"
+    title "Arrays and Hash"
     cookies '3'
     summary "topic points"
-    is_completed false
 
     association :level
   end
