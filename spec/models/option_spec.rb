@@ -10,6 +10,7 @@ describe Option do
   context "Required fields" do
     it { should validate_presence_of(:label)}
     it { should validate_presence_of(:is_attempted)}
+    it { should validate_presence_of(:question_id)}
   end
 
   context "Associations" do

@@ -14,9 +14,10 @@ describe Content do
 
   context 'required fields' do
     it {should validate_presence_of(:title)}
-     it {should validate_presence_of(:content_body)}
-     it {should validate_presence_of(:content_type)}
+    it {should validate_presence_of(:content_body)}
+    it {should validate_presence_of(:content_type)}
     it { should validate_presence_of(:sequence_number)}
+    it { should validate_presence_of(:topic_id)}
   end
 
   context 'associations' do

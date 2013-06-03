@@ -48,7 +48,6 @@ class User
   #embeds_one :profile
   has_many :user_topics
   has_many :attempts
-  has_many :user_cookies
   has_many :bonus_cookies
  end
  

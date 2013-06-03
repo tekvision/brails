@@ -29,5 +29,7 @@ describe User do
     it { should embed_one :profile }
     it { should have_many(:requests)}
     it { should have_many(:questions)}
+    it { should have_many(:user_topics)}
+    it { should have_many(:bonus_cookies)}
   end
 end

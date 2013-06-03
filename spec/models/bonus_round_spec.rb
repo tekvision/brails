@@ -7,6 +7,7 @@ describe BonusRound do
 
   context "Required fields" do
     it { should validate_presence_of(:extra_cookies)}
+    it { should validate_presence_of(:level_id)}
   end
 
   context "Validations" do
@@ -16,5 +17,6 @@ describe BonusRound do
   context "Associations" do
     it {should have_many(:questions).with_dependent(:destroy)}
     it { should belong_to(:level)}
+    it { should have_one(:bonus_cookie)}
   end
 end
