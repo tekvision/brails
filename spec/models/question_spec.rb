@@ -23,4 +23,8 @@ context "Required fields" do
     it { should belong_to(:topic)}
     it { should belong_to(:bonus_round)}
   end
+
+  context "Nested attributes" do
+    it { should accept_nested_attributes_for(:options) }
+  end
 end
