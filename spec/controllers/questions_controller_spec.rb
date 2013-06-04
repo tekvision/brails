@@ -64,7 +64,7 @@ describe QuestionsController do
     end
   end
 
-  context "Only admin can destroy level" do
+  context "Only admin can destroy question" do
     before(:each) do
       @user = create(:admin)
       sign_in :user, @user
