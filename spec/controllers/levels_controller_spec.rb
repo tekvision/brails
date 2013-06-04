@@ -41,7 +41,7 @@ describe LevelsController do
 
     it "assigns a new level as @level" do
         get :new
-        assigns(:level).id.should_not be_nil
+        assigns(:level).new_record?.should be_true
     end
 
     it 'should create new level' do
