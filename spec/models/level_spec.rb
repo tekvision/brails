@@ -19,5 +19,9 @@ describe Level do
     it { should have_many(:topics).with_dependent(:destroy)}
     it { should have_one(:bonus_round).with_dependent(:destroy) }
   end
+
+  context "Nested attributes" do
+    it { should accept_nested_attributes_for(:bonus_round) }
+  end
 end
 

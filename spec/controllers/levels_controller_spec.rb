@@ -87,6 +87,11 @@ describe LevelsController do
   end
 
   context "When all topics of level are completed" do
+    before do
+      @user = create(:student)
+      sign_in :user, @user
+    end   
+
     it 'Should un-lock the bonus round' do
       level = create(:level)
       5.times { create(:user_topic, :is_completed => true, :topic => create(:topic, :level => level))}
@@ -98,6 +103,11 @@ describe LevelsController do
   end
 
   context "When any of the topic is not completed" do
+    before do
+      @user = create(:student)
+      sign_in :user, @user
+    end
+
     it 'Should not un-lock the bonus round' do
       flag = true
       level = create(:level)
