@@ -31,10 +31,10 @@ describe ContentsController do
     end
 
     it 'should create new content' do      
+      topic = create(:topic)
       content = build(:content).attributes
-      content.delete('_id')
-      post :create, {:content => content}
-      assigns(:content).title.should eq(content.title)
+      post :create, {:content => content, :topic_id => topic.id}
+      assigns(:content).persisted?.should be_true
       response.should redirect_to(:action => 'show', :id => assigns(:content).id)
     end
   end
