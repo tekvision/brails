@@ -21,6 +21,8 @@ describe QuestionsController do
     end
 
     it "assigns a new question as @question" do
+      question= build(:question)
+      build(:option, :question => question)
         get :new
         assigns(:question).new_record?.should be_true
     end
@@ -33,7 +35,7 @@ describe QuestionsController do
       assigns(:question).persisted?.should be_true
     end
 
-    it 'should create new question and its options for topic' do
+    it 'should create new question and its options for bonus round' do
       bonus_round = create(:bonus_round)
       question= build(:question)
       build(:option, :question => question)
@@ -62,7 +64,7 @@ describe QuestionsController do
     end
   end
 
-  context "Only admin can destroy level" do
+  context "Only admin can destroy question" do
     before(:each) do
       @user = create(:admin)
       sign_in :user, @user
