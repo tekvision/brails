@@ -9,7 +9,7 @@ describe Content do
   end
 
   context "Validations" do
-    it ""
+    it { should validates_attachment_of(:topic_content)}
   end
 
   context 'required fields' do
