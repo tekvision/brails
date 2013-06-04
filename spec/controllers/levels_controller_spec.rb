@@ -49,7 +49,7 @@ describe LevelsController do
       level.delete("_id")
       post :create, {:level => level}
       level = assigns(:level)
-      level.should be_persisted
+      level.persisted?.should be_true
     end
   end
 

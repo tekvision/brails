@@ -55,7 +55,6 @@ describe TopicsController do
       topic.delete('_id')
       post :create, {:topic => topic}
       assigns(:topic).title.should eq(topic.title)
-      response.should redirect_to(:action => 'show', :id => assigns(:topic).id)
     end
   end
 	
