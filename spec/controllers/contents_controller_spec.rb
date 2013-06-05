@@ -1,15 +1,6 @@
 require 'spec_helper'
 
 describe ContentsController do
-  it 'Should render content sequentially' 
-
-  context "When rendering the content" do
-    it 'Should render text if type is text'
-    it 'Should play an audio file if type is audio'
-    it 'Should play video if type is video'
-    it 'Should show an image if type is image'
-    it 'Should render questions when requested'
-  end
 
   context 'GET new content action' do
     before do
@@ -37,6 +28,23 @@ describe ContentsController do
       assigns(:content).persisted?.should be_true
       response.should redirect_to(:action => 'show', :id => assigns(:content).id)
     end
+
+    it "should upload audio file and create content" do
+      topic = create(:topic)
+      content = build(:audio_file).attributes
+      post :create, {:audio_file => content, :topic_id => topic.id}
+      assigns(:audio_file).persisted?.should be_true
+      response.should redirect_to(:action => 'show', :id => assigns(:audio_file).id)
+    end
+
+    it "should upload vidio file and create content" do
+      topic = create(:topic)
+      content = build(:vidio_file).attributes
+      post :create, {:vidio_file => content, :topic_id => topic.id}
+      assigns(:vidio_file).persisted?.should be_true
+      response.should redirect_to(:action => 'show', :id => assigns(:vidio_file).id)
+    end
+
   end
 
   context 'edit content' do
