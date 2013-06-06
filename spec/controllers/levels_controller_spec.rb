@@ -27,11 +27,40 @@ describe LevelsController do
     end
   end
 
+  context "Show as a action for logged in user" do
+    before do
+      @user = create(:user)
+      sign_in :user, @user
+    end
+
     it 'Should show list of topics of the level' do
-      get :show_topics, :id => @level.id
+      4.times {create(:topic, :level => @level)}
+      get :show, :id => @level.id
       assigns(:topics).should be_present
       assigns(:topics).each {|topic| topic.level.id.should eq(@level.id)}
     end
+
+    it 'Should mark topic as completed' do
+      level = create(:level)
+      5.times {create(:topic, :level => level)}
+      level.topics.each {|topic| 4.times {create(:question, :topic => topic)}}
+      level.topics[0].questions.each {|question| create(:attempt, :solved => true, :question => question, :user => @user)}
+      get :show, :id => level.id
+      assigns(:topics).each do |topic|
+        topic.questions.each {|question| question.attempt.solved.should be_true}
+      end
+    end
+
+    it 'Should mark the topic as incomplete' do
+      flag = true
+      level = create(:level)
+      5.times {create(:topic, :level => level)}
+      level.topics.each {|topic| 4.times {create(:question, :topic => topic)}}
+      level.topics[0].questions.each {|question| create(:attempt, :solved => (flag = !flag), :question => question, :user => @user)}
+      get :show, :id => level.id
+      assigns(:topics)[0].questions[0].attempt.should eq(level.topics[0].questions[0].attempt)
+    end
+  end
 
   context 'Only admin can create level' do
     before do

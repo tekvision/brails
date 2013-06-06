@@ -41,15 +41,18 @@ describe TopicsController do
     end
   end
 
-  context 'GET new topic action' do
+  context 'Only admin can create the topic' do
+    before do
+      @user = create(:admin)
+      sign_in :user, @user
+    end
+
     it "responds successfully with an HTTP 200 status code" do
       get :new
       expect(response).to be_success
       assigns(:topic).should_not be_nil
     end
-  end
 
-  context 'POST create new topic' do
     it 'should create new topic' do
       topic = build(:topic).attributes
       topic.delete('_id')
@@ -58,7 +61,7 @@ describe TopicsController do
     end
   end
 	
-  context 'edit topic' do
+  context 'Only admin can Edit or Update topic' do
     before(:each) do
       @topic = create(:topic)
     end
@@ -73,13 +76,12 @@ describe TopicsController do
       @topic.title = 'Updated Title'
       topic = @topic.attributes
       post :update, {:topic => topic, :id => @topic.id}
-      
-      assigns(:topic).title.should eq('Updated Title')
+            assigns(:topic).title.should eq('Updated Title')
       response.should redirect_to(:action => 'show', :id => assigns(:topic).id)
     end
   end
 
-  context 'When clicking on delete topic' do
+  context "Only admin can delete topic" do
     it 'Should delete' do
       post :destroy, id: @topic.id
       assigns(:topic).should be_nil
