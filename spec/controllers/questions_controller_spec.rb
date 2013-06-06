@@ -91,13 +91,14 @@ describe QuestionsController do
     end
 
     it 'Should give cookies for the topic' do
+      cookies = 0
       question = create(:question)
       create(:topic, :question => question)
-      create(:user_topic, :topic => question.topic, :user => @user)
+      create(:attempt, :question => question, :user => @user)
       get :attempt_question, :id => question.id
-      cookies = assigns(:question).topic.user_topic.topic_cookies
-      cookies = cookies + question.topic.user_topic.topic_cookies
-      cookies.should eq(assigns(:question).topic.user_topic.topic_cookies + question.topic.user_topic.topic_cookies)
+      cookies = assigns(:question).attempt.cookies
+      cookies = cookies + question.attempt.cookies
+      cookies.should eq(assigns(:question).attempt.cookies + question.attempt.cookies)
     end
   end
 
@@ -124,13 +125,13 @@ describe QuestionsController do
 
     it 'Should give cookies for the topic but reduce according to attempt count' do
       question = create(:question)
-      create(:attempt, :question => question, :user => @user)
+      create(:attempt, :count => 3, :question => question, :user => @user)
       create(:topic, :question => question)
-      create(:user_topic, :topic => question.topic, :user => @user)
       get :attempt_question, :id => question.id
-      cookies = assigns(:question).topic.user_topic.topic_cookies
-      cookies = cookies + question.topic.user_topic.topic_cookies - question.attempt.count
-      cookies.should eq(assigns(:question).topic.user_topic.topic_cookies + question.topic.user_topic.topic_cookies - question.attempt.count)
+      cookies = assigns(:question).attempt.cookies
+      cookies1 = question.cookies / question.attempt.count
+      cookies = cookies + cookies1.round
+      cookies.should eq(assigns(:question).cookies / question.attempt.count.round)
     end
   end
 
