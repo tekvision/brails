@@ -1,10 +1,73 @@
+$med-grey: rgb(204, 204, 204);
+
 body{
-  padding-top: 130px; 
+  font-family: 'Cabin', sans-serif;
+  padding-top: 60px;
 }
 
 .main-container{
-  // width: 1170px;
-  // margin-left: 150px;
+
 }
 
+.lesson-summary {
+  background: rgb(247,247,247);
+  padding: 5px 20px;
+  border: 1px solid lighten($med-grey, 10%);
+  margin-bottom: 20px;
+  .counter {
+    float:left;
+    width: 24px;
+    height: 40px;
+    margin-top: -20px;
+    background: url(braille-numbers.png) 0 0 no-repeat;
+    $count: 9;
+    $offset: -24px;
+    @while $count > 0 {
+      &.counter-#{$count} {
+        background-position: $offset * ($count - 1) 0;
+      }
+      $count: $count - 1;
+    }
+  }
+  header {
+    color:rgb(143, 34, 27);
+    font-size: 1.2em;
+    padding-top: 25px;
+    padding-bottom: 3px;
+    text-align:right;
+    border-bottom: 2px solid $med-grey;
+  }
+  .description {
+    padding: 10px 0 20px;
+    color: darken($med-grey, 20%);
+  }
+  .btn-try-now{
+    background-image:none;
+    background: $med-grey;
+    color:#fff;
+    font-size: 10px;
+    font-weight: 600;
+    border:none;
+    float: right;
+    margin-top: -20px;
+    padding: 0 15px;
+  }
+  .score-wrapper {
+    min-height: 72px;
+    border-top: 2px solid $med-grey;
+    border-bottom: 2px solid $med-grey;
+    .score {
+      padding: 5px 0 0 0;
+      .score-indicator {
+        width: 32px;
+        height: 32px;
+        display:inline-block;
+        background: url(braille-dots.png) 0 -32px no-repeat;
+        &.complete {
+          background-position: 0 0;
+        }
+      }
+    }
+  }
+}
 

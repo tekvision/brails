@@ -2,9 +2,12 @@
   %head
     %title Brails
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    %link{:href => "http://fonts.googleapis.com/css?family=Cabin:400,600", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
   %body
     = render 'header'
-    .main-container{role: 'application'}
+    .logo{:style => "text-align: center; margin: 20px 0;"}
+      =image_tag "/images/brails-logo.jpg"
+    .container.main-container{role: 'application'}
       = yield
+    = javascript_include_tag "application"

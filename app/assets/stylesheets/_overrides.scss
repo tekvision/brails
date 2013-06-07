@@ -1,3 +1,6 @@
+*{
+  @include box-sizing(border-box);
+}
 // overrides some bootstrap defaults
 .row-fluid {
   .span {
