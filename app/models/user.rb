@@ -46,7 +46,6 @@ class User
   # field :authentication_token, :type => String
 
   #embeds_one :profile
-  has_many :user_topics
   has_many :attempts
   has_many :bonus_cookies, class_name: "BonusCookie"
  end
