@@ -54,9 +54,8 @@ describe TopicsController do
     end
 
     it 'should create new topic' do
-      topic = build(:topic).attributes
-      topic.delete('_id')
-      post :create, {:topic => topic}
+      topic = build(:topic)
+      post :create, {:topic => topic.attributes.except('_id')}
       assigns(:topic).title.should eq(topic.title)
     end
   end
