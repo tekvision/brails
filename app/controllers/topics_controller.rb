@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_filter :load_topic, :only => [:edit, :update] 
+  before_filter :load_topic, :only => [:edit, :update, :destroy] 
 
   def new
    @topic = Topic.new	
@@ -27,13 +27,13 @@ class TopicsController < ApplicationController
   	end
   end
 
-  def load_topic
-  	@topic = Topic.find_by(:id => params[:id])
-  end
-
   def destroy
-    @topic = Topic.find(params[:id])
     @topic.destroy
   end
+
+  private
+    def load_topic
+      @topic = Topic.find_by(:id => params[:id])
+    end
 
 end
