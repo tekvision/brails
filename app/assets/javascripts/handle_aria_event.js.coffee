@@ -28,7 +28,7 @@ AriaEvent = (element, max_row, max_col) ->
 
 AriaEvent.prototype.bindhandler = ()->
   thisObj = this
-  $row_event = @main_element.find('.row ul.thumbnails[role="row"] .span3')
+  $row_event = @main_element.find('.row[role="row"] .span3')
   console.log "aaaa"
   $row_event.bind 'keyup', (e)->
     console.log "key up"
@@ -61,7 +61,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
           $newCell = $("#row_#{new_row_number}_col_#{@maxcol-1}")
           $newCell.attr("tabindex", "0").focus() 
         else
-          col_count_last_row = $("#row_index_#{@maxrow - 1} .thumbnails").children('li.span3').size() - 1 
+          col_count_last_row = $("#row_index_#{@maxrow - 1}").children('.span3').size() - 1 
           $newCell = $("#row_#{@maxrow - 1}_col_#{col_count_last_row}")
           console.log $newCell
           $newCell.attr("tabindex", "0").focus()
@@ -76,20 +76,20 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
  
       prev_cell =  $curCell.closest('.row').prev()
       if prev_cell.length  
-        $newCell = prev_cell.find(".thumbnails li#row_#{parseInt(row_number)-1}_col_#{col_number}")   
+        $newCell = prev_cell.find("#row_#{parseInt(row_number)-1}_col_#{col_number}")   
         if $newCell.length == 0
-          $newCell = prev_cell.find(".thumbnails li.span3").last()  
+          $newCell = prev_cell.find(".span3").last()  
         $newCell.attr("tabindex", "0").focus()
         $curCell.removeAttr("tabindex")
       else
         next_cell = $curCell.closest('.row').next()
         console.debug next_cell 
         if next_cell.length
-          $newCell = next_cell.find(".thumbnails li#row_#{parseInt(row_number)+1}_col_#{col_number}")   
+          $newCell = next_cell.find("#row_#{parseInt(row_number)+1}_col_#{col_number}")   
           console.log $newCell
              
           if $newCell.length == 0
-            $newCell = next_cell.find(".thumbnails li.span3").last()
+            $newCell = next_cell.find(".span3").last()
  
           $newCell.attr("tabindex", "0").focus() 
           $curCell.removeAttr("tabindex")
@@ -125,20 +125,20 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
  
       prev_cell =  $curCell.closest('.row').next()
       if prev_cell.length  
-        $newCell = prev_cell.find(".thumbnails li#row_#{parseInt(row_number)+1}_col_#{col_number}")   
+        $newCell = prev_cell.find(".span3#row_#{parseInt(row_number)+1}_col_#{col_number}")   
         if $newCell.length == 0
-          $newCell = prev_cell.find(".thumbnails li.span3").last()  
+          $newCell = prev_cell.find(".span3").last()  
         $newCell.attr("tabindex", "0").focus()
         $curCell.removeAttr("tabindex")
       else
         next_cell = $curCell.closest('.row').prev()
         console.debug next_cell 
         if next_cell.length
-          $newCell = next_cell.find(".thumbnails li#row_#{parseInt(row_number)-1}_col_#{col_number}")   
+          $newCell = next_cell.find("#row_#{parseInt(row_number)-1}_col_#{col_number}")   
           console.log $newCell
              
           if $newCell.length == 0
-            $newCell = next_cell.find(".thumbnails li.span3").last()
+            $newCell = next_cell.find(".span3").last()
  
           $newCell.attr("tabindex", "0").focus() 
           $curCell.removeAttr("tabindex")
