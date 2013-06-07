@@ -26,7 +26,6 @@ describe ContentsController do
       content = build(:content).attributes
       post :create, {:content => content, :topic_id => topic.id}
       assigns(:content).persisted?.should be_true
-      response.should redirect_to(:action => 'show', :id => assigns(:content).id)
     end
 
     it "should upload audio file and create content" do
@@ -34,7 +33,6 @@ describe ContentsController do
       content = build(:audio_file).attributes
       post :create, {:audio_file => content, :topic_id => topic.id}
       assigns(:audio_file).persisted?.should be_true
-      response.should redirect_to(:action => 'show', :id => assigns(:audio_file).id)
     end
 
     it "should upload vidio file and create content" do
@@ -65,7 +63,6 @@ describe ContentsController do
       content = @content.attributes
       post :update, {:content => content, :id => @content.id}      
       assigns(:content).title.should eq('Updated Title')
-      response.should redirect_to(:action => 'show', :id => assigns(:content).id)
     end
   end
 
