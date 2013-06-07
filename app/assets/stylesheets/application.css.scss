@@ -9,18 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  */
-
+@import "variables";
 @import "bootstrap";
-
-body{
-  padding-top: 130px; 
-}
-
-.main-container{
-  width: 1170px;
-  margin-left: 150px;
-}
-
-
+@import "brails";

@@ -1,0 +1,31 @@
+// overrides some bootstrap defaults
+.row-fluid {
+  .span {
+    width: auto;
+  }
+}
+
+// .row-fluid {
+//   margin-bottom: 5px; 
+// }
+
+.row-fluid [class*="span"]  {
+  min-height: 0;
+}
+
+.row-fluid .offsethalf {
+  margin-left: 5.391%;
+  *margin-left: 5.266%;
+}
+.row-fluid .offsetquarter {
+  margin-left: 2.6955%;
+  *margin-left: 2.633%;
+}
+.center {
+	text-align:center;
+}
+
+.btn{
+  @include border-radius(0);
+}
+
