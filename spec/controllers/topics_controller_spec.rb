@@ -81,9 +81,16 @@ describe TopicsController do
   end
 
   context "Only admin can delete topic" do
+    before do
+      @user = create(:admin)
+      sign_in :user, @user
+    end
+    
     it 'Should delete' do
-      post :destroy, id: @topic.id
-      assigns(:topic).should be_nil
+      @topic = create(:topic)
+      expect{
+        delete :destroy, id: @topic
+      }.to change(Topic,:count).by(-1)
     end
   end
 

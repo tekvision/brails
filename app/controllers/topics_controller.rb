@@ -32,7 +32,9 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-
+    @topic = Topic.find(params[:id])
+    @topic.destroy
+    @topic = nil
   end
 
 end
