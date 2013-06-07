@@ -32,6 +32,8 @@ gem 'mongoid_slug'
 gem "rails_admin"
 gem 'simple_form'
 gem 'bootstrap-sass'
+gem "compass-rails"
+gem "compass-recipes"
 gem 'mongoid-simple-roles'
 gem 'cancan'
 gem 'country_select'
