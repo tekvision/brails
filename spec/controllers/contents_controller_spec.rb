@@ -32,14 +32,16 @@ describe ContentsController do
       topic = create(:topic)
       content = build(:audio_file).attributes
       post :create, {:audio_file => content, :topic_id => topic.id}
-      assigns(:audio_file).persisted?.should be_true
+      @content =  assigns(:content).persisted?.should be_true
+      @content.topic_content_content_type.should eq("audio/mp3")
     end
 
     it "should upload vidio file and create content" do
       topic = create(:topic)
       content = build(:vidio_file).attributes
       post :create, {:vidio_file => content, :topic_id => topic.id}
-      assigns(:vidio_file).persisted?.should be_true
+      @content = assigns(:content).persisted?.should be_true
+      @content.topic_content_content_type.should eq("vidio/mp4")
       response.should redirect_to(:action => 'show', :id => assigns(:vidio_file).id)
     end
 
