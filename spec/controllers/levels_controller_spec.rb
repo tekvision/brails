@@ -56,9 +56,22 @@ describe LevelsController do
       level = create(:level)
       5.times {create(:topic, :level => level)}
       level.topics.each {|topic| 4.times {create(:question, :topic => topic)}}
-      level.topics[0].questions.each {|question| create(:attempt, :solved => (flag = !flag), :question => question, :user => @user)}
+      level.topics[0].questions.each {|question| create(:attempt, :solved => (flag = !flag), :count => 2, :question => question, :user => @user)}
       get :show, :id => level.id
-      assigns(:topics)[0].questions[0].attempt.should eq(level.topics[0].questions[0].attempt)
+      assigns(:topics)[0].questions[0].attempt.count.should be > 0
+    end
+
+    it 'Should show how many cookies got for each topic' do
+      level = create(:level)
+      4.times {create(:topic, :level => level)}
+      level.topics.each {|topic| 5.times {create(:question, :topic => topic)}}
+      level.topics[0].questions.each {|question| create(:attempt, :solved => true, :question => question)}
+      cookies = 0
+      level.topics[0].questions.each {|question| cookies = cookies + question.attempt.cookies}
+      get :show, :id => level.id
+      cookies1 = 0
+      assigns(:topics)[0].questions.each {|question| cookies1 = cookies1 + question.attempt.cookies}
+      cookies.should eq(cookies1)
     end
   end
 
@@ -96,7 +109,7 @@ describe LevelsController do
 
     it 'should update' do
       level = @level.attributes
-      level.level_number = 10
+      level[:level_number] = 10
       put :update, {:level => level, :id => @level.id}
       level1 = assigns(:level)
       level1.level_number.should eq(10)
@@ -111,7 +124,7 @@ describe LevelsController do
 
     it 'Should delete' do
       delete :destroy, id: @level.id
-      assigns(:level).should be_nil
+      assigns(@level.id).should be_nil
     end
   end
 
@@ -123,7 +136,8 @@ describe LevelsController do
 
     it 'Should un-lock the bonus round' do
       level = create(:level)
-      5.times { create(:user_topic, :is_completed => true, :topic => create(:topic, :level => level))}
+      topic = create(:topic, :level => level)
+      5.times { create(:attempt, :solved => true, :question => create(:question, :topic => topic))}
       create(:bonus_round, :level => level)
       create(:bonus_cookie, :bonus_round => level.bonus_round)
       get :unLock_bonusRound, :id => level.id
@@ -140,7 +154,8 @@ describe LevelsController do
     it 'Should not un-lock the bonus round' do
       flag = true
       level = create(:level)
-      5.times {create(:user_topic, :is_completed => (flag = !flag), :topic => create(:topic, :level => level))}
+      topic = create(:topic, :level => level)
+      5.times { create(:attempt, :solved => (flag = !flag), :question => create(:question, :topic => topic))}
       create(:bonus_round, :level => level)
       create(:bonus_cookie, :bonus_round => level.bonus_round)
       get :unLock_bonusRound, :id => level.id
