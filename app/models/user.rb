@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Document::Roleable
 
-  ROLES = ['Admin', 'Student']
+  ROLES = ['Admin', 'Student', 'Contributer']
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -46,7 +46,6 @@ class User
   # field :authentication_token, :type => String
 
   #embeds_one :profile
-  has_many :user_topics
   has_many :attempts
   has_many :bonus_cookies, class_name: "BonusCookie"
  end
