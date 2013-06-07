@@ -56,9 +56,9 @@ describe LevelsController do
       level = create(:level)
       5.times {create(:topic, :level => level)}
       level.topics.each {|topic| 4.times {create(:question, :topic => topic)}}
-      level.topics[0].questions.each {|question| create(:attempt, :solved => (flag = !flag), :question => question, :user => @user)}
+      level.topics[0].questions.each {|question| create(:attempt, :solved => (flag = !flag), :count => 2, :question => question, :user => @user)}
       get :show, :id => level.id
-      assigns(:topics)[0].questions[0].attempt.should eq(level.topics[0].questions[0].attempt)
+      assigns(:topics)[0].questions[0].attempt.count.should be > 0
     end
   end
 
