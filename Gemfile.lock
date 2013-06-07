@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:aergonaut/typeplate-rails.git
+  revision: 6cf96fde817b3da673fdf511f0d6eb832bd1c70d
+  specs:
+    typeplate-rails (1.0.0.1)
+      rails (~> 3.2.12)
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -291,4 +299,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda
   simple_form
+  typeplate-rails!
   uglifier (>= 1.0.3)
