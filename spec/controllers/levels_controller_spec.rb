@@ -96,7 +96,7 @@ describe LevelsController do
 
     it 'should update' do
       level = @level.attributes
-      level.level_number = 10
+      level[:level_number] = 10
       put :update, {:level => level, :id => @level.id}
       level1 = assigns(:level)
       level1.level_number.should eq(10)
@@ -111,7 +111,7 @@ describe LevelsController do
 
     it 'Should delete' do
       delete :destroy, id: @level.id
-      assigns(:level).should be_nil
+      assigns(@level.id).should be_nil
     end
   end
 

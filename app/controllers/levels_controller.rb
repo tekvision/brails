@@ -27,11 +27,28 @@ class LevelsController < ApplicationController
   end
 
   def edit
+    @level = Level.find(params[:id])
   end
 
   def update
+    @level = Level.find(params[:id])
+    respond_to do |format|
+      if @level.update_attributes(params[:level])
+        format.html { redirect_to levels_path, notice: 'level was successfully updated.' }
+        format.json { render json: @level, status: :updated, location: @level }
+      else
+        format.html { render action: "edit"}
+        format.json { render json: @level.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    @level = Level.find(params[:id])
+    @level.destroy
+    respond_to do |format|
+      format.html { redirect_to levels_url, notice: "Level was deleted successfully."}
+      format.json { head :no_content }
+    end
   end
 end
