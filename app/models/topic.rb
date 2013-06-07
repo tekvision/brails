@@ -8,6 +8,5 @@ class Topic
   belongs_to :level
   has_many :contents
   has_many :questions
-  has_one :user_topic
 end
 
