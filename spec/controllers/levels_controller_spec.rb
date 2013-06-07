@@ -60,6 +60,19 @@ describe LevelsController do
       get :show, :id => level.id
       assigns(:topics)[0].questions[0].attempt.count.should be > 0
     end
+
+    it 'Should show how many cookies got for each topic' do
+      level = create(:level)
+      4.times {create(:topic, :level => level)}
+      level.topics.each {|topic| 5.times {create(:question, :topic => topic)}}
+      level.topics[0].questions.each {|question| create(:attempt, :solved => true, :question => question)}
+      cookies = 0
+      level.topics[0].questions.each {|question| cookies = cookies + question.attempt.cookies}
+      get :show, :id => level.id
+      cookies1 = 0
+      assigns(:topics)[0].questions.each {|question| cookies1 = cookies1 + question.attempt.cookies}
+      cookies.should eq(cookies1)
+    end
   end
 
   context 'Only admin can create level' do
