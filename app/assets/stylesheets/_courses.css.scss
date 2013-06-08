@@ -35,6 +35,30 @@ h1.alpha {
     }
     
   }
-
+  .lesson-score {
+    display: block;
+    width: 92px;
+    height: 86px;
+    background: url(icon-right-wrong.png) no-repeat;
+    &.wrong {
+      background-position: 0 -88px;
+    }
+    &.right {
+      background-position: 0 0;
+    }
+  }
+  .btn-start-lesson {
+    background-image:none;
+    background-color: $med-grey;
+    color: darken($med-grey, 40%);
+    padding: 5px 50px;
+    border: none;
+    font-weight: 700;
+    @include border-radius(3px);
+    // @include text-shadow(1px 1px 1px #888);
+    &:hover {
+      background-color: darken($med-grey, 10%);
+    }
+  }
 }
 
