@@ -1,0 +1,40 @@
+// Place all the styles related to the courses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1.alpha {
+  font-weight: 100;
+}
+
+.course {
+
+  .counter {
+    margin-top: 0;
+    margin-right: 10px;
+  }
+  .course-scoring {
+    margin-top: 45px;
+    .score-wrapper {
+      width: 200px;
+      margin: 0 auto;
+    }
+  }
+  .course-lesson-wrapper {
+    margin-bottom: 20px;
+  }
+  .course-lesson {
+    background: rgb(247,247,247);
+    border: 1px solid lighten($med-grey, 10%);
+    padding: 10px;
+  }
+
+  .lesson-details {
+    text-align: center;
+    h2 {
+      color: $med-grey;
+    }
+    
+  }
+
+}
+
