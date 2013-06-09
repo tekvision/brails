@@ -13,7 +13,7 @@ h1.alpha {
     margin-right: 10px;
   }
   .course-scoring {
-    margin-top: 45px;
+    // margin-top: 45px;
     .score-wrapper {
       width: 200px;
       margin: 0 auto;
@@ -30,6 +30,7 @@ h1.alpha {
 
   .lesson-details {
     text-align: center;
+    border-left: 1px solid $med-grey;
     h2 {
       color: $med-grey;
     }
@@ -59,6 +60,28 @@ h1.alpha {
     &:hover {
       background-color: darken($med-grey, 10%);
     }
+  }
+}
+
+.btn-bonus-round {
+  display: block;
+  width: 400px;
+  height: 195px;
+  margin: 50px 0 0 -15px;
+  @include adjust-font-size-to(35px);
+  text-decoration: none;
+  color: darken($med-grey, 20%);
+  padding: 70px 160px 0 20px;
+  text-align: center;
+  background: rgb(233, 233, 233) url(bonus-round.png) right 0 no-repeat;
+  &:hover {
+    text-decoration: none;
+    color: darken($med-grey, 40%);
+  }
+  &.unlocked {
+    background-color: rgb(220, 233, 220);
+    background-position: right -195px;
+    padding-top: 50px;
   }
 }
 

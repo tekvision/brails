@@ -1,5 +1,11 @@
 .course
   .row
+    .span6.offset3
+      .row-fluid
+        .counter{class: "counter-7"}
+        %h1.gamma
+          Ruby Basics
+  .row
     .span3.course-scoring
       .score-wrapper
         %ul.unstyled.score.large
@@ -7,16 +13,12 @@
           %li.score-indicator.complete
           %li.score-indicator.complete
           %li.score-indicator.complete
+          %li.score-indicator.complete
           %li.score-indicator
           %li.score-indicator
           %li.score-indicator
-          %li.score-indicator
-        %span.delta 4 of 8 cells to win
+        %span.delta 5 of 8 cells to win
     .span9
-      .row-fluid
-        .counter{class: "counter-7"}
-        %h1.gamma
-          Ruby Basics
       -# begin ====================== loop
       .row-fluid.course-lesson-wrapper
         .span9
@@ -26,11 +28,12 @@
                 %ul.unstyled.score
                   %li.score-indicator.complete
                   %li.score-indicator.complete
-                  %li.score-indicator
+                  %li.score-indicator.complete
             .span9.lesson-details
               %h2.delta Language Syntax
               %button.btn.btn-start-lesson Start Lesson
         .span3
+          -# uses right and wrong classes to toggle
           .lesson-score.right
           
       -# end ====================== loop
@@ -64,4 +67,8 @@
         .span3
           .lesson-score.wrong
 
-
+  .row.bonus
+    .span4.offset4
+      -# update this text and ADD the class unlocked to this button to change the graphic
+      =link_to 'Bonus Round', "#", class: 'btn-bonus-round'
+    
