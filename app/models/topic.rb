@@ -8,6 +8,7 @@ class Topic
   #validation
   validates :title, :cookies, :description, :level_id, :presence => true
   validates :cookies, :numericality => {:only_integer => true}
+  attr_accessible :title, :cookies, :description, :contents_attributes, :questions_attributes, :level_id
 
   belongs_to :level
   has_many :contents, dependent: :destroy

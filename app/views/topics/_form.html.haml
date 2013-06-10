@@ -1,24 +1,36 @@
+= @topic.errors.full_messages
+
+=params
+= params[:topic].present?
+= params["topic"].present?
 = simple_nested_form_for @topic, html: {:class => 'form-horizontal'} do |f|
   = f.error_notification
 
   .form-inputs
+    = f.input :level_id, :collection => Level.all.entries, :label_method => :level_name, :value_method => :id, :prompt => "Select level"
     = f.input :title
     = f.input :cookies
-    = f.input :description
+    = f.input :description, as: :text, :input_html => {:cols => 20, :rows => 5}
+    = f.link_to_add "Add a content", :contents
     = f.simple_fields_for :contents do |content|
       = content.input :title
       = content.input :content_body
       = content.input :sq_no
       = content.input :content_type
       = content.file_field :topic_content
-    = f.simple_nested_fields_for :questions do |question|
+      = content.link_to_remove "Remove this content"
+    = f.link_to_add "Add a question", :questions
+    = f.simple_fields_for :questions do |question|
       = question.input :sq_no
       = question.input :query
       = question.input :cookies
+      = question.link_to_remove "Remove this question"
+      = question.link_to_add "Add a option", :options
       = question.simple_fields_for :options do |option|
         = option.input :label
         = option.input :value
-        = option.input :is_valid
+        = option.input :is_valid, as: :boolean
+        = option.link_to_remove "Remove this option"
 
   .form-actions
     = f.button :submit, class: 'btn-success'
