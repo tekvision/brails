@@ -7,7 +7,10 @@ h1.alpha {
 }
 
 .level {
-
+  & > .row:first-child {
+    border-bottom: 1px solid $med-grey;
+    margin-bottom: 15px;
+  }
   .counter {
     margin-top: 0;
     margin-right: 10px;
@@ -38,7 +41,6 @@ h1.alpha {
     .topic-description {
 
     }
-    
   }
   .topic-score {
     display: block;
@@ -71,7 +73,7 @@ h1.alpha {
   display: block;
   width: 400px;
   height: 195px;
-  margin: 50px 0 0 -15px;
+  margin: 50px 0 30px -15px;
   @include adjust-font-size-to(35px);
   text-decoration: none;
   color: darken($med-grey, 20%);
