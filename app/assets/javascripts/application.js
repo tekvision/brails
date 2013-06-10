@@ -15,3 +15,4 @@
 //= require bootstrap
 //= require mediaelement_rails
 //= require_tree .
+//= require jquery_nested_form
