@@ -22,6 +22,7 @@ describe Content do
 
   context 'associations' do
      it { should belong_to(:topic)}
+     it { should have_many(:questions).with_dependent(:destroy)}
   end
 
 end

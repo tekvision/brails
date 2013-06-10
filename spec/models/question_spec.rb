@@ -22,6 +22,7 @@ context "Required fields" do
     it { should have_many(:options).with_dependent(:destroy)}
     it { should belong_to(:topic)}
     it { should belong_to(:bonus_round)}
+    it { should belong_to(:content)}
   end
 
   context "Nested attributes" do

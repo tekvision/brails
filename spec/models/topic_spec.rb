@@ -5,7 +5,6 @@ describe Topic do
     it { should have_field(:title).of_type(String)}
     it { should have_field(:cookies).of_type(Integer)}
     it { should have_field(:summary).of_type(String)}
-    it { should have_field(:is_completed).of_type(Boolean)}
   end
   
   context 'required fields' do
@@ -23,6 +22,10 @@ describe Topic do
     it { should belong_to(:level)}
     it { should have_many(:contents).with_dependent(:destroy)}
     it { should have_many(:questions).with_dependent(:destroy)}
-    it { should have_one(:user_topic)}
+  end
+
+  context "Nested attributes" do
+    it { should accept_nested_attributes_for(:contents)}
+    it { should accept_nested_attributes_for(:questions)}
   end
 end
