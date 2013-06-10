@@ -1,4 +1,4 @@
-.course
+.level
   .row
     .span6.offset3
       .row-fluid
@@ -6,7 +6,7 @@
         %h1.gamma
           Ruby Basics
   .row
-    .span3.course-scoring
+    .span3.level-scoring
       .score-wrapper
         %ul.unstyled.score.large
           %li.score-indicator.complete
@@ -20,52 +20,52 @@
         %span.delta 5 of 8 cells to win
     .span9
       -# begin ====================== loop
-      .row-fluid.course-lesson-wrapper
+      .row-fluid.level-topic-wrapper
         .span9
-          .row-fluid.course-lesson
+          .row-fluid.level-topic
             .span3
               .score-wrapper
                 %ul.unstyled.score
                   %li.score-indicator.complete
                   %li.score-indicator.complete
                   %li.score-indicator.complete
-            .span9.lesson-details
+            .span9.topic-details
               %h2.delta Language Syntax
-              %button.btn.btn-start-lesson Start Lesson
+              %button.btn.btn-start-topic Start topic
         .span3
           -# uses right and wrong classes to toggle
-          .lesson-score.right
+          .topic-score.right
           
       -# end ====================== loop
 
 
-      .row-fluid.course-lesson-wrapper
+      .row-fluid.level-topic-wrapper
         .span9
-          .row-fluid.course-lesson
+          .row-fluid.level-topic
             .span3
               .score-wrapper
                 %ul.unstyled.score
                   %li.score-indicator.complete
                   %li.score-indicator
                   %li.score-indicator
-            .span9.lesson-details
+            .span9.topic-details
               %h2.delta Block Statements
-              %button.btn.btn-start-lesson Start Lesson
+              %button.btn.btn-start-topic Start topic
         .span3
-          .lesson-score.wrong
-      .row-fluid.course-lesson-wrapper
+          .topic-score.wrong
+      .row-fluid.level-topic-wrapper
         .span9
-          .row-fluid.course-lesson
+          .row-fluid.level-topic
             .span3
               .score-wrapper
                 %ul.unstyled.score
                   %li.score-indicator.complete
                   %li.score-indicator
-            .span9.lesson-details
+            .span9.topic-details
               %h2.delta Arrays, Hashes
-              %button.btn.btn-start-lesson Start Lesson
+              %button.btn.btn-start-topic Start topic
         .span3
-          .lesson-score.wrong
+          .topic-score.wrong
 
   .row.bonus
     .span4.offset4
