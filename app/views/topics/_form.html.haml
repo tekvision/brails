@@ -1,8 +1,3 @@
-= @topic.errors.full_messages
-
-=params
-= params[:topic].present?
-= params["topic"].present?
 = simple_nested_form_for @topic, html: {:class => 'form-horizontal'} do |f|
   = f.error_notification
 

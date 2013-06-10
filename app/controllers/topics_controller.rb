@@ -2,19 +2,16 @@ class TopicsController < ApplicationController
   before_filter :load_topic, :only => [:edit, :update] 
 
   def new
-      @topic = Topic.new
+    @topic = Topic.new
   end
 
   def create
-  p params
-  p params[:topic]
-  p params["topic"]
-   @topic = Topic.new(params[:topic])
-   if @topic.save
+    @topic = Topic.new(params[:topic])
+    if @topic.save
       flash[:message] = 'Successfully created'
       redirect_to topic_url(@topic)
     else
-      redirect_to new_topic_url(@topic)
+      render :action => :new
     end
   end
 
@@ -22,16 +19,16 @@ class TopicsController < ApplicationController
   end
 
   def update
-  	if @topic.update_attributes(params[:topic])
-  		flash[:message] = 'Successfully created'
-  		redirect_to topic_url(@topic)
-  	else
-  		redirect_to new_topic_url(@topic)
-  	end
+    if @topic.update_attributes(params[:topic])
+      flash[:message] = 'Successfully created'
+      redirect_to topic_url(@topic)
+    else
+      render :action => :update
+    end
   end
 
   def load_topic
-  	@topic = Topic.find_by(:id => params[:id])
+    @topic = Topic.find_by(:id => params[:id])
   end
 
   def destroy
