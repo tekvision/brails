@@ -86,10 +86,13 @@ describe LevelsController do
         assigns(:level).new_record?.should be_true
     end
 
-    it 'should create new level' do
-      level = build(:level).attributes
+    it 'should create new level and bonus round' do
+      level = build(:level)
+      bonus_round = build(:bonus_round, :level => level)
+      build(:question, :bonus_round => bonus_round)
+      build(:option, :question => bonus_round.question))
       level.delete("_id")
-      post :create, {:level => level}
+      post :create, {:level => level.attributes}
       level = assigns(:level)
       level.persisted?.should be_true
     end
