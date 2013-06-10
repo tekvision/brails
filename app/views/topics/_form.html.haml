@@ -1,0 +1,24 @@
+= simple_nested_form_for @topic, html: {:class => 'form-horizontal'} do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :cookies
+    = f.input :description
+    = f.simple_fields_for :contents do |content|
+      = content.input :title
+      = content.input :content_body
+      = content.input :sq_no
+      = content.input :content_type
+      = content.file_field :topic_content
+    = f.simple_nested_fields_for :questions do |question|
+      = question.input :sq_no
+      = question.input :query
+      = question.input :cookies
+      = question.simple_fields_for :options do |option|
+        = option.input :label
+        = option.input :value
+        = option.input :is_valid
+
+  .form-actions
+    = f.button :submit, class: 'btn-success'

@@ -3,10 +3,10 @@ class Topic
 
   field :title, type: String
   field :cookies, type: Integer
-  field :summary, type: String
+  field :description, type: String
 
   #validation
-  validates :title, :cookies, :summary, :level_id, :presence => true
+  validates :title, :cookies, :description, :level_id, :presence => true
   validates :cookies, :numericality => {:only_integer => true}
 
   belongs_to :level

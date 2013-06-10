@@ -4,13 +4,13 @@ describe Topic do
   context 'fields' do
     it { should have_field(:title).of_type(String)}
     it { should have_field(:cookies).of_type(Integer)}
-    it { should have_field(:summary).of_type(String)}
+    it { should have_field(:description).of_type(String)}
   end
   
   context 'required fields' do
     it { should validate_presence_of(:title)}
     it { should validate_presence_of(:cookies)}
-    it { should validate_presence_of(:summary)}
+    it { should validate_presence_of(:description)}
     it { should validate_presence_of(:level_id)}
   end
 
