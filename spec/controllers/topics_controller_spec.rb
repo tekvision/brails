@@ -18,10 +18,6 @@ describe TopicsController do
     it 'Should have associated content' do
       assigns(:topic).contents.size.should > 0
     end
-
-    it 'Should show summary' do
-      assigns(:topic).summary.should_not eq('')
-    end
   end
 
   context "GET take_test action is invoked" do
@@ -54,10 +50,15 @@ describe TopicsController do
     end
 
     it 'should create new topic' do
-      topic = build(:topic).attributes
+      topic = build(:topic)
+      build(:content, :topic => topic)
+      question = build(:question, :topic => topic)
+      build(:option, :question => question)
       topic.delete('_id')
-      post :create, {:topic => topic}
+      post :create, {:topic => topic.attributes}
       assigns(:topic).title.should eq(topic.title)
+      assigns(:topic).content.should eq(topic.content)
+      assigns(:topic).question.should eq(question)
     end
   end
 	
@@ -85,6 +86,65 @@ describe TopicsController do
     it 'Should delete' do
       post :destroy, id: @topic.id
       assigns(:topic).should be_nil
+    end
+  end
+
+  context "When attempting the question and it is solved" do
+    before do
+      @user = create(:student)
+      sign_in :user, @user
+    end
+
+    it 'Should save the state of question' do
+      question = create(:question)
+      create(:option, is_valid: true, :question => question)
+      create(:attempt, :question => question, :user => @user)
+      get :attempt_question, :id => question.id
+      assigns(:question).attempt.solved.should be_true
+    end
+
+    it 'Should give cookies for the topic' do
+      cookies = 0
+      question = create(:question)
+      create(:topic, :question => question)
+      create(:attempt, :question => question, :user => @user)
+      get :attempt_question, :id => question.id
+      cookies = assigns(:question).attempt.cookies
+      cookies = cookies + question.attempt.cookies
+      cookies.should eq(assigns(:question).attempt.cookies + question.attempt.cookies)
+    end
+  end
+
+  context "When attempting the question and is not solved" do
+    it 'Should increase attempt count by one' do
+      question = create(:question)
+      create(:option, is_valid: false, :question => question)
+      create(:attempt, :question => question, :user => @user)
+      get :attempt_question, :id => question.id
+      count = assigns(:question).attempt.count
+      count = count + 1
+      count.should eq(question.attempt.count + 1)
+    end
+  end
+
+  context "When solved the question after some attempts" do
+    it 'Should save the state of question' do
+      question = create(:question)
+      create(:option, is_valid: true, :question => question)
+      create(:attempt, :question => question, :user => @user)
+      get :attempt_question, :id => question.id
+      assigns(:question).attempt.solved.should be_true
+    end
+
+    it 'Should give cookies for the topic but reduce according to attempt count' do
+      question = create(:question)
+      create(:attempt, :count => 3, :question => question, :user => @user)
+      create(:topic, :question => question)
+      get :attempt_question, :id => question.id
+      cookies = assigns(:question).attempt.cookies
+      cookies1 = question.cookies / question.attempt.count
+      cookies = cookies + cookies1.round
+      cookies.should eq(assigns(:question).cookies / question.attempt.count.round)
     end
   end
 
