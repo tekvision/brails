@@ -1,2 +1,0 @@
-class StoryBoardsController < ApplicationController
-end
