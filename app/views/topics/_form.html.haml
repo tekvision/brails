@@ -18,6 +18,7 @@
           %label.control-label Upload File
           .controls= content.file_field :topic_content
           %br
+          = content.input :transcript, as: :text, :input_html => {:cols => 25, :rows => 2}
           .pull-right= content.link_to_remove "Remove this content"
           %br
           %hr
@@ -25,10 +26,10 @@
         = f.link_to_add "Add a question", :questions
         = f.simple_fields_for :questions do |question|
           %h6 New Question
-          = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type"
+          = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
           = question.input :sq_no,  :label => "Sequence number"
           = question.input :query
-          = question.input :cookies
+          = question.input :cookies, :input_html => {:id => "txt_question_cookies"}
           = question.simple_fields_for :options do |option|
             %h6 Option
             = option.input :label
@@ -44,3 +45,4 @@
 
   .form-actions
     = f.button :submit, class: 'btn-success'
+
