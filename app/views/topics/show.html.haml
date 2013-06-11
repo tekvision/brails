@@ -1,13 +1,11 @@
 %h1 TOPIC DETAILS
-%table
+%table.table
   %tr
-    %th Topic Number
     %th Title
-    %th Sub Topic
+    %th Description
     
   %tr
-    %td 1.1
-    %td Introduction To C
-    %td Pointer
+    %td= @topic.title
+    %td= @topic.description
     
-= link_to "Back", show_topic_path   
+= link_to "Back", topics_path

@@ -25,11 +25,8 @@ Brails::Application.routes.draw do
   resources :options
 
   match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
-  match '/courses/show' => 'courses#show_course', :via => :get , as: :show_course
-  match '/topics/show' => 'topics#show_topic', :via => :get , as: :show_topic
-  match '/contents/show' => 'contents#show_content', :via => :get , as: :show_content
-  match '/requests/show' => 'requests#show_request', :via => :get , as: :show_request
-  match '/comments/show' => 'comments#show_comment', :via => :get , as: :show_comment
+  match '/topics/:id/taketest' => 'topics#take_test', :via => :get, as: :take_test
+  match '/topics/attemptquestion/:id' => 'topics#attempt_question', as: :attempt_question
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

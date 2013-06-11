@@ -1,36 +1,48 @@
-= @topic.errors.full_messages
-
-=params
-= params[:topic].present?
-= params["topic"].present?
 = simple_nested_form_for @topic, html: {:class => 'form-horizontal'} do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :level_id, :collection => Level.all.entries, :label_method => :level_name, :value_method => :id, :prompt => "Select level"
     = f.input :title
-    = f.input :cookies
-    = f.input :description, as: :text, :input_html => {:cols => 20, :rows => 5}
-    = f.link_to_add "Add a content", :contents
-    = f.simple_fields_for :contents do |content|
-      = content.input :title
-      = content.input :content_body
-      = content.input :sq_no
-      = content.input :content_type
-      = content.file_field :topic_content
-      = content.link_to_remove "Remove this content"
-    = f.link_to_add "Add a question", :questions
-    = f.simple_fields_for :questions do |question|
-      = question.input :sq_no
-      = question.input :query
-      = question.input :cookies
-      = question.link_to_remove "Remove this question"
-      = question.link_to_add "Add a option", :options
-      = question.simple_fields_for :options do |option|
-        = option.input :label
-        = option.input :value
-        = option.input :is_valid, as: :boolean
-        = option.link_to_remove "Remove this option"
+    = f.input :description, as: :text, :input_html => {:cols => 25, :rows => 2}
+    %hr
+    .row
+      .span7.right-border
+        = f.link_to_add "Add a content", :contents
+        = f.simple_fields_for :contents do |content|
+          %h6
+            New Content
+          = content.input :title, :label => "Content title"
+          = content.input :content_body, as: :text, :input_html => {:cols => 25, :rows => 2}
+          = content.input :sq_no, :label => "Sequence number"
+          %label.control-label Upload File
+          .controls= content.file_field :topic_content
+          %br
+          = content.input :transcript, as: :text, :input_html => {:cols => 25, :rows => 2}
+          .pull-right= content.link_to_remove "Remove this content"
+          %br
+          %hr
+      .span5.left-border
+        = f.link_to_add "Add a question", :questions
+        = f.simple_fields_for :questions do |question|
+          %h6 New Question
+          = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
+          = question.input :sq_no,  :label => "Sequence number"
+          = question.input :query
+          = question.input :cookies, :input_html => {:id => "txt_question_cookies"}
+          = question.simple_fields_for :options do |option|
+            %h6 Option
+            = option.input :label
+            = option.input :value
+            = option.input :is_valid, as: :boolean
+            %br
+            .pull-right= option.link_to_remove "Remove this option"
+            %hr
+          = question.link_to_add "Add a option", :options, :class => 'pull-right'
+          %br
+          .pull-right= question.link_to_remove "Remove this question"
+          %hr
 
   .form-actions
     = f.button :submit, class: 'btn-success'
+
