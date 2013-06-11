@@ -5,7 +5,6 @@ describe Content do
     it { should have_field(:title).of_type(String)}
     it { should have_field(:content_body).of_type(String)}
     it { should have_field(:sequence_number).of_type(Integer)}
-    it {should have_field(:content_type).of_type(String)}
   end
 
   context "Validations" do
@@ -15,7 +14,6 @@ describe Content do
   context 'required fields' do
     it {should validate_presence_of(:title)}
     it {should validate_presence_of(:content_body)}
-    it {should validate_presence_of(:content_type)}
     it { should validate_presence_of(:sequence_number)}
     it { should validate_presence_of(:topic_id)}
   end

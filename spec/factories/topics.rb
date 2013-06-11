@@ -3,7 +3,6 @@
 FactoryGirl.define do
   factory :topic do
     title "Arrays and Hash"
-    cookies '3'
     description "topic points"
 
     association :level

@@ -4,19 +4,18 @@
   .form-inputs
     = f.input :level_id, :collection => Level.all.entries, :label_method => :level_name, :value_method => :id, :prompt => "Select level"
     = f.input :title
-    = f.input :cookies
     = f.input :description, as: :text, :input_html => {:cols => 20, :rows => 5}
     = f.link_to_add "Add a content", :contents
     = f.simple_fields_for :contents do |content|
-      = content.input :title
-      = content.input :content_body
-      = content.input :sq_no
-      = content.input :content_type
+      = content.input :title, :label => "Content title"
+      = content.input :content_body, as: :text, :input_html => {:cols => 20, :rows => 5}
+      = content.input :sq_no, :label => "Sequence number"
       = content.file_field :topic_content
       = content.link_to_remove "Remove this content"
     = f.link_to_add "Add a question", :questions
     = f.simple_fields_for :questions do |question|
-      = question.input :sq_no
+      = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type"
+      = question.input :sq_no,  :label => "Sequence number"
       = question.input :query
       = question.input :cookies
       = question.link_to_remove "Remove this question"
