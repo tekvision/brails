@@ -84,7 +84,7 @@ body{
       width: 32px;
       height: 32px;
       display:inline-block;
-      background: url(braille-dots.png) 0 -32px no-repeat;
+      background: url(coins.png) 0 -36px no-repeat;
       &.complete {
         background-position: 0 0;
       }
@@ -93,7 +93,7 @@ body{
       .score-indicator {
         width: 64px;
         height: 64px;
-        background: url(braille-dots@2x.png) 0 -64px no-repeat;
+        background: url(coins@2x.png) 0 -69px no-repeat;
         &.complete {
           background-position: 0 0;
         }
