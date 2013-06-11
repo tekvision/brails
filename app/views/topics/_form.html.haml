@@ -11,13 +11,14 @@
       = content.input :content_body, as: :text, :input_html => {:cols => 20, :rows => 5}
       = content.input :sq_no, :label => "Sequence number"
       = content.file_field :topic_content
+      = content.input :transcript, as: :text, :input_html => {:cols => 20, :rows => 5}
       = content.link_to_remove "Remove this content"
     = f.link_to_add "Add a question", :questions
     = f.simple_fields_for :questions do |question|
-      = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type"
+      = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
       = question.input :sq_no,  :label => "Sequence number"
       = question.input :query
-      = question.input :cookies
+      = question.input :cookies, :input_html => {:id => "txt_question_cookies"}
       = question.link_to_remove "Remove this question"
       = question.link_to_add "Add a option", :options
       = question.simple_fields_for :options do |option|
@@ -28,3 +29,4 @@
 
   .form-actions
     = f.button :submit, class: 'btn-success'
+

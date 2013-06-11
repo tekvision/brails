@@ -5,6 +5,7 @@ describe Content do
     it { should have_field(:title).of_type(String)}
     it { should have_field(:content_body).of_type(String)}
     it { should have_field(:sequence_number).of_type(Integer)}
+    it { should have_field(:transcript).of_type(String) }
   end
 
   context "Validations" do

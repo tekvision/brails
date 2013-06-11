@@ -1,6 +1,14 @@
 class TopicsController < ApplicationController
   before_filter :load_topic, :only => [:edit, :update, :take_test] 
 
+  def index
+    @topics = Topic.all
+  end
+
+  def show
+    @topic = Topic.find(params[:id])
+  end
+  
   def new
     @topic = Topic.new
   end
@@ -16,11 +24,12 @@ class TopicsController < ApplicationController
   end
 
   def edit
+    @topic = Topic.find(params[:id])
   end
 
   def update
     if @topic.update_attributes(params[:topic])
-      flash[:message] = 'Successfully created'
+      flash[:message] = 'Successfully updated'
       redirect_to topic_url(@topic)
     else
       render :action => :update
