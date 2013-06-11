@@ -10,6 +10,6 @@
       %td= topic.title
       %td= topic.description
       %td= link_to "Edit", edit_topic_path(topic)    
-      %td= link_to "Show", show_topic_path(topic)
+      %td= link_to "Show", topic_path(topic)
 
 = link_to "New topic", new_topic_path

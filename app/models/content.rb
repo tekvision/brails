@@ -6,6 +6,7 @@ class Content
   field :title, type: String
   field :content_body, type: String
   field :sq_no, type: Integer
+  field :transcript, type: String 
 
   #validations
    validates :title, :content_body, :sq_no, :topic_id, :presence => true   
