@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_filter :load_topic, :only => [:edit, :update] 
+  before_filter :load_topic, :only => [:edit, :update, :take_test] 
 
   def new
     @topic = Topic.new
@@ -27,12 +27,29 @@ class TopicsController < ApplicationController
     end
   end
 
+  def destroy
+
+  end
+
+  def take_test
+    @questions = @topic.questions
+
+  end
+
+  def attempt_question
+    @question = Question.find_by(:id => params[:id])
+    question_params = params[:question]
+    if question_params["option"]["is_valid"] == true
+      @question.attempt.solved = true
+      @question.attempt.cookies = @question.cookies
+    end
+    render :nothing => true
+  end
+
+  private
   def load_topic
     @topic = Topic.find_by(:id => params[:id])
   end
 
-  def destroy
-
-  end
 
 end

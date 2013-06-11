@@ -25,7 +25,7 @@ describe TopicsController do
       @topic = create(:topic)
       4.times {create(:question, :topic => @topic)}
       @topic.questions.each {|question| 4.times {create(:option, :question => question)}}
-      get :take_test, @topic.id
+      get :take_test, :id => @topic.id
     end
 
     it 'should show the questions of the topic' do
@@ -99,19 +99,22 @@ describe TopicsController do
       question = create(:question)
       create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
-      get :attempt_question, :id => question.id
+      question1 = question.attributes
+      question1[:option] = question.options[0].attributes
+      xhr :get, :attempt_question, :id => question.id, :question => question1
       assigns(:question).attempt.solved.should be_true
     end
 
     it 'Should give cookies for the topic' do
-      cookies = 0
       question = create(:question)
-      create(:topic, :question => question)
+      questions = [question]
+      create(:topic, :questions => questions)
+      create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
-      get :attempt_question, :id => question.id
-      cookies = assigns(:question).attempt.cookies
-      cookies = cookies + question.attempt.cookies
-      cookies.should eq(assigns(:question).attempt.cookies + question.attempt.cookies)
+      question1 = question.attributes
+      question1[:option] = question.options[0].attributes
+      xhr :get, :attempt_question, :id => question.id, :question => question1
+      assigns(:question).attempt.cookies.should  eq(question.cookies)
     end
   end
 
