@@ -5,7 +5,19 @@
     = f.input :level_number
     = f.input :level_name
     = f.simple_fields_for :bonus_round do |b|
-      = b.input :extra_cookies
+      = b.link_to_add "Add a question", :questions
+      = b.simple_fields_for :questions do |question|
+        = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type"
+        = question.input :sq_no,  :label => "Sequence number"
+        = question.input :query
+        = question.input :cookies
+        = question.link_to_remove "Remove this question"
+        = question.link_to_add "Add a option", :options
+        = question.simple_fields_for :options do |option|
+          = option.input :label
+          = option.input :value
+          = option.input :is_valid, as: :boolean
+          = option.link_to_remove "Remove this option"
 
   .form-actions
     = f.button :submit, class: 'btn-success'

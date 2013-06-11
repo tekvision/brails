@@ -1,10 +1,3 @@
 %h1 Edit level
-= simple_form_for @level, :url => { :action => :update}, html: {:class => 'form-horizontal'} do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :level_number
-    = f.input :level_name
-
-  .form-actions
-    = f.button :submit, class: 'btn-success'
+.content
+  = render 'form'
