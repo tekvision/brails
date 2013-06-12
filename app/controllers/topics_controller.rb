@@ -47,19 +47,16 @@ class TopicsController < ApplicationController
 
   def attempt_question
     @question = Question.find_by(:id => params[:id])
+    attempt = Attempt.where(:user => current_user, :question => @question).first
+    attempt = Attempt.create(:user => current_user, :question => @question) if attempt.nil? 
     question_params = params[:question]
-    if question_params["option"]["is_valid"] == true && @question.attempt.count == 0
-      @question.attempt.solved = true
-      @question.attempt.cookies = @question.cookies
-      @question.save
-    elsif question_params["option"]["is_valid"] == true && @question.attempt.count > 0
-      @question.attempt.solved = true
-      cookies = @question.cookies / @question.attempt.count
-      @question.attempt.cookies = cookies.round
-      @question.save
+    if question_params["option"]["is_valid"] == true && attempt.count == 0
+      attempt.update_attribute(solved: true, cookies: @question.cookies)
+    elsif question_params["option"]["is_valid"] == true && attempt.count > 0
+      cookies = (@question.cookies / attempt.count).round
+      attempt.update_attributes(solved: true, cookies: cookies)
     else
-      @question.attempt.count = @question.attempt.count + 1
-      @question.save
+      attempt.update_attributes(count: attempt.count + 1)
     end
     render :nothing => true
   end
