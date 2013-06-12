@@ -48,9 +48,18 @@ class TopicsController < ApplicationController
   def attempt_question
     @question = Question.find_by(:id => params[:id])
     question_params = params[:question]
-    if question_params["option"]["is_valid"] == true
+    if question_params["option"]["is_valid"] == true && @question.attempt.count == 0
       @question.attempt.solved = true
       @question.attempt.cookies = @question.cookies
+      @question.save
+    elsif question_params["option"]["is_valid"] == true && @question.attempt.count > 0
+      @question.attempt.solved = true
+      cookies = @question.cookies / @question.attempt.count
+      @question.attempt.cookies = cookies.round
+      @question.save
+    else
+      @question.attempt.count = @question.attempt.count + 1
+      @question.save
     end
     render :nothing => true
   end
