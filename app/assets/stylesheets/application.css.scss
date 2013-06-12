@@ -13,3 +13,14 @@
 @import "variables";
 @import "bootstrap";
 @import "brails";
+
+.topic-form{
+  overflow: scroll;
+  height:500px;
+  width:945px;
+  padding-right:40px;
+}
+li.active > a{
+  background-color:#31BAD4 !important;
+  color: #FFFFFF !important;
+}
