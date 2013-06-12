@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_filter :load_topic, :only => [:edit, :update, :take_test] 
+  before_filter :load_topic, :only => [:edit, :update, :take_test, :destroy] 
 
   def index
     @topics = Topic.all
@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
   end
-  
+
   def new
     @topic = Topic.new
     @topic.contents.build
@@ -40,10 +40,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
-
   def take_test
     @questions = @topic.questions
 
@@ -65,10 +61,13 @@ class TopicsController < ApplicationController
     render :nothing => true
   end
 
+  def destroy
+    @topic.destroy
+  end
+
   private
   def load_topic
     @topic = Topic.find_by(:id => params[:id])
   end
-
 
 end
