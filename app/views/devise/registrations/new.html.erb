@@ -7,7 +7,7 @@
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
-    <%= f.input :roles, :collection => ["Admin", "Student"], :prompt => "Select role" %>
+    <%= f.input :roles, :as => :hidden, :input_html => {:value => "Student" } %>
   </div>
 
   <div class="form-actions">

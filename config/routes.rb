@@ -1,8 +1,6 @@
 Brails::Application.routes.draw do
 
   default_url_options :host => "localhost"
-
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "home/index"
@@ -11,8 +9,10 @@ Brails::Application.routes.draw do
     :sign_out => 'logout', 
     :password => 'secret', 
     :confirmation => 'verification',
+    :controllers => { :invitations => 'devise/invitations' },
     :root_path => 'home#index'
   }
+
   resources :users
   resources :profiles
   resources :comments
