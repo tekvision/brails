@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+
+  protected
+  def authenticate_inviter!
+   # authenticate_user!(:force => true)
+  end
+
 end
