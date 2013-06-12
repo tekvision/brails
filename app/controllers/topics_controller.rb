@@ -11,6 +11,8 @@ class TopicsController < ApplicationController
   
   def new
     @topic = Topic.new
+    @topic.contents.build
+    @topic.questions.build
   end
 
   def create
@@ -28,11 +30,13 @@ class TopicsController < ApplicationController
   end
 
   def update
+    p @topic.errors.inspect
+    p @topic.errors.full_messages
     if @topic.update_attributes(params[:topic])
       flash[:message] = 'Successfully updated'
       redirect_to topic_url(@topic)
     else
-      render :action => :update
+      render :action => :edit
     end
   end
 

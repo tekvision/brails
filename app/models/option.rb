@@ -5,8 +5,16 @@ class Option
   field :value, type: String
   field :is_valid, type: Boolean
 
+  belongs_to :question
+
   #validations
   validates :value, :question_id, :presence => true 
 
-  belongs_to :question
+  validate :validate_options
+
+  def validate_options
+    self.errors.add(:base,  "Atleast one option should be valid") if question.options.collect(&:is_valid).count(true) == 0
+    self.errors.add(:base, "Multiple options can't be valid") if question.options.collect(&:is_valid).count(true) > 1 
+  end
+
 end
