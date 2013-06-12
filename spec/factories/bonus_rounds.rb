@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :bonus_round do
-    extra_cookies 5
     association :level
   end
 end
