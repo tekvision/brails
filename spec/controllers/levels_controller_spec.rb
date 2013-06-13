@@ -90,7 +90,7 @@ describe LevelsController do
       level = build(:level)
       bonus_round = build(:bonus_round, :level => level)
       build(:question, :bonus_round => bonus_round)
-      build(:option, :question => bonus_round.question))
+      build(:option, :question => bonus_round.question)
       level.delete("_id")
       post :create, {:level => level.attributes}
       level = assigns(:level)
