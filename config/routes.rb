@@ -27,6 +27,7 @@ Brails::Application.routes.draw do
   match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
   match '/topics/:id/taketest' => 'topics#take_test', :via => :get, as: :take_test
   match '/topics/attemptquestion/:id' => 'topics#attempt_question', as: :attempt_question
+  match '/levels_list' => 'levels#levels_list', :via => :get, as: :levels_list
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

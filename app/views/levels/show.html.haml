@@ -1,0 +1,19 @@
+%h1 #{@level.level_name}
+%br
+%ul
+  %li= @level_cookies
+%br
+%table.table
+  %tr
+    %th Topic title
+    %th Cookies
+    %th 
+  - @topics.each do |topic|
+    %tr
+      %td= topic.title
+      - topic_cookies = 0
+      - topic.questions.each do |question|
+        - topic_cookies = topic_cookies + H_COOKIES[question.question_type]
+        %td= topic_cookies  
+      %td= link_to "Learn the topic", topic_path(topic)
+        

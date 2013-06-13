@@ -1,14 +1,26 @@
-%h1 Display levels
-%table.table
-  %tr
-    %th Level name
-    %th Level number
-    %th 
-    %th
-
-  - @levels.each do |level|
-    %tr
-      %td= level.level_name
-      %td= level.level_number
-      %td= link_to "Edit", edit_level_path(level)
-      %td= link_to "Destroy", level, method: :delete, data: { confirm: 'Are you sure?' }
+#grid-wrapper{role: 'application'}
+  #game-levels{role: 'grid', tabindex: '0'}
+    - (1..10).to_a.each_slice(4).with_index do |levels, row_index|
+      .row{role: 'row'}
+        - levels.each_with_index do |level, col_index|
+          .span3{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell', "aria-labelledby"=> "level_number_#{level}", "aria-describedby"=>"level_caption_#{level}"}
+            .lesson-summary
+              %header
+                .counter.counter-2
+                = level
+              %p.description
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. 
+              %a.btn.btn-mini.btn-try-now{:href => "#"} try now
+              .score-wrapper
+                %ul.unstyled.score
+                  %li.score-indicator.complete
+                  %li.score-indicator
+                  %li.score-indicator
+                  %li.score-indicator
+                  %li.score-indicator
+                  %li.score-indicator
+                  %li.score-indicator
+                  %li.score-indicator
+              %footer
+                [  ] [  ] [  ]
