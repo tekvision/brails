@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe LevelsController do
   before do
-@level = create(:level)
+    @level = create(:level)
   end
 
   context "GET index action for logged in user" do
