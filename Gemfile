@@ -41,3 +41,4 @@ gem 'country_select'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem "nested_form"
 gem "ckeditor"
+gem "mediaelement_rails"
