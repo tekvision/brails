@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    redirect_to (@topic)
+    render show: @topic
   end
 
   def new
