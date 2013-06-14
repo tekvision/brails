@@ -61,6 +61,7 @@ h1.alpha {
     padding: 5px 50px;
     border: none;
     font-weight: 700;
+    font-size: 1.5em;
     @include border-radius(3px);
     @include text-shadow(none);
     &:hover {

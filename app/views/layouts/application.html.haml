@@ -4,7 +4,7 @@
     = stylesheet_link_tag    "application", :media => "all"
     %link{:href => "http://fonts.googleapis.com/css?family=Cabin:400,600", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
-  %body
+  %body.textsize-625
     = render 'header'
     = show_flash_messages if show_flash_messages.present? 
     .logo{:style => "text-align: center; margin: 20px 0;"}
