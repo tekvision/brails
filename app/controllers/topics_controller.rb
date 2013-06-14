@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @questions = @topic.questions
     render show: @topic
   end
 
@@ -21,8 +22,6 @@ class TopicsController < ApplicationController
       flash[:message] = 'Successfully created'
       redirect_to topics_url
     else
-      p "----------------------------"
-      p @topic.errors
       render :action => :new
     end
   end
@@ -32,8 +31,6 @@ class TopicsController < ApplicationController
   end
 
   def update
-    p @topic.errors.inspect
-    p @topic.errors.full_messages
     if @topic.update_attributes(params[:topic])
       flash[:message] = 'Successfully updated'
       redirect_to topics_url
@@ -48,9 +45,9 @@ class TopicsController < ApplicationController
   end
 
   def attempt_question
-p current_user
     @question = Question.find_by(:id => params[:id])
     @attempt = Attempt.where(:user => current_user, :question => @question).first
+    @attempt = Attempt.create(:user => current_user, :question => @question) if @attempt.nil? 
     @attempt = Attempt.create(:user => current_user, :question => @question) if @attempt.nil? 
     question_params = params[:question]
     if question_params["option"]["is_valid"] == true && @attempt.count == 0

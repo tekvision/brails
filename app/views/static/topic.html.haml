@@ -1,0 +1,41 @@
+.topic
+  .row
+    .span8.offset2
+      %h1.beta.topic-title Language Syntax
+      %section.topic
+        .row
+          .audio
+            =audio_tag "http://users.skynet.be/fa046054/home/P22/track06.mp3", autoplay: false, controls: true
+          -# %button.btn{:style => "float: left;"} Transcript
+        .row
+          .tabbable.tabs-left.topic-details
+            %ul.nav.nav-tabs
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#lA"} Transcript
+              %li
+                %a{"data-toggle" => "tab", :href => "#lB"} Summary
+              %li
+                %a{"data-toggle" => "tab", :href => "#lC"} Test
+            .tab-content
+              #lA.tab-pane.transcript.active
+                %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nunc justo, accumsan vel faucibus ut, accumsan non turpis. Donec feugiat ac elit quis elementum. In in augue elit. Duis at erat eget diam cursus bibendum. In lorem odio, tempus ac dictum in, tristique sit amet ante
+              #lB.tab-pane.summary
+                %p 
+                  Pellentesque non risus ut dui pretium rhoncus. Duis eu varius quam. Etiam placerat urna at augue volutpat sollicitudin. Nullam erat metus, adipiscing vel egestas non, semper in quam.
+                  %ul
+                    %li bullet 1
+                    %li bullet 2              
+              #lC.tab-pane.test
+                %p 
+                  %span.question How many bits in a byte? 
+                  %form
+                    .control-group
+                      .controls
+                        %label.radio
+                          %input#optionsRadios1{:name => "optionsRadios", :type => "radio", :value => "option1"} 1 byte has 8 bits
+                        %label.radio
+                          %input#optionsRadios2{:name => "optionsRadios", :type => "radio", :value => "option2"} 1 byte has 2 bits
+                        %label.radio
+                          %input#optionsRadios3{:name => "optionsRadios", :type => "radio", :value => "option3"} 1 byte has 10 bits
+                    %button.btn Don't Know
+                    %button.btn Confirm
