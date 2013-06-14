@@ -9,20 +9,22 @@ $border-color: $black;
 
 @mixin setup($bg-color, $border-color: $black) {
   .lesson-summary {
-    @include lesson-summary($bg-color, $border-color)
+    @include lesson-summary($bg-color, $border-color);
   }
-  
+  .level {
+    @include level-colors($bg-color, $border-color);
+  }
 }
 
 
 @mixin lesson-summary($bg-color, $border-color: $black) {
-  background: $bg-color;
+  background: adjust-lightness($bg-color, 5%);
   padding: 5px 20px;
   border: 1px solid $border-color;
   margin-bottom: 20px;
   header {
     font-family: 'Cabin', sans-serif;
-    font-size: 1.2em;
+    font-size: 1.3em;
     padding-top: 25px;
     padding-bottom: 3px;
     text-align:right;
@@ -36,6 +38,7 @@ $border-color: $black;
     background: $border-color;
     color: $bg-color;
     font-weight: 600;
+    font-size: 1.2em;
     border:none;
     float: right;
     margin-top: -20px;
@@ -48,6 +51,28 @@ $border-color: $black;
   }
 }
 
+@mixin level-colors($bg-color, $border-color: $black) {
+  & > .row:first-child {
+    border-bottom: 1px solid $border-color;
+  }
+  h1{
+    color: $border-color;
+  }
+  .level-topic {
+    border: 1px solid $border-color;
+  }
+  .topic-details {
+    border-left: 1px solid $border-color;
+    h2 {
+      color: $border-color;
+    }
+  }
+  .btn-start-topic {
+    background-image:none;
+    background: $border-color;
+    color: $bg-color;
+  }
+}
 
 
 
