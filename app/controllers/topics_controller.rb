@@ -48,10 +48,11 @@ class TopicsController < ApplicationController
   end
 
   def attempt_question
-p current_user
     @question = Question.find_by(:id => params[:id])
+		p @question
     @attempt = Attempt.where(:user => current_user, :question => @question).first
     @attempt = Attempt.create(:user => current_user, :question => @question) if @attempt.nil? 
+    @attempt = Attempt.create(:user => current_user, :question => @question) if attempt.nil? 
     question_params = params[:question]
     if question_params["option"]["is_valid"] == true && @attempt.count == 0
       @attempt.update_attribute(solved: true, cookies: H_HASH[@question.question_type])

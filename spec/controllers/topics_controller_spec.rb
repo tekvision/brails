@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TopicsController do
   describe "GET show a topic" do
-    before do
+    before(:each) do
       @topic = create(:topic)
       get :show, id: @topic.id
     end 
@@ -137,6 +137,14 @@ describe TopicsController do
   end
 
   context "When solved the question after some attempts" do
+    before(:each) do
+      @user = create(:student)
+			p @user.errors
+      sign_in :user, @user
+			@user.reload
+			p @user
+    end
+
     it 'Should save the state of question' do
       question = create(:question)
       questions = [question]
@@ -151,6 +159,7 @@ describe TopicsController do
 
     it 'Should give cookies for the topic but reduce according to attempt count' do
       question = create(:question)
+			p question
       questions = [question]
       create(:topic, :questions => questions)
       create(:option, is_valid: true, :question => question)
