@@ -7,25 +7,13 @@ Description:
 = @topic.description
 %br
 %br
-<<<<<<< HEAD
-- @topic.contents.each do |content|
-  =# audio_tag(content.topic_content, autoplay: false, controls: true)
-  %br
-  %br
-  =raw(content.content_body)
-%br
-- @topic.questions.each do |question|
-  = question.query
-  = simple_form question do |q|
-  - question.options.each do |o|
-
-=======
 %div
   - @topic.contents.each do |content|
     =audio_tag content.topic_content, autoplay: false, controls: true
     %br
     %br
     =raw(content.content_body)
+%br
 %div
   %br
   %br
@@ -35,10 +23,10 @@ Description:
     - @questions.each_index do |index|
       .span3
         - question = @questions[index]
-        %h6="#{index} #{question.query.capitalize}"
+        %h6="#{question.query.capitalize}"
       = simple_form_for question, :url => attempt_question_url(question), remote: true do |f|
         .span3
           = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
         .span3
           = f.submit 'Submit', :class => 'btn btn-info'
->>>>>>> c79684c3b215ca2e872fbefa8fc6a1f5a60e84bc
+
