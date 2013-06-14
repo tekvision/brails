@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    render show: @topic
+    @contents = @topic.contents
   end
 
   def new

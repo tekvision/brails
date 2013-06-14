@@ -1,15 +1,5 @@
-Title:
-%br
-= @topic.title
-%br
-Description:
-%br
-= @topic.description
-%br
-%br
-- @topic.contents.each do |content|
-  =audio_tag content.topic_content, autoplay: false, controls: true
-  %br
-  %br
-  =raw(content.content_body)
-
+.topic
+  .row
+    .span8.offset2
+      - @contents.each do |content|
+        = render partial: "show_topic", locals: { content: content }
