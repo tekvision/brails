@@ -6,6 +6,7 @@
     = csrf_meta_tags
   %body
     = render 'header'
+    = show_flash_messages if show_flash_messages.present? 
     .logo{:style => "text-align: center; margin: 20px 0;"}
       =image_tag "/images/brails-logo.jpg"
     .container.main-container{role: 'application'}

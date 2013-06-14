@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if resource && resource.sign_in_count == 1
       root_path
     else
-      root_path
+      levels_path
     end
   end
 
