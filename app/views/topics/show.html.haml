@@ -8,8 +8,8 @@ Description:
 %br
 %br
 - @topic.contents.each do |content|
-  = audio_tag "F:\Songs\hindi songs\new mix\Yeh tara woh tara.mp3", autoplay: true, controls: true
+  =audio_tag content.topic_content, autoplay: false, controls: true
   %br
   %br
-  = raw(content.content_body)
+  =raw(content.content_body)
 
