@@ -54,7 +54,7 @@ p current_user
     @attempt = Attempt.create(:user => current_user, :question => @question) if @attempt.nil? 
     question_params = params[:question]
     if question_params["option"]["is_valid"] == true && @attempt.count == 0
-      @attempt.update_attribute(solved: true, cookies: H_HASH[@question.question_type])
+      @attempt.update_attribute(solved: true, cookies: H_COOKIES[@question.question_type])
     elsif question_params["option"]["is_valid"] == true && @attempt.count > 0
       cookies = (H_COOKIES[@question.question_type] / @attempt.count).round
       @attempt.update_attributes(solved: true, cookies: cookies)

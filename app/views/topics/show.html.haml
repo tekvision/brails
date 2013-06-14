@@ -8,8 +8,13 @@ Description:
 %br
 %br
 - @topic.contents.each do |content|
-  =audio_tag content.topic_content, autoplay: false, controls: true
+  =# audio_tag(content.topic_content, autoplay: false, controls: true)
   %br
   %br
   =raw(content.content_body)
+%br
+- @topic.questions.each do |question|
+  = question.query
+  = simple_form question do |q|
+  - question.options.each do |o|
 
