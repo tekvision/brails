@@ -1,0 +1,28 @@
+
+.topic-title{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+section.topic {
+  padding-left: 70px;
+  .audio {
+    padding-left: 60px;
+
+  }
+  
+  .topic-details {
+    margin-top: 20px;
+  }
+  .test {
+    .question {
+      @include adjust-font-size-to(17px);
+    }
+    .control-group {
+      padding-left: 4px;
+    }
+  }
+}
+.mejs-container {
+  background: rgb(220, 220, 220) !important;
+}
