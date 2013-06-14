@@ -1,10 +1,16 @@
-CKEDITOR.replace( 'topic_contents_attributes_new_contents_content_body', {
-	toolbar: [
-		{ name: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ] },	// Defines toolbar group with name (used to create voice label)
-and items in 3 subgroups.
-		[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
-		'/',																					// Line break - next group will be placed in new line.
-		{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
-	]
-});
-
+CKEDITOR.editorConfig = function( config ) {
+	config.language = 'us';
+	config.uiColor = '#AADC6E';
+	config.toolbar = 'Basic';
+	config.toolbarGroups = [
+	{ name: 'editing', groups: [ 'find', 'spellchecker' ] },
+	{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+	{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
+	{ name: 'links' },
+	{ name: 'insert' },
+	{ name: 'styles' },
+	{ name: 'colors' },
+	{ name: 'tools' },
+	{ name: 'others' },
+	];
+};

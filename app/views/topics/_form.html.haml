@@ -1,10 +1,11 @@
 = simple_nested_form_for @topic, html: {:class => 'form-horizontal'} do |f|
   = f.error_notification
+  = @topic.errors.full_messages
 
   .form-inputs
     = f.input :level_id, :collection => Level.all.entries, :label_method => :level_name, :value_method => :id, :prompt => "Select level"
     = f.input :title
-    = f.input :description, as: :text, :input_html => {:cols => 25, :rows => 2}
+    = f.input :description, as: :text, :input_html => {:rows => 2}
     %hr
     %ul.nav.nav-tabs
       %li.active
@@ -17,12 +18,12 @@
           %h6
             New Content
           = content.input :title, :label => "Content title"
-          = content.input :content_body, as: :ckeditor, :input_html => {:cols => 55, :rows => 2, :ckeditor => {:toolbar => 'Mini'}}
+          = content.input :content_body, as: :ckeditor, :input_html => {:ckeditor => {:toolbar => 'mini'}}
           = content.input :sq_no, :label => "Sequence number"
           %label.control-label Upload File
           .controls= content.file_field :topic_content
           %br
-          = content.input :transcript, as: :text, :input_html => {:cols => 25, :rows => 2}
+          = content.input :transcript, as: :text, :input_html => {:rows => 2}
           .pull-right= content.link_to_remove "Remove this content"
           %br
           %hr
@@ -33,7 +34,6 @@
           = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
           = question.input :sq_no,  :label => "Sequence number"
           = question.input :query
-          = question.input :cookies, :input_html => {:id => "txt_question_cookies"}
           = question.simple_fields_for :options do |option|
             %h6 Option
             = option.input :label

@@ -19,8 +19,10 @@ class TopicsController < ApplicationController
     @topic = Topic.new(params[:topic])
     if @topic.save
       flash[:message] = 'Successfully created'
-      redirect_to topic_url(@topic)
+      redirect_to topics_url
     else
+      p "----------------------------"
+      p @topic.errors
       render :action => :new
     end
   end
@@ -34,7 +36,7 @@ class TopicsController < ApplicationController
     p @topic.errors.full_messages
     if @topic.update_attributes(params[:topic])
       flash[:message] = 'Successfully updated'
-      redirect_to topic_url(@topic)
+      redirect_to topics_url
     else
       render :action => :edit
     end
