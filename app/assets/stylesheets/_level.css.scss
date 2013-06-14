@@ -8,7 +8,7 @@ h1.alpha {
 
 .level {
   & > .row:first-child {
-    border-bottom: 1px solid $med-grey;
+    border-bottom: 1px solid black;
     margin-bottom: 15px;
   }
   .counter {
@@ -26,16 +26,16 @@ h1.alpha {
     margin-bottom: 20px;
   }
   .level-topic {
-    background: rgb(247,247,247);
-    border: 1px solid lighten($med-grey, 10%);
+    // background: rgb(247,247,247);
+    border: 1px solid black;
     padding: 10px;
   }
 
   .topic-details {
     text-align: center;
-    border-left: 1px solid $med-grey;
+    border-left: 1px solid black;
     h2 {
-      color: $med-grey;
+      color: black;
       margin-bottom: 10px;
     }
     .topic-description {
@@ -56,15 +56,15 @@ h1.alpha {
   }
   .btn-start-topic {
     background-image:none;
-    background-color: $med-grey;
-    color: darken($med-grey, 40%);
+    background-color: black;
+    color: white;
     padding: 5px 50px;
     border: none;
     font-weight: 700;
     @include border-radius(3px);
-    // @include text-shadow(1px 1px 1px #888);
+    @include text-shadow(none);
     &:hover {
-      background-color: darken($med-grey, 10%);
+      background-color: lighten(black, 20%);
     }
   }
 }
@@ -76,13 +76,13 @@ h1.alpha {
   margin: 50px 0 30px -15px;
   @include adjust-font-size-to(35px);
   text-decoration: none;
-  color: darken($med-grey, 20%);
+  color: black;
   padding: 70px 160px 0 20px;
   text-align: center;
   background: rgb(233, 233, 233) url(bonus-round.png) right 0 no-repeat;
   &:hover {
     text-decoration: none;
-    color: darken($med-grey, 40%);
+    color: lighten(black, 20%);
   }
   &.unlocked {
     background-color: rgb(220, 233, 220);
