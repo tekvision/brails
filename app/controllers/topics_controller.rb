@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @questions = @topic.questions
     render show: @topic
   end
 
@@ -21,8 +22,6 @@ class TopicsController < ApplicationController
       flash[:message] = 'Successfully created'
       redirect_to topics_url
     else
-      p "----------------------------"
-      p @topic.errors
       render :action => :new
     end
   end
@@ -32,8 +31,6 @@ class TopicsController < ApplicationController
   end
 
   def update
-    p @topic.errors.inspect
-    p @topic.errors.full_messages
     if @topic.update_attributes(params[:topic])
       flash[:message] = 'Successfully updated'
       redirect_to topics_url
@@ -48,19 +45,37 @@ class TopicsController < ApplicationController
   end
 
   def attempt_question
+    #STEP 1 Find Question
+    #STEP 2 
+    #     i)
+    #       a) Option selected
+    #         Fetch option record
+    #       b) Find entry from Attempt of current_user and question 
+    #         if not found -> create it
+    #       c) Check whether option is valid or not
+    #         if valid and attempt count is 0
+    #           update attempt object => :solved => true and update cookies according to Q type
+    #         elsif valid and attempt count > 0
+    #           1) update attempt object => :solved => true
+    #           2) (cookies/attempt.count).round
+    #         else(option is not valid)
+    #           Increase attempt count
+    #
+    #     ii) Option empty 
+    #        Do nothing
+
+
     @question = Question.find_by(:id => params[:id])
-		p @question
+    @answer = @question.options.where(:_id => params["question"]['options']).try(:first) if params['question'].present?
     @attempt = Attempt.where(:user => current_user, :question => @question).first
     @attempt = Attempt.create(:user => current_user, :question => @question) if @attempt.nil? 
-    @attempt = Attempt.create(:user => current_user, :question => @question) if attempt.nil? 
-    question_params = params[:question]
-    if question_params["option"]["is_valid"] == true && @attempt.count == 0
-      @attempt.update_attribute(solved: true, cookies: H_HASH[@question.question_type])
-    elsif question_params["option"]["is_valid"] == true && @attempt.count > 0
+    if @answer.is_valid and @attempt.count == 0
+      @attempt.update_attributes({solved: true, cookies: H_COOKIES[@question.question_type]})
+    elsif @answer.is_valid and @attempt.count > 0
       cookies = (H_COOKIES[@question.question_type] / @attempt.count).round
-      @attempt.update_attributes(solved: true, cookies: cookies)
+      @attempt.update_attributes({solved: true, cookies: cookies})
     else
-      @attempt.update_attributes(count: @attempt.count + 1)
+      @attempt.update_attributes({count: @attempt.count + 1})
     end
 
     render :nothing => true

@@ -1,19 +1,33 @@
-%h1 #{@level.level_name}
-%br
-%ul
-  %li= @level_cookies
-%br
-%table.table
-  %tr
-    %th Topic title
-    %th Cookies
-    %th 
-  - @topics.each do |topic|
-    %tr
-      %td= topic.title
-      - topic.questions.each do |question|
-        - topic_cookies = 0
-        - topic_cookies = topic_cookies + H_COOKIES[question.question_type]
-        %td= topic_cookies  
-      %td= link_to "Learn the topic", topic_path(topic)
-        
+.level
+  .row
+    .span6
+      .row-fluid
+        .counter{class: "counter-7"}
+        %h1.gamma #{@level.level_name}
+  .row
+    .span3.level-scoring
+      .score-wrapper
+        %ul.unstyled.score.large
+          - 8.times do |count|
+            %li.score-indicator{ :class => "#{'complete' if @level_cookies > count}"}
+        %span.delta #{@level_cookies} of 8 coins to win
+    .span9
+      - @topics.each do |topic|
+        .row-fluid.level-topic-wrapper
+          .span9
+            .row-fluid.level-topic
+              .span3
+                .score-wrapper
+                  %ul.unstyled.score
+                    - total_cookies = topic.questions.collect{|question| H_COOKIES[question.question_type]}.inject(:+)
+                    - 3.times do |count|
+                      %li.score-indicator{ :class => "#{'complete' if total_cookies > count}"}
+
+
+              .span9.topic-details
+                %h2.delta= topic.title
+                %p.topic-description= topic.description
+                %a.btn.btn-start-topic= link_to " Start topic", topic_path(topic)
+          .span3
+            -# uses right and wrong classes to toggle
+            .topic-score.right
