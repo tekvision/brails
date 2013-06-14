@@ -1,8 +1,6 @@
 Brails::Application.routes.draw do
 
   default_url_options :host => "localhost"
-
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "home/index"
@@ -11,8 +9,10 @@ Brails::Application.routes.draw do
     :sign_out => 'logout', 
     :password => 'secret', 
     :confirmation => 'verification',
+    :controllers => { :invitations => 'devise/invitations' },
     :root_path => 'home#index'
   }
+
   resources :users
   resources :profiles
   resources :comments
@@ -27,6 +27,7 @@ Brails::Application.routes.draw do
   match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
   match '/topics/:id/taketest' => 'topics#take_test', :via => :get, as: :take_test
   match '/topics/attemptquestion/:id' => 'topics#attempt_question', as: :attempt_question
+  match '/levels_list' => 'levels#levels_list', :via => :get, as: :levels_list
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

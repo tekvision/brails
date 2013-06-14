@@ -4,32 +4,35 @@
   .form-inputs
     = f.input :level_id, :collection => Level.all.entries, :label_method => :level_name, :value_method => :id, :prompt => "Select level"
     = f.input :title
-    = f.input :description, as: :text, :input_html => {:cols => 25, :rows => 2}
+    = f.input :description, as: :text, :input_html => {:rows => 2}
     %hr
-    .row
-      .span7.right-border
-        = f.link_to_add "Add a content", :contents
+    %ul.nav.nav-tabs
+      %li.active
+        %a{ href: "#content", 'data-toggle' => "tab"}Add Content
+      %li
+        %a{ href:"#question", 'data-toggle' => "tab"}Add Question
+    .tab-content.topic-form
+      .tab-pane.active#content
         = f.simple_fields_for :contents do |content|
           %h6
             New Content
           = content.input :title, :label => "Content title"
-          = content.input :content_body, as: :text, :input_html => {:cols => 25, :rows => 2}
+          = content.input :content_body, as: :ckeditor, :input_html => {:ckeditor => {:toolbar => 'mini'}}
           = content.input :sq_no, :label => "Sequence number"
           %label.control-label Upload File
           .controls= content.file_field :topic_content
           %br
-          = content.input :transcript, as: :text, :input_html => {:cols => 25, :rows => 2}
+          = content.input :transcript, as: :text, :input_html => {:rows => 2}
           .pull-right= content.link_to_remove "Remove this content"
           %br
           %hr
-      .span5.left-border
-        = f.link_to_add "Add a question", :questions
+        = f.link_to_add "Add more contents", :contents, :class => 'btn btn-info'
+      .tab-pane#question
         = f.simple_fields_for :questions do |question|
           %h6 New Question
           = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
           = question.input :sq_no,  :label => "Sequence number"
           = question.input :query
-          = question.input :cookies, :input_html => {:id => "txt_question_cookies"}
           = question.simple_fields_for :options do |option|
             %h6 Option
             = option.input :label
@@ -42,6 +45,7 @@
           %br
           .pull-right= question.link_to_remove "Remove this question"
           %hr
+        = f.link_to_add "Add more questions", :questions, :class => 'btn btn-info'
 
   .form-actions
     = f.button :submit, class: 'btn-success'

@@ -8,11 +8,13 @@ class Content
   field :sq_no, type: Integer
   field :transcript, type: String 
 
+  belongs_to :topic
+  has_many :questions, dependent: :destroy
+
   #validations
    validates :title, :content_body, :sq_no, :topic_id, :presence => true   
    validates :sq_no, :numericality => {:only_integer => true}
+#   validates_attachment :topic_content, :presence => true, :content_type => { :content_type => 'audio/mp3'}
 
-  belongs_to :topic
-  has_many :questions, dependent: :destroy
 end
 

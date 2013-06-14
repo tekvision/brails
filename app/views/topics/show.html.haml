@@ -1,11 +1,15 @@
-%h1 TOPIC DETAILS
-%table.table
-  %tr
-    %th Title
-    %th Description
-    
-  %tr
-    %td= @topic.title
-    %td= @topic.description
-    
-= link_to "Back", topics_path
+Title:
+%br
+= @topic.title
+%br
+Description:
+%br
+= @topic.description
+%br
+%br
+- @topic.contents.each do |content|
+  =audio_tag content.topic_content, autoplay: false, controls: true
+  %br
+  %br
+  =raw(content.content_body)
+

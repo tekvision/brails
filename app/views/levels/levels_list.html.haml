@@ -1,0 +1,15 @@
+%h1 Display levels
+%table.table
+  %tr
+    %th Level name
+    %th Level number
+    %th 
+    %th
+
+  - @levels.each do |level|
+    %tr
+      %td= level.level_name
+      %td= level.level_number
+      %td= link_to "Edit", edit_level_path(level)
+      %td= link_to "Show", level_path(level)
+      %td= link_to "Destroy", level, method: :delete, data: { confirm: 'Are you sure?' }

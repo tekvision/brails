@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TopicsController do
   describe "GET show a topic" do
-    before do
+    before(:each) do
       @topic = create(:topic)
       get :show, id: @topic.id
     end 
@@ -51,11 +51,7 @@ describe TopicsController do
 
     it 'should create new topic' do
       topic = build(:topic)
-      build(:content, :topic => topic)
-      question = build(:question, :topic => topic)
-      build(:option, :question => question)
-      topic.delete('_id')
-      post :create, {:topic => topic.attributes}
+      post :create, {:topic => topic.attributes.except('_id')}
       assigns(:topic).title.should eq(topic.title)
       assigns(:topic).content.should eq(topic.content)
       assigns(:topic).question.should eq(question)
@@ -83,9 +79,16 @@ describe TopicsController do
   end
 
   context "Only admin can delete topic" do
+    before do
+      @user = create(:admin)
+      sign_in :user, @user
+    end
+    
     it 'Should delete' do
-      post :destroy, id: @topic.id
-      assigns(:topic).should be_nil
+      @topic = create(:topic)
+      expect{
+        delete :destroy, id: @topic
+      }.to change(Topic,:count).by(-1)
     end
   end
 
@@ -121,33 +124,51 @@ describe TopicsController do
   context "When attempting the question and is not solved" do
     it 'Should increase attempt count by one' do
       question = create(:question)
+      questions = [question]
+      create(:topic, :questions => questions)
       create(:option, is_valid: false, :question => question)
       create(:attempt, :question => question, :user => @user)
-      get :attempt_question, :id => question.id
+      question1 = question.attributes
+      question1[:option] = question.options[0].attributes
+      xhr :get, :attempt_question, :id => question.id, :question => question1
       count = assigns(:question).attempt.count
-      count = count + 1
       count.should eq(question.attempt.count + 1)
     end
   end
 
   context "When solved the question after some attempts" do
+    before(:each) do
+      @user = create(:student)
+			p @user.errors
+      sign_in :user, @user
+			@user.reload
+			p @user
+    end
+
     it 'Should save the state of question' do
       question = create(:question)
+      questions = [question]
+      create(:topic, :questions => questions)
       create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
-      get :attempt_question, :id => question.id
+      question1 = question.attributes
+      question1[:option] = question.options[0].attributes
+      xhr :get, :attempt_question, :id => question.id, :question => question1
       assigns(:question).attempt.solved.should be_true
     end
 
     it 'Should give cookies for the topic but reduce according to attempt count' do
       question = create(:question)
-      create(:attempt, :count => 3, :question => question, :user => @user)
-      create(:topic, :question => question)
-      get :attempt_question, :id => question.id
-      cookies = assigns(:question).attempt.cookies
-      cookies1 = question.cookies / question.attempt.count
-      cookies = cookies + cookies1.round
-      cookies.should eq(assigns(:question).cookies / question.attempt.count.round)
+			p question
+      questions = [question]
+      create(:topic, :questions => questions)
+      create(:option, is_valid: true, :question => question)
+      create(:attempt, :count => 1, :question => question, :user => @user)
+      question1 = question.attributes
+      question1[:option] = question.options[0].attributes
+      xhr :get, :attempt_question, :id => question.id, :question => question1
+      cookies = assigns(:attempt).cookies
+      cookies.should eq(H_COOKIES[question.question_type] / question.attempt.count.round)
     end
   end
 

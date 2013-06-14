@@ -7,4 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
-  User.create(:email => 'admin@brails.com', :roles => 'Admin', :password => 'admin123', :password_confirmation => 'admin123')
+  u = User.create(:email => 'admin@brails.com', :roles => 'Admin', :password => 'admin123', :password_confirmation => 'admin123')
+  u.confirm!
+  p u.errors

@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require ckeditor/config
 //= require mediaelement_rails
 //= require_tree .
+//= require ckeditor/init

@@ -15,5 +15,7 @@
 /tmp
 #Ignore files by created Edit+ editer
 *.bak
+# Ignore gemFile.lock
+*.lock
 *.csv
 .rvmrc
