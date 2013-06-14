@@ -14,6 +14,9 @@ $border-color: $black;
   .level {
     @include level-colors($bg-color, $border-color);
   }
+  .topic {
+    @include topic-colors($bg-color, $border-color);
+  }
 }
 
 
@@ -73,6 +76,10 @@ $border-color: $black;
     color: $bg-color;
   }
 }
-
+@mixin topic-colors($bg-color, $border-color: $black) {
+  .topic-title {
+    color:$border-color;
+  }
+}
 
 
