@@ -1,14 +1,21 @@
 
-$base-font-size: 12px;
+// $base-font-size: 12px;
 @include establish-baseline;
 
 body{
-  font-family: arial, helvetica, sans-serif;
   padding-top: 60px;
   color: black;
-  font-size: $base-font-size;
+  font:62.5%/1.5 Arial, helvetica, sans-serif;
 }
-
+p, a {
+  font-size: 1.2em;
+}
+body.textsize-425 {font:42.5%/1.5 Arial, sans-serif;}
+body.textsize-625 {font:62.5%/1.5 Arial, sans-serif;}
+body.textsize-825 {font:82.5%/1.5 Arial, sans-serif;}
+body.textsize-1025 {font:102.5%/1.5 Arial, sans-serif;}
+body.textsize-1225 {font:122.5%/1.5 Arial, sans-serif;}
+body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 .main-container{
 
 }
@@ -16,19 +23,33 @@ body{
 .no-focus:focus {
   outline: none;
 }
-
-.color-switcher {
+.switcher {
   @include horizontal-list;
   margin-top: 10px;
   float: left;
+  &.font-switcher {
+    margin-right: 10px;
+  }
   .switch {
     width: 20px;
     height: 20px;
     background:white;
-    border: 1px solid white;
     margin-right: 5px;
-    @include border-radius(10px);
     cursor: pointer;
+  }
+}
+.font-switcher {
+  .switch {
+    text-align:center;
+    padding: 0;
+    font-size: 15px;
+    color: black !important;
+  }
+}
+.color-switcher {
+  .switch {
+    @include border-radius(10px);
+    
     &.yellow {
       background-color: $yellow;
     }
@@ -37,9 +58,11 @@ body{
     }
     &.black {
       background-color: black;
+      border: 1px solid white;
     }
   }
 }
+
 
 .counter {
   float:left;
