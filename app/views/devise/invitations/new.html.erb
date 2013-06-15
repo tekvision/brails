@@ -1,12 +1,16 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
+<div id="devise">
+  <div class="devise-container colored-block">
+    <h3><%= t "devise.invitations.new.header" %></h3>
 
-<%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
-  <%= devise_error_messages! %>
+    <%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+      <%= devise_error_messages! %>
 
-<% resource.class.invite_key_fields.each do |field| -%>
-  <%= f.input field %>
-  <%= f.input :roles, :as => :hidden, :input_html => {:value => "Student" } %>
-<% end -%>
+    <% resource.class.invite_key_fields.each do |field| -%>
+      <%= f.input field %>
+      <%= f.input :roles, :as => :hidden, :input_html => {:value => "Student" } %>
+    <% end -%>
 
-<%= f.submit t("devise.invitations.new.submit_button") %>
-<% end %>
+    <%= f.submit t("devise.invitations.new.submit_button"), :class => 'btn btn-large btn-login btn-inverse' %>
+    <% end %>
+  </div>
+</div>

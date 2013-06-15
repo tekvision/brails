@@ -22,9 +22,17 @@ body.textsize-825 {font:82.5%/1.5 Arial, sans-serif;}
 body.textsize-1025 {font:102.5%/1.5 Arial, sans-serif;}
 body.textsize-1225 {font:122.5%/1.5 Arial, sans-serif;}
 body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
-.main-container{
-
+.content{
+  background: rgba(255, 255, 255, .9);
+  padding: 20px;
+  input[type='text']{
+    font-size: 1.5em;
+    height: auto;
+    padding: 5px;
+  }
 }
+
+
 
 .colored-block {
   @include single-transition(background-color, .75s);
@@ -152,6 +160,7 @@ html.black {
 }
 
 .score-wrapper {
+  text-align:center;
   .score {
     padding: 5px 0 0 0;
     .score-indicator {

@@ -35,9 +35,6 @@
 
 
 @mixin lessons($bg-color, $color: $black) {
-  .devise-container {
-    @include basic-colors($color, $bg-color);
-  }
   .lesson-summary{
     padding: 10px 25px;
     margin-bottom: 20px;
@@ -98,6 +95,7 @@
 }
 
 @mixin level-colors($bg-color, $color: $black) {
+
   .level-topic {
   }
   .topic-details {

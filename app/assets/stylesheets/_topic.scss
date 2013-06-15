@@ -2,7 +2,8 @@
 .topic-title{
   text-align: center;
   margin-bottom: 30px;
-  color: #fff;
+  color: $white;
+  @include text-shadow(2px 2px 2px #555);
 }
 
 section.topic {
