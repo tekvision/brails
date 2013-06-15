@@ -8,9 +8,9 @@
     %hr
     %ul.nav.nav-tabs
       %li.active
-        %a{ href: "#content", 'data-toggle' => "tab"}Add Content
+        %a{ href: "#content", 'data-toggle' => "tab"}Content
       %li
-        %a{ href:"#question", 'data-toggle' => "tab"}Add Question
+        %a{ href:"#question", 'data-toggle' => "tab"}Question
     .tab-content.topic-form
       .tab-pane.active#content
         = f.simple_fields_for :contents do |content|
@@ -41,7 +41,7 @@
             %br
             .pull-right= option.link_to_remove "Remove this option"
             %hr
-          = question.link_to_add "Add a option", :options, :class => 'pull-right'
+          = question.link_to_add "Add more option", :options, :class => 'pull-right'
           %br
           .pull-right= question.link_to_remove "Remove this question"
           %hr
