@@ -6,15 +6,6 @@
           .brand
             Brails
           .span5.pull-right
-            %ul.switcher.font-switcher
-              %li.switch.btn-change-font-size{:data => {:size => "down"}} -
-              %li.switch.btn-change-font-size{:data => {:size => "reset"}} A
-              %li.switch.btn-change-font-size{:data => {:size => "up"}} +
-            %ul.switcher.color-switcher
-              %li.switch.white{:data => {:color => "white"}}
-              %li.switch.yellow{:data => {:color => "yellow"}}
-              %li.switch.orange{:data => {:color => "orange"}}
-              %li.switch.black{:data => {:color => "black"}}
             %ul.nav.pull-right
               %li
                 = link_to 'Sign up', new_user_registration_path
