@@ -8,6 +8,10 @@
   .topic {
     @include topic-colors($bg-color, $color);
   }
+  .colored-block {
+    @include basic-colors($bg-color, $color);
+    @include default-shadow();
+  }
 }
 
 
@@ -23,8 +27,7 @@
 
 @mixin lessons($bg-color, $color: $black) {
   .lesson-summary{
-    @include basic-colors($bg-color, $color);
-    @include default-shadow();
+    
     padding: 10px 25px;
     margin-bottom: 20px;
     @include border-radius(0 8px 8px 8px);
@@ -66,20 +69,12 @@
     }
   }
   .summary-coin {
-    @include basic-colors($bg-color, $color);
     @include default-shadow();
   }
 }
 
 @mixin level-colors($bg-color, $color: $black) {
-  & > .row:first-child {
-    border-bottom: 1px solid $color;
-  }
-  h1{
-    color: $color;
-  }
   .level-topic {
-    @include basic-colors($bg-color, $color);
   }
   .topic-details {
     border-left: 1px solid $color;
@@ -94,9 +89,7 @@
   }
 }
 @mixin topic-colors($bg-color, $color: $black) {
-  .topic-title {
-    color:$color;
-  }
+
 }
 
 @mixin left-arrow {

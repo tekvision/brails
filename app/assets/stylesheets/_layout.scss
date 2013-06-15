@@ -8,7 +8,7 @@ body{
   font:62.5%/1.5 Arial, helvetica, sans-serif;
   background: #e9e9e9;
 }
-p, a {
+p, a, li {
   font-size: 1.2em;
 }
 body.textsize-425 {font:42.5%/1.5 Arial, sans-serif;}
@@ -21,7 +21,7 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 
 }
 
-body, .lesson-summary, .summary-coin, .btn-try-now {
+.colored-block {
   @include single-transition(background-color, .75s);
 }
 

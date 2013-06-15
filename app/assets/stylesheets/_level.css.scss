@@ -27,13 +27,15 @@ h1.alpha {
   }
   .level-topic {
     // background: rgb(247,247,247);
-    border: 1px solid black;
+    // border: 1px solid black;
+    @include border-radius(0 8px 8px 8px);
     padding: 10px;
   }
 
   .topic-details {
     text-align: center;
     border-left: 1px solid black;
+    padding: 5px 10px;
     h2 {
       // color: black;
       margin-bottom: 10px;

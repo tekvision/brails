@@ -5,14 +5,18 @@
 }
 
 section.topic {
-  padding-left: 70px;
+  padding-left: 40px;
   .audio {
-    padding-left: 60px;
+    padding-left: 90px;
 
   }
   
   .topic-details {
     margin-top: 20px;
+    padding: 10px;
+    p {
+      padding: 10px;
+    }
   }
   .test {
     .question {
