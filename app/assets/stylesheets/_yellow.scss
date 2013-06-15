@@ -1,6 +1,8 @@
 $background-color: $yellow;
 body {
-  background-color: $background-color;
+  .lesson-summary {
+    background-color: $background-color;
+  }
 }
 
-@include setup($background-color, $border-color);
+@include setup($background-color, $color);

@@ -1,8 +1,10 @@
 $background-color: $black;
-$border-color: $white;
+$color: $yellow;
 body {
-  background-color: $background-color;
-  @include contrasted($background-color);
+  .lesson-summary {
+    background-color: $background-color;
+  }
+  
 }
 
-@include setup($background-color, $border-color);
+@include setup($background-color, $color);
