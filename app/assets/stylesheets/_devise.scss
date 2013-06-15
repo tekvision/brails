@@ -1,0 +1,49 @@
+
+#devise {
+  label {
+    font-size: 1.3em;
+  }
+  // padding: 60px 0;
+  h3 {
+    font-family: "Cabin", arial, sans-serif;
+  }
+  .devise-container {
+    max-width: 400px;
+    padding:30px 0 30px 30px;
+    // margin-top: 100px;
+    margin: 0 auto;
+    // background:rgba(255,255,255, .9);
+    @include border-radius(10px);
+    @include box-shadow( 0 6px 28px 0px rgba(50, 50, 50, .4));
+    input[type="text"], input[type="email"], input[type="password"] {
+      font-size: 2em;
+      height: auto;
+      width: 90%;
+      padding: 10px;
+      @include border-radius(10px);
+    }
+    a {
+      // color: #a2a2a2;
+      font-size: 1.3em;
+      &:hover {
+        // color: #b22727;
+      }
+    }
+    .btn-login {
+      font-size: 1.5em;
+      // float: right;
+      // margin-right: 125px;
+      padding: 6px 12px;
+      @include border-radius(3px);
+    }
+    .btn-send-reset {
+      font-size: 1.5em;
+      // max-width: 230px;
+      white-space:normal;
+    }
+    .form-actions {
+      background:none;
+      border:none;
+    }
+  }
+}

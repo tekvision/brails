@@ -1,18 +1,22 @@
-<h2>Sign up</h2>
+<div id="devise">
+  <div class="devise-container colored-block">
+    <h3>Sign up</h3>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
-    <%= f.input :roles, :as => :hidden, :input_html => {:value => "Student" } %>
+      <div class="form-inputs">
+        <%= f.input :email, :required => true, :autofocus => true %>
+        <%= f.input :password, :required => true %>
+        <%= f.input :password_confirmation, :required => true %>
+        <%= f.input :roles, :as => :hidden, :input_html => {:value => "Student" } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", :class => 'btn btn-large btn-login btn-inverse' %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
