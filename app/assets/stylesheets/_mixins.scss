@@ -1,0 +1,74 @@
+@mixin setup($bg-color, $border-color: $black) {
+  .lesson-summary {
+    @include lesson-summary($bg-color, $border-color);
+  }
+  .level {
+    @include level-colors($bg-color, $border-color);
+  }
+  .topic {
+    @include topic-colors($bg-color, $border-color);
+  }
+}
+
+
+@mixin lesson-summary($bg-color, $border-color: $black) {
+  // background: adjust-lightness($bg-color, 5%);
+  padding: 5px 20px;
+  border: 1px solid $border-color;
+  margin-bottom: 20px;
+  header {
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.3em;
+    padding-top: 25px;
+    padding-bottom: 3px;
+    text-align:right;
+    border-bottom: 2px solid $border-color;
+  }
+  .description {
+    padding: 10px 0 20px;
+  }
+  .btn-try-now{
+    background-image:none;
+    background: $border-color;
+    color: $bg-color;
+    font-weight: 600;
+    font-size: 1.2em;
+    border:none;
+    float: right;
+    margin-top: -20px;
+    padding: 0 20px;
+  }
+  .score-wrapper {
+    min-height: 72px;
+    border-top: 2px solid $border-color;
+    border-bottom: 2px solid $border-color;
+  }
+}
+
+@mixin level-colors($bg-color, $border-color: $black) {
+  & > .row:first-child {
+    border-bottom: 1px solid $border-color;
+  }
+  h1{
+    color: $border-color;
+  }
+  .level-topic {
+    border: 1px solid $border-color;
+  }
+  .topic-details {
+    border-left: 1px solid $border-color;
+    h2 {
+      color: $border-color;
+    }
+  }
+  .btn-start-topic {
+    background-image:none;
+    background: $border-color;
+    color: $bg-color;
+  }
+}
+@mixin topic-colors($bg-color, $border-color: $black) {
+  .topic-title {
+    color:$border-color;
+  }
+}
