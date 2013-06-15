@@ -6,6 +6,7 @@ body{
   padding-top: 60px;
   color: black;
   font:62.5%/1.5 Arial, helvetica, sans-serif;
+  
 }
 p, a {
   font-size: 1.2em;
@@ -18,6 +19,10 @@ body.textsize-1225 {font:122.5%/1.5 Arial, sans-serif;}
 body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 .main-container{
 
+}
+
+body, .lesson-summary {
+  @include single-transition(background-color, .5s);
 }
 
 .no-focus:focus {

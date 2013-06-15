@@ -21,7 +21,7 @@ $border-color: $black;
 
 
 @mixin lesson-summary($bg-color, $border-color: $black) {
-  background: adjust-lightness($bg-color, 5%);
+  // background: adjust-lightness($bg-color, 5%);
   padding: 5px 20px;
   border: 1px solid $border-color;
   margin-bottom: 20px;
