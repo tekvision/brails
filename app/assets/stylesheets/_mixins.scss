@@ -21,7 +21,7 @@
 }
 
 @mixin default-shadow($color: $black){
-  @include box-shadow(2px 3px 4px 0px lighten($color, 60%));
+  @include box-shadow(2px 3px 4px 0px lighten($color, 30%));
 }
 
 
@@ -59,7 +59,7 @@
       display: block;
       position: absolute;
       top: 28px;
-      left:-9px;
+      left:-8px;
       width: 17px;
       height: 17px; 
       background: $bg-color;
@@ -70,6 +70,19 @@
   }
   .summary-coin {
     @include default-shadow();
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 45px;
+      right:-8px;
+      width: 17px;
+      height: 17px; 
+      background: $bg-color;
+      @include single-transition(background-color, .75s);
+      -moz-transform:rotate(-45deg);
+      -webkit-transform:rotate(-45deg);
+    }
   }
 }
 
