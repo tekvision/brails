@@ -6,11 +6,12 @@ body{
   padding-top: 60px;
   color: black;
   font:62.5%/1.5 Arial, helvetica, sans-serif;
-  background: url(bkg.jpg) no-repeat center center fixed; 
+  background: rgb(103, 113, 123) url(bkg.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  position:relative;
 }
 p, a, li {
   font-size: 1.2em;
@@ -28,22 +29,34 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 .colored-block {
   @include single-transition(background-color, .75s);
 }
-
+#navbar-top {
+  position:relative;
+}
 .no-focus:focus {
   outline: none;
 }
+.control-panel {
+  background: black;
+  overflow:hidden;
+  // width: 250px;
+  position:fixed;
+  right: 0;
+  top: 30%;
+  padding: 10px 10px 0px 0px;
+  @include border-radius(5px 0 0 5px);
+}
 .switcher {
-  @include horizontal-list;
-  margin-top: 10px;
-  float: left;
+  // @include horizontal-list;
+  margin-left: 10px;
+  // float: left;
   &.font-switcher {
-    margin-right: 10px;
+    // margin-right: 10px;
   }
   .switch {
     width: 20px;
     height: 20px;
     background:white;
-    margin-right: 5px;
+    margin-bottom: 5px;
     cursor: pointer;
   }
 }
@@ -51,7 +64,7 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
   .switch {
     text-align:center;
     padding: 0;
-    font-size: 15px;
+    font-size: 12px;
     color: black !important;
   }
 }
@@ -68,6 +81,9 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
     &.black {
       background-color: black;
       border: 1px solid white;
+    }
+    &:last-child{
+      margin-bottom: 0;
     }
   }
 }
