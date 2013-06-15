@@ -133,6 +133,24 @@ html.black {
   }
 }
 
+.social-share-icons {
+  @include horizontal-list;
+  float: right;
+  .social {
+    width: 25px;
+    height: 25px;
+    display: block;
+    // margin-left: 5px;
+    background: url(social-icons.png) 0 0 no-repeat;
+    &.linkedin {
+      background-position: -27px 0; 
+    }
+    &.twitter {
+      background-position: -53px 0;
+    }
+  }
+}
+
 .score-wrapper {
   .score {
     padding: 5px 0 0 0;
