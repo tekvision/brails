@@ -6,7 +6,7 @@ body{
   padding-top: 60px;
   color: black;
   font:62.5%/1.5 Arial, helvetica, sans-serif;
-  
+  background: #e9e9e9;
 }
 p, a {
   font-size: 1.2em;
@@ -21,8 +21,8 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 
 }
 
-body, .lesson-summary {
-  @include single-transition(background-color, .5s);
+body, .lesson-summary, .summary-coin, .btn-try-now {
+  @include single-transition(background-color, .75s);
 }
 
 .no-focus:focus {
@@ -86,10 +86,30 @@ body, .lesson-summary {
     $count: $count - 1;
   }
 }
+
 @include setup($white, $black);
 html.black {
   .counter {
     background-image: url(braille-numbers-white.png);
+  }
+}
+
+.summary-coin {
+  position:relative;
+  padding: 84px 5px 10px;
+  text-align: center;
+  font-size: 1.4em;
+  background:#fff;
+  @include border-radius(8px 0 8px 8px);
+  &:before {
+    content: '';
+    display:inline-block;
+    position:absolute;
+    width: 64px;
+    height: 64px;
+    top: 10px;
+    left: 35px;
+    background: url(coins@2x.png) 0 0 no-repeat;
   }
 }
 
