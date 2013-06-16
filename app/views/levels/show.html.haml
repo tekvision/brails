@@ -19,7 +19,7 @@
               .span3
                 .score-wrapper
                   %ul.unstyled.score
-                    - total_cookies = topic.questions.collect{|question| H_COOKIES[question.question_type]}.inject(:+)
+                    - total_cookies = topic.questions.collect { |question| H_COOKIES[question.question_type] }.inject(:+).to_i
                     - 3.times do |count|
                       %li.score-indicator{ :class => "#{'complete' if total_cookies > count}"}
 

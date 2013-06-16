@@ -27,6 +27,7 @@
   h6 {
     color: $color;
   }
+
 }
 
 @mixin default-shadow($color: $black){
@@ -95,7 +96,6 @@
 }
 
 @mixin level-colors($bg-color, $color: $black) {
-
   .level-topic {
   }
   .topic-details {
