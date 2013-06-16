@@ -1,32 +1,5 @@
-Title:
-%br
-= @topic.title
-%br
-Description:
-%br
-= @topic.description
-%br
-%br
-%div
-  - @topic.contents.each do |content|
-    =audio_tag content.topic_content, autoplay: false, controls: true
-    %br
-    %br
-    =raw(content.content_body)
-%br
-%div
-  %br
-  %br
-  %br
-  %br
+.topic
   .row
-    - @questions.each_index do |index|
-      .span3
-        - question = @questions[index]
-        %h6="#{question.query.capitalize}"
-      = simple_form_for question, :url => attempt_question_url(question), remote: true do |f|
-        .span3
-          = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
-        .span3
-          = f.submit 'Submit', :class => 'btn btn-info'
-
+    .span8.offset2
+      - @contents.each do |content|
+        = render partial: "show_topic", locals: { content: content }
