@@ -1,21 +1,18 @@
-#grid-wrapper{role: 'application'}
-  #game-levels{role: 'grid', tabindex: '0'}
+#grid-wrapper.lessons{role: 'application'}
+  #game-levels.no-focus{role: 'grid', tabindex: '0'}
     - (1..@levels.count).to_a.each_slice(4).each_with_index do |levels, row_index|
       .row{role: 'row'}
         - levels.each_with_index do |level, col_index|
           - @level = @levels[level-1]
           - level_cookies_count = @level.calculate_cookies_count
-          .span3{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell', "aria-labelledby"=> "level_number_#{@level.level_number}", "aria-describedby"=>"level_caption_#{@level.level_number}"}
-            .lesson-summary
-              %header
-                .counter.counter-2
-                = @level.level_number
-              %p.description
-                = @level.level_name
-              %a.btn.btn-mini.btn-try-now{:href => level_path(@level)} try now
-              .score-wrapper
-                %ul.unstyled.score
-                  - (1..level_cookies_count).to_a.each do |cookies_level_count|
-                    %li.score-indicator.complete
-              %footer
-                [  ] [  ] [  ]
+          .span2.summary-coin.colored-block
+            = "#{level_cookies_count}"
+          .span4.lesson-summary.colored-block.no-focus{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell', "aria-labelledby"=> "level_number_#{@level.level_number}", "aria-describedby"=>"level_caption_#{@level.level_number}"}
+            %header
+              .counter{class: "counter-#{level}"}
+              = @level.level_number
+            %p.description
+              = @level.level_name
+            %a.btn.btn-mini.btn-try-now{:href => level_path(@level)} try now
+            %footer
+              [  ] [  ] [  ]
