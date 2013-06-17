@@ -1,37 +1,102 @@
-$med-grey: rgb(204, 204, 204);
 
-
-// @font-face {
-//     font-family: 'braille';
-//     src: url('/fonts/braille-webfont.eot');
-//     src: url('/fonts/braille-webfont.eot?#iefix') format('embedded-opentype'),
-//          url('/fonts/braille-webfont.woff') format('woff'),
-//          url('/fonts/braille-webfont.ttf') format('truetype'),
-//          url('/fonts/braille-webfont.svg#brailleregular') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
+// $base-font-size: 12px;
+@include establish-baseline;
 
 body{
-  font-family: 'Cabin', sans-serif;
   padding-top: 60px;
+  color: black;
+  font:62.5%/1.5 Arial, helvetica, sans-serif;
+  background: rgb(103, 113, 123) url(bkg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position:relative;
 }
-
+p, a, li {
+  font-size: 1.2em;
+}
+body.textsize-425 {font:42.5%/1.5 Arial, sans-serif;}
+body.textsize-625 {font:62.5%/1.5 Arial, sans-serif;}
+body.textsize-825 {font:82.5%/1.5 Arial, sans-serif;}
+body.textsize-1025 {font:102.5%/1.5 Arial, sans-serif;}
+body.textsize-1225 {font:122.5%/1.5 Arial, sans-serif;}
+body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 .main-container{
 
 }
 
+.colored-block {
+  @include single-transition(background-color, .75s);
+}
+#navbar-top {
+  position:relative;
+}
 .no-focus:focus {
   outline: none;
 }
+.control-panel {
+  background: black;
+  overflow:hidden;
+  // width: 250px;
+  position:fixed;
+  right: 0;
+  top: 30%;
+  padding: 10px 10px 0px 0px;
+  @include border-radius(5px 0 0 5px);
+}
+.switcher {
+  // @include horizontal-list;
+  margin-left: 10px;
+  // float: left;
+  &.font-switcher {
+    // margin-right: 10px;
+  }
+  .switch {
+    width: 20px;
+    height: 20px;
+    background:white;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+}
+.font-switcher {
+  .switch {
+    text-align:center;
+    padding: 0;
+    font-size: 12px;
+    color: black !important;
+  }
+}
+.color-switcher {
+  .switch {
+    @include border-radius(10px);
+    
+    &.yellow {
+      background-color: $yellow;
+    }
+    &.orange {
+      background-color: $orange;
+    }
+    &.black {
+      background-color: black;
+      border: 1px solid white;
+    }
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+}
+
 
 .counter {
   float:left;
   width: 24px;
   height: 40px;
   margin-top: -20px;
-  background: url(braille-numbers.png) 0 0 no-repeat;
+  background-image: url(braille-numbers.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
   $count: 9;
   $offset: -24px;
   @while $count > 0 {
@@ -41,39 +106,30 @@ body{
     $count: $count - 1;
   }
 }
-.topic-summary {
-  background: rgb(247,247,247);
-  padding: 5px 20px;
-  border: 1px solid lighten($med-grey, 10%);
-  margin-bottom: 20px;
-  
-  header {
-    color:rgb(143, 34, 27);
-    font-size: 1.2em;
-    padding-top: 25px;
-    padding-bottom: 3px;
-    text-align:right;
-    border-bottom: 2px solid $med-grey;
+
+@include setup($white, $black);
+html.black {
+  .counter {
+    background-image: url(braille-numbers-white.png);
   }
-  .description {
-    padding: 10px 0 20px;
-    color: darken($med-grey, 20%);
-  }
-  .btn-try-now{
-    background-image:none;
-    background: $med-grey;
-    color:#fff;
-    font-size: 10px;
-    font-weight: 600;
-    border:none;
-    float: right;
-    margin-top: -20px;
-    padding: 0 15px;
-  }
-  .score-wrapper {
-    min-height: 72px;
-    border-top: 2px solid $med-grey;
-    border-bottom: 2px solid $med-grey;
+}
+
+.summary-coin {
+  position:relative;
+  padding: 84px 5px 10px;
+  text-align: center;
+  font-size: 1.4em;
+  background:#fff;
+  @include border-radius(8px 0 8px 8px);
+  &:before {
+    content: '';
+    display:inline-block;
+    position:absolute;
+    width: 64px;
+    height: 64px;
+    top: 10px;
+    left: 35px;
+    background: url(coins@2x.png) 0 0 no-repeat;
   }
 }
 
@@ -87,6 +143,16 @@ body{
       background: url(coins.png) 0 -36px no-repeat;
       &.complete {
         background-position: 0 0;
+      }
+    }
+    &.small {
+      .score-indicator {
+        width: 25px;
+        height: 25px;
+        background: url(coins-small.png) 0 -28px no-repeat;
+        &.complete {
+          background-position: -1px 0px;
+        }
       }
     }
     &.large {

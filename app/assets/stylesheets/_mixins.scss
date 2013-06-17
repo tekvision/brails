@@ -1,0 +1,125 @@
+@mixin setup($bg-color, $color: $black) {
+  .lessons {
+    @include lessons($bg-color, $color);
+  }
+  .level {
+    @include level-colors($bg-color, $color);
+  }
+  .topic {
+    @include topic-colors($bg-color, $color);
+  }
+  .colored-block {
+    @include basic-colors($bg-color, $color);
+    @include default-shadow();
+  }
+}
+
+
+@mixin basic-colors($bg-color, $color: $black){
+  background-color: $bg-color;
+  color: $color;
+}
+
+@mixin default-shadow($color: $black){
+  @include box-shadow(2px 3px 4px 0px lighten($color, 30%));
+}
+
+
+@mixin lessons($bg-color, $color: $black) {
+  .lesson-summary{
+    
+    padding: 10px 25px;
+    margin-bottom: 20px;
+    @include border-radius(0 8px 8px 8px);
+    header {
+      font-family: 'Cabin', sans-serif;
+      font-size: 1.4em;
+      padding-top: 25px;
+      padding-bottom: 3px;
+      text-align:right;
+      border-bottom: 1px solid $color;
+    }
+    .description {
+      padding: 10px 0 20px;
+    }
+    .btn-try-now{
+      background-image:none;
+      @include basic-colors($color, $bg-color);
+      font-weight: 600;
+      font-size: 1.2em;
+      border:none;
+      // float: right;
+      // margin-top: -20px;
+      @include border-radius(3px);
+      padding: 5px 20px;
+    }
+    position:relative;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 28px;
+      left:-8px;
+      width: 17px;
+      height: 17px; 
+      background: $bg-color;
+      @include single-transition(background-color, .75s);
+      -moz-transform:rotate(-45deg);
+      -webkit-transform:rotate(-45deg);
+    }
+  }
+  .summary-coin {
+    @include default-shadow();
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 45px;
+      right:-8px;
+      width: 17px;
+      height: 17px; 
+      background: $bg-color;
+      @include single-transition(background-color, .75s);
+      -moz-transform:rotate(-45deg);
+      -webkit-transform:rotate(-45deg);
+    }
+  }
+}
+
+@mixin level-colors($bg-color, $color: $black) {
+  .level-topic {
+  }
+  .topic-details {
+    border-left: 1px solid $color;
+    h2 {
+      color: $color;
+    }
+  }
+  .btn-start-topic {
+    background-image:none;
+    background: $color;
+    color: $bg-color;
+  }
+}
+@mixin topic-colors($bg-color, $color: $black) {
+
+}
+
+@mixin left-arrow {
+  position:relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 28px;
+    left:-10px;
+    width: 17px;
+    height: 17px; 
+    background: #FFFFFF;
+    border-left:1px solid rgba(0, 0, 0, 1);
+    border-top:1px solid rgba(0, 0, 0, 1);
+    -moz-transform:rotate(-45deg);
+    -webkit-transform:rotate(-45deg);
+  }
+}
+

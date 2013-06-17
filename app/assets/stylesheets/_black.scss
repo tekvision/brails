@@ -1,0 +1,10 @@
+$background-color: $black;
+$color: $yellow;
+body {
+  .lesson-summary {
+    background-color: $background-color;
+  }
+  
+}
+
+@include setup($background-color, $color);

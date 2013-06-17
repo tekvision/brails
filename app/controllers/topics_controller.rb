@@ -6,8 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @questions = @topic.questions
-    render show: @topic
+    @contents = @topic.contents
   end
 
   def new
@@ -41,7 +40,6 @@ class TopicsController < ApplicationController
 
   def take_test
     @questions = @topic.questions
-
   end
 
   def attempt_question

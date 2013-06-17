@@ -1,14 +1,25 @@
-%html
+%html.white
   %head
     %title Brails
     = stylesheet_link_tag    "application", :media => "all"
     %link{:href => "http://fonts.googleapis.com/css?family=Cabin:400,600", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
-  %body
+  %body.textsize-625
+    .control-panel
+      %ul.switcher.font-switcher
+        %li.switch.btn-change-font-size{:data => {:size => "up"}} +
+        %li.switch.btn-change-font-size{:data => {:size => "reset"}} A
+        %li.switch.btn-change-font-size{:data => {:size => "down"}} -
+      %ul.switcher.color-switcher
+        %li.switch.white{:data => {:color => "white"}}
+        %li.switch.yellow{:data => {:color => "yellow"}}
+        %li.switch.orange{:data => {:color => "orange"}}
+        %li.switch.black{:data => {:color => "black"}}
     = render 'header'
     = show_flash_messages if show_flash_messages.present? 
     .logo{:style => "text-align: center; margin: 20px 0;"}
-      =image_tag "/images/brails-logo.jpg"
+      =image_tag "/images/brails-logo.png"
     .container.main-container{role: 'application'}
       = yield
     = javascript_include_tag "application"
+

@@ -1,0 +1,9 @@
+$background-color: $orange;
+body {
+  
+  .lesson-summary {
+    background-color: $background-color;
+  }
+}
+
+@include setup($background-color);

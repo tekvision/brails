@@ -1,9 +1,11 @@
-#grid-wrapper{role: 'application'}
+#grid-wrapper.lessons{role: 'application'}
   #game-levels.no-focus{role: 'grid', tabindex: '0'}
     - (1..10).to_a.each_slice(4).with_index do |levels, row_index|
       .row{role: 'row'}
         - levels.each_with_index do |level, col_index|
-          .span3.lesson-summary.no-focus{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell', "aria-labelledby"=> "level_number_#{level}", "aria-describedby"=>"level_caption_#{level}"}
+          .span2.summary-coin.colored-block
+            3 of 10
+          .span4.lesson-summary.colored-block.no-focus{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell', "aria-labelledby"=> "level_number_#{level}", "aria-describedby"=>"level_caption_#{level}"}
             %header
               .counter{class: "counter-#{level}"}
               = level
@@ -11,8 +13,8 @@
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor incididunt ut labore et dolore magna aliqua. 
             %a.btn.btn-mini.btn-try-now{:href => "#"} try now
-            .score-wrapper
-              %ul.unstyled.score
+            -# .score-wrapper
+              %ul.unstyled.score.small
                 %li.score-indicator.complete
                 %li.score-indicator
                 %li.score-indicator
@@ -22,4 +24,5 @@
                 %li.score-indicator
                 %li.score-indicator
             %footer
+              -# social links
               [  ] [  ] [  ]
