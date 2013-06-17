@@ -18,11 +18,11 @@
                 %a{"data-toggle" => "tab", :href => "#s_#{content.id.to_s}"} Summary
               %li
                 = link_to "Take Test", take_test_path, :remote => true, "data-toggle" => "tab", "data-target" => "#test_#{@topic.id.to_s}"
-          .tab-content
-            .tab-pane.transcript.active{:id => "t_#{content.id.to_s}"}
-              %p
-                = content.transcript
-            .tab-pane.summary{ :id => "s_#{content.id.to_s}"}
-              %p
+            .tab-content
+              .tab-pane.transcript.active{:id => "t_#{content.id.to_s}"}
+                %p
+                  = content.transcript
+              .tab-pane.summary{ :id => "s_#{content.id.to_s}"}
+                %p
                 = raw content.content_body
             .tab-pane.test{:id => "test_#{@topic.id.to_s}"}
