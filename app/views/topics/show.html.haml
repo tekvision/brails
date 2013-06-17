@@ -17,7 +17,7 @@
               %li
                 %a{"data-toggle" => "tab", :href => "#s_#{content.id.to_s}"} Summary
               %li
-                = link_to "Take Test", take_test_path, :remote => true, "data-toggle" => "tab", "data-target" => "#test_#{@topic.id.to_s}"
+                %a{"data-toggle" => "tab", :href => "#test_#{@topic.id.to_s}"} Take test
             .tab-content
               .tab-pane.transcript.active{:id => "t_#{content.id.to_s}"}
                 %p
@@ -25,4 +25,13 @@
               .tab-pane.summary{ :id => "s_#{content.id.to_s}"}
                 %p
                 = raw content.content_body
-            .tab-pane.test{:id => "test_#{@topic.id.to_s}"}
+              .tab-pane.test{:id => "test_#{@topic.id.to_s}"}
+                %p 
+                  - @topic.questions.each_index do |index|
+                    - question = @topic.questions[index]
+                    %span.question= question.query
+                    = simple_form_for question, :url => attempt_question_url(question), remote: true do |f|
+                      .control-group
+                        .controls
+                          = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
+                          = f.submit 'Submit', :class => 'btn'
