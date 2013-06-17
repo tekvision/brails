@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   protected
   def authenticate_inviter!
    # authenticate_user!(:force => true)

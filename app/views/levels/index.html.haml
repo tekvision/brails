@@ -9,7 +9,7 @@
             = "#{level_cookies_count}"
           .span4.lesson-summary.colored-block.no-focus{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell', "aria-labelledby"=> "level_number_#{@level.level_number}", "aria-describedby"=>"level_caption_#{@level.level_number}"}
             %header
-              .counter{class: "counter-#{level}"}
+              .counter{class: "counter-#{@level.level_number}"}
               = @level.level_number
             %p.description
               = @level.level_name
