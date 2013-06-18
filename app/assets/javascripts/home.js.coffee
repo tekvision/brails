@@ -1,4 +1,15 @@
+
 $(document).ready ->
+  $.cookie.defaults = { path: '/', expires: 365 }
+
+  # set the color, font sizes
+  $('html').removeClass("white yellow orange black").addClass($.cookie('color'));
+
+  if $.cookie('font_size') isnt undefined
+    $("body").removeClass (index, css) ->
+      (css.match(/\btextsize-\S+/g) or []).join " "
+    $("body").addClass $.cookie('font_size')
+
   $("#audio").bind "ended", ->
     $('#summary').show()
   $('audio').mediaelementplayer();
@@ -8,16 +19,17 @@ $(document).ready ->
   $(".color-switcher .switch").on "click", ->
     t = $(this)
     color = t.data("color")
+    $.cookie 'color', color
     $('html').removeClass("white yellow orange black").addClass(color);
 
      
-  body = $('body')
-  max = 1425
-  min = 425
   $(".btn-change-font-size").on "click", ->
     t = $(this)
     size = t.data("size")
-       
+    body = $('body')
+    max = 1425
+    min = 425
+
     currentTextClass = parseInt(body.attr("class").split("textsize-")[1])
 
     console.log currentTextClass
@@ -26,9 +38,7 @@ $(document).ready ->
 
     if size is 'reset'
       body.addClass 'textsize-625'
-      return   
-
-    if size is 'up' 
+    else if size is 'up' 
       if currentTextClass isnt max
         body.addClass 'textsize-' + (currentTextClass + 200)
       else
@@ -39,6 +49,5 @@ $(document).ready ->
       else
         body.addClass 'textsize-' + min
 
-
-
+    $.cookie 'font_size', body.attr("class")
 
