@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :won_topic_cookies
 
   def won_topic_cookies(topic)
-    topic.attempts.where(:user => current_user).collect{|attempt| attempt.cookies}.inject(:+)
+    topic.attempts.where(:user => current_user).collect{|attempt| attempt.cookies}.inject(:+) || 0
   end
 
   def after_sign_in_path_for(resource)
