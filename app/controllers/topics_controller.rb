@@ -66,7 +66,7 @@ class TopicsController < ApplicationController
 
   private
   def load_topic
-    @topic = Topic.find_by(:id => params[:id])
+    @topic = Topic.find(params[:id])
   end
 
 end

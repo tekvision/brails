@@ -1,8 +1,11 @@
 class Topic
   include Mongoid::Document
+  include Mongoid::Slug
 
   field :title, type: String
   field :description, type: String
+
+  slug :title
 
   #validation
   validates :title, :description, :level_id, :presence => true
