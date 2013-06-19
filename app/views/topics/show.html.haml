@@ -29,7 +29,7 @@
                 %p 
                   - @topic.questions.each_index do |index|
                     - question = @topic.questions[index]
-                    - attempt = Attempt.find_by(:question => question, :user => current_user)
+                    - attempt = Attempt.find_by(:question => question, :user => current_user) if Attempt.find_by(:user => current_user) != nil
                     - if attempt.solved == false
                       .span.question{:id => "q_#{question.id}"}
                         = question.query
