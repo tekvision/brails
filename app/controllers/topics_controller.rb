@@ -56,8 +56,6 @@ class TopicsController < ApplicationController
     else
       @attempt.update_attributes({count: @attempt.count + 1})
     end
-
-    render :nothing => true
   end
 
   def destroy
