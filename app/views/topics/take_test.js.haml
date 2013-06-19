@@ -1,0 +1,1 @@
+$("#test_#{@topic.id.to_s}").html("#{escape_javascript(render :partial => 'questions', :locals => {:questions => @questions})}")

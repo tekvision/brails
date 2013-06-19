@@ -2,4 +2,36 @@
   .row
     .span8.offset2
       - @contents.each do |content|
-        = render partial: "show_topic", locals: { content: content }
+        %h1.beta.topic-title
+          = content.title
+        %section.topic
+          .row
+            .audio
+              =audio_tag content.topic_content, autoplay: false, controls: true
+              -# %button.btn{:style => "float: left;"} Transcript
+        .row
+          .tabbable.tabs-left.topic-details.colored-block
+            %ul.nav.nav-tabs
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#t_#{content.id.to_s}"} Transcript
+              %li
+                %a{"data-toggle" => "tab", :href => "#s_#{content.id.to_s}"} Summary
+              %li
+                %a{"data-toggle" => "tab", :href => "#test_#{@topic.id.to_s}"} Take test
+            .tab-content
+              .tab-pane.transcript.active{:id => "t_#{content.id.to_s}"}
+                %p
+                  = content.transcript
+              .tab-pane.summary{ :id => "s_#{content.id.to_s}"}
+                %p
+                = raw content.content_body
+              .tab-pane.test{:id => "test_#{@topic.id.to_s}"}
+                %p 
+                  - @topic.questions.each_index do |index|
+                    - question = @topic.questions[index]
+                    %span.question= question.query
+                    = simple_form_for question, :url => attempt_question_url(question), remote: true do |f|
+                      .control-group
+                        .controls
+                          = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
+                          = f.submit 'Submit', :class => 'btn'

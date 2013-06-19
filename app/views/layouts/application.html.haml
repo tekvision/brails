@@ -17,8 +17,6 @@
         %li.switch.black{:data => {:color => "black"}}
     = render 'header'
     = show_flash_messages if show_flash_messages.present? 
-    .logo{:style => "text-align: center; margin: 20px 0;"}
-      =image_tag "/images/brails-logo.png"
     .container.main-container{role: 'application'}
       = yield
     = javascript_include_tag "application"

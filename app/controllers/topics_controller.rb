@@ -40,34 +40,14 @@ class TopicsController < ApplicationController
 
   def take_test
     @questions = @topic.questions
-
   end
 
   def attempt_question
-    #STEP 1 Find Question
-    #STEP 2 
-    #     i)
-    #       a) Option selected
-    #         Fetch option record
-    #       b) Find entry from Attempt of current_user and question 
-    #         if not found -> create it
-    #       c) Check whether option is valid or not
-    #         if valid and attempt count is 0
-    #           update attempt object => :solved => true and update cookies according to Q type
-    #         elsif valid and attempt count > 0
-    #           1) update attempt object => :solved => true
-    #           2) (cookies/attempt.count).round
-    #         else(option is not valid)
-    #           Increase attempt count
-    #
-    #     ii) Option empty 
-    #        Do nothing
-
-
     @question = Question.find_by(:id => params[:id])
     @answer = @question.options.where(:_id => params["question"]['options']).try(:first) if params['question'].present?
-    @attempt = Attempt.where(:user => current_user, :question => @question).first
-    @attempt = Attempt.create(:user => current_user, :question => @question) if @attempt.nil? 
+    @attempt = Attempt.where(:user => current_user, :question => @question, :topic => @question.topic).first
+    @attempt = Attempt.create(:user => current_user, :question => @question, :topic => @question.topic) if @attempt.nil? 
+    @attempt.save
     if @answer.is_valid and @attempt.count == 0
       @attempt.update_attributes({solved: true, cookies: H_COOKIES[@question.question_type]})
     elsif @answer.is_valid and @attempt.count > 0

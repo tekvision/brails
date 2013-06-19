@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   #TODO: uncomment during development
   before_filter :authenticate_user!
 
+  helper_method :won_topic_cookies
+
+  def won_topic_cookies(topic)
+    topic.attempts.where(:user => current_user).collect{|attempt| attempt.cookies}.inject(:+) || 0
+  end
+
   def after_sign_in_path_for(resource)
     if resource && resource.sign_in_count == 1
       root_path
@@ -11,6 +17,7 @@ class ApplicationController < ActionController::Base
       levels_path
     end
   end
+
 
   protected
   def authenticate_inviter!
