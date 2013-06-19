@@ -1,0 +1,14 @@
+= simple_form_for :nominate, html: {:class => 'form-horizontal'}  do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.input :mobile
+    = f.input :phone_number
+    = f.input :address, as: :text, :input_html => {:cols => 20, :rows => 5}
+    = f.input :description, as: :text, :input_html => {:cols => 20, :rows => 5} 
+
+  .form-actions
+    = f.button :submit, class: 'btn-success'
+

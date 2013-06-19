@@ -7,6 +7,8 @@
             = link_to "Brails", "/"
           .span5.pull-right
             %ul.nav.pull-right
+              %li
+                = link_to "Nominate", nominate_path
               - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}                  
@@ -18,5 +20,3 @@
               - else
                 %li
                   = link_to 'Sign up', new_user_registration_path
-                %li
-                  = link_to "Nominate", new_user_invitation_path
