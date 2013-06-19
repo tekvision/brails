@@ -25,8 +25,14 @@
 
               .span9.topic-details
                 %h2.delta= topic.title
-                %p.topic-description= topic.description
+                %p.topic-description= topic.description  
                 %a.btn.btn-start-topic= link_to " Start topic", topic_path(topic)
           .span3
             -# uses right and wrong classes to toggle
-            .topic-score.right
+            - if Attempt.where(:user => current_user, :topic => topic).size == 0
+              .topic-score.wrong
+            - else
+              - if Attempt.where(:user => current_user, :topic => topic).size == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size           	      
+                .topic-score.right
+              - else
+                .topic-score.wrong
