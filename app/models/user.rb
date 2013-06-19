@@ -55,6 +55,5 @@ class User
 
   #embeds_one :profile
   has_many :attempts
-  has_many :bonus_cookies, class_name: "BonusCookie"
  end
  

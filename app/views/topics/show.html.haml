@@ -29,8 +29,11 @@
                 %p 
                   - @topic.questions.each_index do |index|
                     - question = @topic.questions[index]
-                    - attempt = Attempt.find_by(:question => question, :user => current_user) if Attempt.find_by(:user => current_user) != nil
-                    - if attempt.solved == false
+                    - attempt = Attempt.find_by(:question => question, :user => current_user) if current_user.attempts.count > 0
+                    - flag = false
+                    - if attempt != nil
+                      - flag = true if attempt.solved == true
+                    - if flag == false
                       .span.question{:id => "q_#{question.id}"}
                         = question.query
                         = simple_form_for question, :url => attempt_question_url(question), remote: true do |f|
