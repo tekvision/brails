@@ -9,7 +9,7 @@
       .score-wrapper
         %ul.unstyled.score.large
           - @level_cookies.times do |count|
-            %li.score-indicator{ :class => "#{'complete' if @level_cookies == @topics.collect{|topic| won_topic_cookies(topic)}.inject(:+)}"}
+            %li.score-indicator{ :class => "#{'complete' if count < @topics.collect{|topic| won_topic_cookies(topic)}.inject(:+)}"}
         %span.delta #{@level_cookies} of #{@topics.collect{|topic| won_topic_cookies(topic)}.inject(:+)} coins to win
     .span9
       - @topics.each do |topic|
@@ -21,12 +21,18 @@
                   %ul.unstyled.score
                     - topic_cookies = topic.questions.collect { |question| H_COOKIES[question.question_type] }.inject(:+).to_i
                     - topic_cookies.times do |count|
-                      %li.score-indicator{ :class => "#{'complete' if topic_cookies == won_topic_cookies(topic)}"}
+                      %li.score-indicator{ :class => "#{'complete' if count < won_topic_cookies(topic)}"}
 
               .span9.topic-details
                 %h2.delta= topic.title
-                %p.topic-description= topic.description
+                %p.topic-description= topic.description  
                 %a.btn.btn-start-topic= link_to " Start topic", topic_path(topic)
           .span3
             -# uses right and wrong classes to toggle
-            .topic-score.right
+            - if Attempt.where(:user => current_user, :topic => topic).size == 0
+              .topic-score.wrong
+            - else
+              - if Attempt.where(:user => current_user, :topic => topic).size == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size           	      
+                .topic-score.right
+              - else
+                .topic-score.wrong
