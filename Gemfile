@@ -13,6 +13,7 @@ end
 
 gem "mongoid", "~> 3.0.0"
 gem 'sass-rails',   '~> 3.2.3'
+gem 'mongoid_slug'
 
 group :development, :test do
   gem 'mailcatcher'
