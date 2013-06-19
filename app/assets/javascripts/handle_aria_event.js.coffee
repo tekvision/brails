@@ -28,7 +28,7 @@ AriaEvent = (element, max_row, max_col) ->
 
 AriaEvent.prototype.bindhandler = ()->
   thisObj = this
-  $row_event = @main_element.find('.row[role="row"] .span3')
+  $row_event = @main_element.find('.row[role="row"] .gridcell')
   console.log "aaaa"
   $row_event.bind 'keyup', (e)->
     console.log "key up"
@@ -50,6 +50,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       return false
       break
     when 37 #left key 
+      console.log("move left")
       $newCell = $curCell.prev()
       if $newCell.length  
         $newCell.attr("tabindex", "0").focus() 
@@ -61,7 +62,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
           $newCell = $("#row_#{new_row_number}_col_#{@maxcol-1}")
           $newCell.attr("tabindex", "0").focus() 
         else
-          col_count_last_row = $("#row_index_#{@maxrow - 1}").children('.span3').size() - 1 
+          col_count_last_row = $("#row_index_#{@maxrow - 1}").children('.gridcell').size() - 1 
           $newCell = $("#row_#{@maxrow - 1}_col_#{col_count_last_row}")
           console.log $newCell
           $newCell.attr("tabindex", "0").focus()
@@ -71,6 +72,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       return false
       break
     when 38 #Up key
+      console.log("move up")
       row_number = $curCell.attr('id').split('_')[1] 
       col_number = $curCell.attr('id').split('_')[3]
  
@@ -78,7 +80,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       if prev_cell.length  
         $newCell = prev_cell.find("#row_#{parseInt(row_number)-1}_col_#{col_number}")   
         if $newCell.length == 0
-          $newCell = prev_cell.find(".span3").last()  
+          $newCell = prev_cell.find(".gridcell").last()  
         $newCell.attr("tabindex", "0").focus()
         $curCell.removeAttr("tabindex")
       else
@@ -89,7 +91,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
           console.log $newCell
              
           if $newCell.length == 0
-            $newCell = next_cell.find(".span3").last()
+            $newCell = next_cell.find(".gridcell").last()
  
           $newCell.attr("tabindex", "0").focus() 
           $curCell.removeAttr("tabindex")
@@ -97,6 +99,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       return false
       break   
     when 39 #right key
+      console.log("move right")
       $newCell = $curCell.next()
       if $newCell.length
         $newCell.attr("tabindex", "0").focus()
@@ -120,14 +123,15 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       break
     
     when 40 #down
+      console.log("move down")
       row_number = $curCell.attr('id').split('_')[1] 
       col_number = $curCell.attr('id').split('_')[3]
  
       prev_cell =  $curCell.closest('.row').next()
       if prev_cell.length  
-        $newCell = prev_cell.find(".span3#row_#{parseInt(row_number)+1}_col_#{col_number}")   
+        $newCell = prev_cell.find("#row_#{parseInt(row_number)+1}_col_#{col_number}")   
         if $newCell.length == 0
-          $newCell = prev_cell.find(".span3").last()  
+          $newCell = prev_cell.find(".gridcell").last()  
         $newCell.attr("tabindex", "0").focus()
         $curCell.removeAttr("tabindex")
       else
@@ -138,7 +142,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
           console.log $newCell
              
           if $newCell.length == 0
-            $newCell = next_cell.find(".span3").last()
+            $newCell = next_cell.find(".gridcell").last()
  
           $newCell.attr("tabindex", "0").focus() 
           $curCell.removeAttr("tabindex")
@@ -147,7 +151,7 @@ AriaEvent.prototype.bind_grid_cell = (id, e)->
       break    
 
 $(document).ready ->
-  app = new AriaEvent('#game-levels', $("#game-levels .row").size(), 5)
+  app = new AriaEvent('#game-levels', $("#game-levels .row").size(), 2)
   
   $('#row_0_col_0').attr('tabindex', "0")
   app.bindhandler()   

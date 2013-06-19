@@ -9,8 +9,8 @@
       .score-wrapper
         %ul.unstyled.score.large
           - @level_cookies.times do |count|
-            %li.score-indicator{ :class => "#{'complete' if @level_cookies > count}"}
-        %span.delta #{@level_cookies} of 8 coins to win
+            %li.score-indicator{ :class => "#{'complete' if @level_cookies == @topics.collect{|topic| won_topic_cookies(topic)}.inject(:+)}"}
+        %span.delta #{@level_cookies} of #{@topics.collect{|topic| won_topic_cookies(topic)}.inject(:+)} coins to win
     .span9
       - @topics.each do |topic|
         .row-fluid.level-topic-wrapper.colored-block
@@ -21,7 +21,7 @@
                   %ul.unstyled.score
                     - topic_cookies = topic.questions.collect { |question| H_COOKIES[question.question_type] }.inject(:+).to_i
                     - topic_cookies.times do |count|
-                      %li.score-indicator{ :class => "#{'complete' if topic_cookies > count}"}
+                      %li.score-indicator{ :class => "#{'complete' if topic_cookies == won_topic_cookies(topic)}"}
 
               .span9.topic-details
                 %h2.delta= topic.title

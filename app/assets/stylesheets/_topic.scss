@@ -1,7 +1,7 @@
 
 .topic-title{
   text-align: center;
-  margin-bottom: 30px;
+  margin: 15px;
   color: #fff;
 }
 
@@ -11,21 +11,20 @@ section.topic {
     padding-left: 90px;
 
   }
-  
-  .topic-details {
-    margin-top: 20px;
+}  
+.topic-details {
+  margin-top: 20px;
+  padding: 10px;
+  p {
     padding: 10px;
-    p {
-      padding: 10px;
-    }
   }
-  .test {
-    .question {
-      @include adjust-font-size-to(17px);
-    }
-    .control-group {
-      padding-left: 4px;
-    }
+}
+.test {
+  .question {
+    @include adjust-font-size-to(17px);
+  }
+  .control-group {
+    padding-left: 4px;
   }
 }
 .mejs-container {
