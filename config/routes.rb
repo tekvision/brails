@@ -28,6 +28,8 @@ Brails::Application.routes.draw do
   match '/topics/:id/taketest' => 'topics#take_test', :via => :get, as: :take_test
   match '/topics/attemptquestion/:id' => 'topics#attempt_question', as: :attempt_question
   match '/levels_list' => 'levels#levels_list', :via => :get, as: :levels_list
+  match '/nominate' => 'home#nominate', :via => [:get, :post], as: :nominate
+  match 'nominate_list' => 'home#nominate_list', :via => :get, as: :nominate_list
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
