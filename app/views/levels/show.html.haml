@@ -32,7 +32,7 @@
             - if Attempt.where(:user => current_user, :topic => topic).size == 0
               .topic-score.wrong
             - else
-              - if Attempt.where(:user => current_user, :topic => topic).size == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size           	      
+              - if topic.questions.count == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size           	      
                 .topic-score.right
               - else
                 .topic-score.wrong
