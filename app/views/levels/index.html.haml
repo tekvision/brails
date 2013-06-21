@@ -1,4 +1,4 @@
-#grid-wrapper.lessons
+#grid-wrapper.lessons{:role => "application"}
   #game-levels.no-focus{role: 'grid', tabindex: '0'}
     - (1..@levels.count).to_a.each_slice(2).each_with_index do |levels, row_index|
       .row{role: 'row'}
@@ -15,5 +15,3 @@
               %p.description{id: "level_caption_#{@level.level_number}"}
                 = @level.level_name
               %a.btn.btn-mini.btn-try-now{:href => level_path(@level)} try now
-              %footer
-                [  ] [  ] [  ]
