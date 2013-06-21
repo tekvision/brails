@@ -36,7 +36,7 @@
                     - if flag == false
                       .span.question{:id => "q_#{question.id}"}
                         = question.query
-                        = simple_form_for question, :url => attempt_question_url(question), remote: true do |f|
+                        = simple_form_for question, :url => attempt_question_path(question), remote: true do |f|
                           .control-group
                             .controls
                               = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
