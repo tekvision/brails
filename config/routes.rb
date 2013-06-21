@@ -26,7 +26,7 @@ Brails::Application.routes.draw do
 
   match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
   match '/topics/:id/taketest' => 'topics#take_test', :via => :get, as: :take_test
-  match '/topics/attemptquestion/:id' => 'topics#attempt_question', as: :attempt_question
+  match '/topics/attempt_question/:question_id' => 'topics#attempt_question', as: :attempt_question
   match '/levels_list' => 'levels#levels_list', :via => :get, as: :levels_list
   match '/nominate' => 'home#nominate', :via => [:get, :post], as: :nominate
   match 'nominate_list' => 'home#nominate_list', :via => :get, as: :nominate_list

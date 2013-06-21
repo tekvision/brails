@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_filter :load_topic, :only => [:edit, :update, :take_test, :destroy, :show] 
+  load_and_authorize_resource
 
   def index
     @topics = Topic.all
@@ -45,7 +46,7 @@ class TopicsController < ApplicationController
   end
 
   def attempt_question
-    @question = Question.find_by(:id => params[:id])
+    @question = Question.find_by(:id => params[:question_id])
     @answer = @question.options.where(:_id => params["question"]['options']).try(:first) if params['question'].present?
     @attempt = Attempt.where(:user => current_user, :question => @question, :topic => @question.topic).first
     @attempt = Attempt.create(:user => current_user, :question => @question, :topic => @question.topic) if @attempt.nil? 
@@ -53,7 +54,7 @@ class TopicsController < ApplicationController
     if @answer.is_valid and @attempt.count == 0
       @attempt.update_attributes({solved: true, cookies: H_COOKIES[@question.question_type]})
     elsif @answer.is_valid and @attempt.count > 0
-      cookies = (H_COOKIES[@question.question_type] / @attempt.count).round
+      cookies = (H_COOKIES[@question.question_type] / @attempt.count ).round
       @attempt.update_attributes({solved: true, cookies: cookies})
     else
       @attempt.update_attributes({count: @attempt.count + 1})
