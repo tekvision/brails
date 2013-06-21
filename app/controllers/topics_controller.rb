@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
-#  before_filter :load_topic, :only => [:edit, :update, :take_test, :destroy, :show] 
-  load_and_authorize_resource
+  before_filter :load_topic, :only => [:edit, :update, :take_test, :destroy, :show] 
+  load_and_authorize_resource 
 #  skip_authorize_resource :only => :attempt_question
 
   def index

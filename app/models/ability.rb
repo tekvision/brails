@@ -8,7 +8,6 @@ class Ability
      else
        can :read, Level
        can :read, Topic
-       can :attempt_question, Attempt
      end
     # Define abilities for the passed in user here. For example:
     #
