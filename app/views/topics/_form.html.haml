@@ -36,7 +36,6 @@
           = question.simple_fields_for :options do |option|
             %h6 Option
             = option.input :label
-            = option.input :value
             = option.input :is_valid, as: :boolean
             %br
             .pull-right= option.link_to_remove "Remove this option"
