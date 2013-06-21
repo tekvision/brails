@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
 
+     user ||=User.new
      if user.has_role?('Admin')
        can :manage, :all
      else
