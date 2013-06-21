@@ -13,6 +13,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @topic.contents.build
     @topic.questions.build
+    render layout: 'admin'
   end
 
   def create
@@ -27,6 +28,7 @@ class TopicsController < ApplicationController
 
   def edit
     @topic = Topic.find(params[:id])
+    render layout: 'admin'
   end
 
   def update
