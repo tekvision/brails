@@ -3,7 +3,8 @@ class TopicsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @topics = Topic.all
+    @level = Level.find(params[:level_id])
+    @topics = @level.topics
   end
 
   def show
@@ -11,7 +12,8 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = Topic.new
+    @level = Level.find(params[:level_id])
+    @topic = @level.topics.build
     @topic.contents.build
     @topic.questions.build
     render layout: 'admin'
@@ -19,9 +21,10 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(params[:topic])
+    @level = Level.find(params[:level_id])
     if @topic.save
       flash[:message] = 'Successfully created'
-      redirect_to topics_url
+      redirect_to level_topics_path(@level)
     else
       render :action => :new
     end
@@ -35,7 +38,7 @@ class TopicsController < ApplicationController
   def update
     if @topic.update_attributes(params[:topic])
       flash[:message] = 'Successfully updated'
-      redirect_to topics_url
+      redirect_to level_topics_path(@level)
     else
       render :action => :edit
     end
@@ -68,6 +71,7 @@ class TopicsController < ApplicationController
   private
   def load_topic
     @topic = Topic.find(params[:id])
+    @level = Level.find(params[:level_id])
   end
 
 end

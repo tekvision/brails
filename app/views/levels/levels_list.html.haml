@@ -8,8 +8,9 @@
 
   - @levels.each do |level|
     %tr
-      %td= level.level_name
+      %td= link_to level.level_name, level_topics_path(level)
       %td= level.level_number
       %td= link_to "Edit", edit_level_path(level)
-      %td= link_to "Show", level_path(level)
       %td= link_to "Destroy", level, method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to "New level", new_level_path
