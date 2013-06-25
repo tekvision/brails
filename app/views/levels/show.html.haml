@@ -26,7 +26,7 @@
               .span9.topic-details
                 %h2.delta= topic.title
                 %p.topic-description= topic.description  
-                %a.btn.btn-start-topic= link_to " Start topic", topic_path(topic)
+                %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
           .span3
             -# uses right and wrong classes to toggle
             - if Attempt.where(:user => current_user, :topic => topic).size == 0

@@ -14,15 +14,16 @@ Brails::Application.routes.draw do
   }
 
   resources :users
-  resources :profiles
-  resources :comments
-  resources :topics
-  resources :contents
+  resources :comments  
   resources :requests
-  resources :levels
-  resources :questions
-  resources :bonus_rounds
-  resources :options
+  resources :levels do
+    resources :topics do
+      resources :questions      
+    end
+    resources :bonus_rounds
+  end
+  
+  
 
   match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
   match '/topics/:id/taketest' => 'topics#take_test', :via => :get, as: :take_test
