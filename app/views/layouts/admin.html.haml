@@ -10,31 +10,31 @@
         %li.switch.btn-change-font-size{:data => {:size => "up"}}
           +
           %a{:class=>"element-invisible", :href=>"#"}
-            (increase font size)
+            increase font size
         %li.switch.btn-change-font-size{:data => {:size => "reset"}}
           A
           %a{:class=>"element-invisible", :href=>"#"}
-            (reset font size)
+            reset font size
         %li.switch.btn-change-font-size{:data => {:size => "down"}}
           \-
           %a{:class=>"element-invisible", :href=>"#"}
-            (decrease font size)
+            decrease font size
       %ul.switcher.color-switcher
         %li.switch.white{:data => {:color => "white"}}
           %a{:class=>"element-invisible", :href=>"#"}
-            White Font 
+            White Theem 
         .hidden{:id => "white", "aria" => "true"} White
         %li.switch.yellow{:data => {:color => "yellow"}}
           %a{:class=>"element-invisible", :href=>"#"}
-            Yellow Font	    
+            Yellow Theem	    
         .hidden{:id => "yellow", "aria" => "true"} Yellow
         %li.switch.orange{:data => {:color => "orange"}}
           %a{:class=>"element-invisible", :href=>"#"}
-            Orange Font
+            Orange Theem
         .hidden{:id => "orange", "aria" => "true"} Orange
         %li.switch.black{:data => {:color => "black"}}
           %a{:class=>"element-invisible", :href=>"#"}
-            Black Font
+            Black Theem
         .hidden{:id => "black", "aria" => "true"} Black
     = render 'header'
     = show_flash_messages if show_flash_messages.present? 
