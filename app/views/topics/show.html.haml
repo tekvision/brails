@@ -3,7 +3,7 @@
     .span8.offset2
       - @contents.each do |content|
         %h1.beta.topic-title
-          = content.title
+          = @topic.title
         %section.topic
           .row
             .audio
@@ -11,21 +11,24 @@
               -# %button.btn{:style => "float: left;"} Transcript
         .row
           .tabbable.tabs-left.topic-details.colored-block
-            %ul.nav.nav-tabs
-              %li.active
+            %ul.nav.nav-tabs{:role => "tablist"}
+              %li.active{:id => "t_tab", :role => "tab", "aria-owns" => "t_#{content.id.to_s}", "aria-selected" => "true"}
                 %a{"data-toggle" => "tab", :href => "#t_#{content.id.to_s}"} Transcript
-              %li
+              %li{:id => "s_tab", :role => "tab", "aria-owns" => "s_#{content.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#s_#{content.id.to_s}"} Summary
-              %li
+              %li{:id => "test_tab", :role => "tab", "aria-owns" => "test_#{@topic.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#test_#{@topic.id.to_s}"} Take test
             .tab-content
-              .tab-pane.transcript.active{:id => "t_#{content.id.to_s}"}
-                %p
-                  = content.transcript
-              .tab-pane.summary{ :id => "s_#{content.id.to_s}"}
-                %p
+              .tab-pane.transcript.active{:id => "t_#{content.id.to_s}", :role => "tabpanel", "aria-labelledby" => "t_tab"}
+                %h4
+                  Transcript
+                  %p
+                    = content.transcript
+              .tab-pane.summary{ :id => "s_#{content.id.to_s}", :role => "tabpanel", "aria-labelledby" => "s_tab"}
+                %h3 Summary
                 = raw content.content_body
-              .tab-pane.test{:id => "test_#{@topic.id.to_s}"}
+              .tab-pane.test{:id => "test_#{@topic.id.to_s}", :role => "tabpanel", "aria-labelledby" => "test_tab"}
+                %h4 Take test
                 %p 
                   - @topic.questions.each_index do |index|
                     - question = @topic.questions[index]
@@ -36,6 +39,8 @@
                     - if flag == false
                       .span.question{:id => "q_#{question.id}"}
                         = question.query
+                        %br
+                        %br
                         = simple_form_for question, :url => attempt_question_path(question), remote: true do |f|
                           .control-group
                             .controls
