@@ -104,7 +104,7 @@ tabpanel.prototype.init = function() {
 tabpanel.prototype.switchTabs = function($curTab, $newTab) {
 
   // Remove the highlighting from the current tab
-  $curTab.removeClass('selected focus');
+  $curTab.removeClass('active focus');
 
   // remove tab from the tab order and update its aria-selected attribute
   $curTab.attr('tabindex', '-1').attr('aria-selected', 'false');
