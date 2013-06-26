@@ -1,0 +1,27 @@
+= simple_form_for @user, url: profile_path(@user), method: :post, html: {:class => 'form-horizontal'} do |u|
+  = u.error_notification
+
+  = u.simple_fields_for :profile do |p|
+
+    .form-inputs
+      = p.input :first_name
+      = p.input :last_name
+      = p.input :nick_name
+      = p.input :contact_number, :label => 'Mobile number'
+      = p.input :local_address, :as => :text, :required => true, :input_html => {:cols => 20, :rows => 5}
+      = p.input :permanent_address, :as => :text, :required => true, :input_html => {:cols => 20, :rows => 5}  
+      = p.input :country
+      = p.input :state
+      = p.input :city
+      = p.input :date_of_birth, :label => 'Date Of Birth', :input_html => {:class => "datepicker"}, :readonly => true
+      = p.input :disability, :collection => ["Visually impaired", "hearly handicap", "leg weekness", "muscular weekness", "Mentally retired"], :prompt => "Select disability type"
+      = p.input :disability_percentage
+      = p.input :facebook
+      = p.input :twitter
+
+    .form-actions
+    = u.submit"Submit", class: 'btn btn-large btn-success'
+    - if current_user.profile.nil?
+      = link_to 'Skip', levels_path, class: 'btn btn-large btn-success'
+    - else
+      = link_to 'Cancel', profile_path(@user), class: 'btn btn-large btn-success'

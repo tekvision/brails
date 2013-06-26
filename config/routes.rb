@@ -1,6 +1,5 @@
 Brails::Application.routes.draw do
 
-#  default_url_options :host => "localhost"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "home/index"
@@ -14,20 +13,14 @@ Brails::Application.routes.draw do
   }
 
   resources :users
-  resources :comments  
   resources :requests
   resources :levels do
-    resources :topics do
-      resources :questions      
-    end
+    resources :topics 
     resources :bonus_rounds
-  end
-  
-  
+  end  
 
-  match '/users/:user_id/profile' => 'profiles#new', :via => [:get, :post], as: :new
-  match '/topics/:id/taketest' => 'topics#take_test', :via => :get, as: :take_test
   match '/topics/attempt_question/:question_id' => 'topics#attempt_question', as: :attempt_question
+  match '/users/:user_id/profile' => 'users#profile', :via => [:get, :post], as: :profile
   match '/levels_list' => 'levels#levels_list', :via => :get, as: :levels_list
   match '/nominate' => 'home#nominate', :via => [:get, :post], as: :nominate
   match 'nominate_list' => 'home#nominate_list', :via => :get, as: :nominate_list

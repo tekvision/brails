@@ -9,6 +9,7 @@ class Ability
      else
        can :read, Level
        can [:show, :attempt_question], Topic
+       can [:edit, :profile], User, :id => user.id
      end
     # Define abilities for the passed in user here. For example:
     #

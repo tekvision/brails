@@ -1,0 +1,29 @@
+%h1 Profile
+%h2 Personal information:
+%table.table 
+  %tr
+    %th Name
+    %th Local Address
+    %th Permanent Address
+    %th Date Of Birth
+    %th Contact Number
+    %th= @user.profile.disability 
+  %tr
+    %td= @user.profile.first_name + " " + @user.profile.last_name
+    %td= @user.profile.local_address + " " +  @user.profile.city + " " + @user.profile.state + " "  + @user.profile.country
+    %td= @user.profile.permanent_address + " " +  @user.profile.city + " " + @user.profile.state + " "  + @user.profile.country
+    %td= @user.profile.date_of_birth
+    %td= @user.profile.contact_number
+    %td= @user.profile.disability_percentage + "%"
+
+%h2 social media information:
+%table.table
+  %tr
+    %th Facebook
+    %th Twitter Handle
+  %tr
+    %td= @user.profile.facebook
+    %td= @user.profile.twitter
+
+%br
+  = link_to 'Back', levels_path, class: 'btn btn-large btn-success'

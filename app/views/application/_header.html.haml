@@ -15,7 +15,10 @@
                     = current_user.email
                     %b.caret
                   %ul.dropdown-menu
-                    %li= link_to 'Edit profile', '#' 
+                    - if current_user.profile.nil?
+                      %li= link_to 'New profile', edit_user_path(current_user) 
+                    - else
+                      %li= link_to 'Edit profile', edit_user_path(current_user)
                     %li=  link_to 'Logout', destroy_user_session_path, :method => :delete
               - else
                 %li
