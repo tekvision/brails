@@ -10,7 +10,7 @@
               %li
                 = link_to "Nominate", nominate_path
               - if user_signed_in?
-                %li.dropdown
+                %li.dropdown{"aria-haspopup" => "true"}
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}                  
                     = current_user.email
                     %b.caret
