@@ -5,7 +5,8 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Cabin:400,600", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
   %body.textsize-625
-    .control-panel
+    .control-panel{:role => "region", :title => "Accessibility"}
+      %h2.element-invisible Accessibility settings
       %ul.switcher.font-switcher
         %li.switch.btn-change-font-size{:data => {:size => "up"}}
           +
@@ -38,7 +39,7 @@
         .hidden{:id => "black", "aria" => "true"} Black
     = render 'header'
     = show_flash_messages if show_flash_messages.present? 
-    .container.main-container
+    .container.main-container{:role => "main"}
       = yield
     = javascript_include_tag "application"
 
