@@ -7,8 +7,13 @@ language: ruby
 rvm:
   - 2.0.0
 
+before_script:
+  - echo -e "Host heroku.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
 env:
   - DB=mongodb
 
 services: 
   - mongodb
+

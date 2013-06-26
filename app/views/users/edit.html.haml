@@ -1,0 +1,6 @@
+- if current_user.profile.nil?
+  %h1 Create your profile
+- else
+  %h1 Edit your profile
+
+= render 'frmprofile'

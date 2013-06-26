@@ -1,5 +1,6 @@
 class Profile
   include Mongoid::Document
+  embedded_in :user
 
   field :first_name, type: String
   field :last_name, type: String
@@ -17,8 +18,6 @@ class Profile
   field :disability_percentage, type: String
 
   validates :first_name, :permanent_address, :country, :state, :city, :contact_number, :presence => true
-  validates :first_name,  :last_name, :format => {:with => /\A[a-zA-z]+\z/, :message => "Only letters allowed."}
-
-  #embedded_in :user
+  validates :first_name,  :last_name, :format => {:with => /\A[a-zA-z]+\z/, :message => "Only letters allowed."}  
 end
 

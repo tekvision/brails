@@ -7,7 +7,7 @@ class Option
   belongs_to :question
 
   #validations
-  validates :question_id, :presence => true 
+  validates :question_id, :label, :presence => true 
 
   validate :validate_options
 
