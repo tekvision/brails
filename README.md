@@ -1,2 +1,1 @@
-brails [![Build Status](https://secure.travis-ci.org/nintinzd/nitinzd.png?branch=master&.png)](http://travis-ci.org/nitinzd/nitinzd) 
-======
+# Brails [![Build Status](https://travis-ci.org/nitinzd/brails.png?branch=master)](https://travis-ci.org/nitinzd/brails)
