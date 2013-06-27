@@ -81,18 +81,19 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 }
 .color-switcher {
   .switch {
-    @include border-radius(10px);
+    background-color:black;
+    // @include border-radius(10px);
     
-    &.yellow {
-      background-color: $yellow;
-    }
-    &.orange {
-      background-color: $orange;
-    }
-    &.black {
-      background-color: black;
-      border: 1px solid white;
-    }
+    // &.yellow {
+    //   background-color: $yellow;
+    // }
+    // &.orange {
+    //   background-color: $orange;
+    // }
+    // &.black {
+    //   background-color: black;
+    //   border: 1px solid white;
+    // }
     &:last-child{
       margin-bottom: 0;
     }

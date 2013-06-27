@@ -12,35 +12,32 @@
       %p.disclaimer You are running an older browser please upgrade to Firefox 20 +
     .control-panel{:role => "region", :title => "Accessibility"}
       %h2.element-invisible Accessibility settings
-      %ul.switcher.font-switcher
+      %ul.switcher.font-switcher{:style => "list-style-type:none;"}
         %li.switch.btn-change-font-size{:data => {:size => "up"}}
-          +
-          %a{:class=>"element-invisible", :href=>"#"}
-            increase font size
+          %a{:href=>'#'}
+            %img{:src =>'/images/plus-text-image.jpg', :alt => 'Increase font size'}
         %li.switch.btn-change-font-size{:data => {:size => "reset"}}
-          A
-          %a{:class=>"element-invisible", :href=>"#"}
-            reset font size
+          %a{:href=>'#'}
+            %img{:src =>'/images/reset-text-image.jpg', :alt => 'Reset font size'}
         %li.switch.btn-change-font-size{:data => {:size => "down"}}
-          \-
-          %a{:class=>"element-invisible", :href=>"#"}
-            decrease font size
-      %ul.switcher.color-switcher
+          %a{:href=>'#'}
+            %img{:src =>'/images/minus-text-image.jpg', :alt => 'Decrease font size'}
+      %ul.switcher.color-switcher{:style => "list-style-type:none;"}
         %li.switch.white{:data => {:color => "white"}}
-          %a{:class=>"element-invisible", :href=>"#"}
-            White Theem 
+          %a{:href=>'#'}
+            %img{:src =>'/images/white-icon-image.png', :alt => 'White Theme'}
         .hidden{:id => "white", "aria" => "true"} White
         %li.switch.yellow{:data => {:color => "yellow"}}
-          %a{:class=>"element-invisible", :href=>"#"}
-            Yellow Theem	    
+          %a{:href=>'#'}
+            %img{:src =>'/images/yellow-icon-image.png', :alt => 'Yellow Theme'}    
         .hidden{:id => "yellow", "aria" => "true"} Yellow
         %li.switch.orange{:data => {:color => "orange"}}
-          %a{:class=>"element-invisible", :href=>"#"}
-            Orange Theem
+          %a{:href=>'#'}
+            %img{:src =>'/images/orange-icon-image.png', :alt => 'Orange Theme'}
         .hidden{:id => "orange", "aria" => "true"} Orange
         %li.switch.black{:data => {:color => "black"}}
-          %a{:class=>"element-invisible", :href=>"#"}
-            Black Theem
+          %a{:href=>'#'}
+            %img{:src =>'/images/black-icon-image.png', :alt => 'Black Theme'}
         .hidden{:id => "black", "aria" => "true"} Black
     = render 'header'
     = show_flash_messages if show_flash_messages.present? 
