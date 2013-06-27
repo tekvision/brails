@@ -7,6 +7,14 @@ $background-color: $white;
 $color: $black;
 // $contrasted-lightness-threshold: 100%;
 
+.element-invisible{
+ overflow:hidden;
+ height:0px;
+ margin-left:-1000px;
+ position:absolute;
+ width: 0px;
+}
+
 
 
 

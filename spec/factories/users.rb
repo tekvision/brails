@@ -5,6 +5,7 @@ FactoryGirl.define do
    sequence(:email)      {|i | i.to_s + Faker::Internet.email}
     password 'abcd1234'
     password_confirmation 'abcd1234'
+		confirmed_at Time.now
     roles "Student"
   end
 

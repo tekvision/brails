@@ -1,0 +1,17 @@
+%h1 Nominate list
+%table.table
+  %tr
+    %th Name
+    %th Email
+    %th Mobile number
+    %th Phone number
+    %th Address
+  - @nominates.each do |nominate|
+    %tr
+      %td= nominate.name
+      %td= nominate.email
+      %td= nominate.mobile
+      %td= nominate.phone_number
+      %td= nominate.address
+
+    

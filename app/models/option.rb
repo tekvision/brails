@@ -2,13 +2,12 @@ class Option
   include Mongoid::Document
 
   field :label, type: String
-  field :value, type: String
   field :is_valid, type: Boolean
 
   belongs_to :question
 
   #validations
-  validates :value, :question_id, :presence => true 
+  validates :question_id, :label, :presence => true 
 
   validate :validate_options
 

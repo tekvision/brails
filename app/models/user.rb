@@ -2,6 +2,10 @@ class User
   include Mongoid::Document
   include Mongoid::Document::Roleable
 
+  embeds_one :profile
+  accepts_nested_attributes_for :profile
+  attr_accessible :profile_attributes
+
   ROLES = ['Admin', 'Student', 'Contributer']
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -53,8 +57,8 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
-  #embeds_one :profile
+
+
   has_many :attempts
-  has_many :bonus_cookies, class_name: "BonusCookie"
  end
  

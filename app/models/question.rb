@@ -12,7 +12,7 @@ class Question
   belongs_to :topic
   belongs_to :bonus_round
   belongs_to :content
-  has_one :attempt
+  has_many :attempts
   accepts_nested_attributes_for :options, allow_destroy: true
 
   #validations

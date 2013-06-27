@@ -14,7 +14,6 @@
         = question.link_to_add "Add a option", :options
         = question.simple_fields_for :options do |option|
           = option.input :label
-          = option.input :value
           = option.input :is_valid, as: :boolean
           = option.link_to_remove "Remove this option"
 

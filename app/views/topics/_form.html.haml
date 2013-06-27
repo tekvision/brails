@@ -1,8 +1,8 @@
-= simple_nested_form_for @topic, html: {:class => 'form-horizontal'} do |f|
+= simple_nested_form_for [@level, @topic], html:  {:class => 'form-horizontal'} do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :level_id, :collection => Level.all.entries, :label_method => :level_name, :value_method => :id, :prompt => "Select level"
+    = f.hidden_field :level_id
     = f.input :title
     = f.input :description, as: :text, :input_html => {:rows => 2}
     %hr
@@ -36,7 +36,6 @@
           = question.simple_fields_for :options do |option|
             %h6 Option
             = option.input :label
-            = option.input :value
             = option.input :is_valid, as: :boolean
             %br
             .pull-right= option.link_to_remove "Remove this option"
@@ -49,4 +48,3 @@
 
   .form-actions
     = f.button :submit, class: 'btn-success'
-

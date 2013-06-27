@@ -6,13 +6,15 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  #gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'mina'
 gem "mongoid", "~> 3.0.0"
 gem 'sass-rails',   '~> 3.2.3'
+gem 'mongoid_slug'
 
 group :development, :test do
   gem 'mailcatcher'
@@ -34,7 +36,7 @@ gem 'simple_form'
 gem 'bootstrap-sass'
 gem "compass-rails"
 gem "compass-recipes"
-gem 'typeplate-rails', git: 'git@github.com:aergonaut/typeplate-rails.git'
+gem 'typeplate-rails', git: 'git://github.com/aergonaut/typeplate-rails.git'
 gem 'mongoid-simple-roles'
 gem 'cancan'
 gem 'country_select'
@@ -43,3 +45,4 @@ gem "mediaelement_rails"
 gem "nested_form"
 gem "ckeditor"
 gem "mediaelement_rails"
+gem "browser"

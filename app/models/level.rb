@@ -1,8 +1,11 @@
 class Level
   include Mongoid::Document
+  include Mongoid::Slug
 
   field :level_number, type: Integer
   field :level_name, type: String
+
+  slug :level_name
 
   has_many :topics, dependent: :destroy 
   has_one :bonus_round, dependent: :destroy

@@ -1,2 +1,1 @@
-brails
-======
+# Brails [![Build Status](https://travis-ci.org/nitinzd/brails.png?branch=master)](https://travis-ci.org/nitinzd/brails) [![Code Climate](https://codeclimate.com/github/nitinzd/brails.png)](https://codeclimate.com/github/nitinzd/brails)
