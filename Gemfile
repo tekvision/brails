@@ -36,7 +36,7 @@ gem 'simple_form'
 gem 'bootstrap-sass'
 gem "compass-rails"
 gem "compass-recipes"
-gem 'typeplate-rails', git: 'git@github.com:aergonaut/typeplate-rails.git'
+gem 'typeplate-rails', git: 'git://github.com/aergonaut/typeplate-rails.git'
 gem 'mongoid-simple-roles'
 gem 'cancan'
 gem 'country_select'
