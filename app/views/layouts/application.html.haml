@@ -5,6 +5,11 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Cabin:400,600", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
   %body.textsize-625
+    %a.element-invisible{:href => "#main"} Skip to main content
+    - if browser.ie9? != true
+      %p.disclaimer You are running an older browser, please upgrade to IE 9 +
+    - if browser.firefox? && browser.version.to_i < 20
+      %p.disclaimer You are running an older browser please upgrade to Firefox 20 +
     .control-panel{:role => "region", :title => "Accessibility"}
       %h2.element-invisible Accessibility settings
       %ul.switcher.font-switcher
@@ -39,7 +44,7 @@
         .hidden{:id => "black", "aria" => "true"} Black
     = render 'header'
     = show_flash_messages if show_flash_messages.present? 
-    .container.main-container{:role => "main"}
+    .container.main-container{:role => "main", :id => "main"}
       = yield
     = javascript_include_tag "application"
 

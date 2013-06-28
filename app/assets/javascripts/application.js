@@ -15,3 +15,12 @@
 //= require bootstrap
 //= require mediaelement_rails
 //= require_directory .
+
+  $(document).ready(function() {
+    // add a click handler to a link
+    // that point to same-page targets (href="#main...")		
+    $("a[href^='#main']").click(function() {
+        // give that id focus (for browsers that didn't already do so)
+        $('#main').focus()
+    });
+  });
