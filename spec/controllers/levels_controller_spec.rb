@@ -20,8 +20,9 @@ describe LevelsController do
       level = create(:level)
       4.times {create(:topic, :level => level)}
       cookies = 0
-      level.topics.each {|topic| cookies = cookies + topic.cookies}
-      level_cookies = {level.id => cookies}
+   #  level.topics.each {|topic| cookies = cookies + topic.cookies}
+   #   level_cookies = {level.id => cookies}
+         level_cookies = level.calculate_cookies_count
       get :index
       assigns(:level_cookies).should eq(level_cookies)
     end
