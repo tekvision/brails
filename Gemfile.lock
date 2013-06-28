@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:aergonaut/typeplate-rails.git
+  remote: git://github.com/aergonaut/typeplate-rails.git
   revision: 6cf96fde817b3da673fdf511f0d6eb832bd1c70d
   specs:
     typeplate-rails (1.0.0.1)
