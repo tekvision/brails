@@ -18,6 +18,16 @@
 @mixin basic-colors($bg-color, $color: $black){
   background-color: $bg-color;
   color: $color;
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $color;
+  }
+
 }
 
 @mixin default-shadow($color: $black){
@@ -27,7 +37,6 @@
 
 @mixin lessons($bg-color, $color: $black) {
   .lesson-summary{
-    
     padding: 10px 25px;
     margin-bottom: 20px;
     @include border-radius(0 8px 8px 8px);

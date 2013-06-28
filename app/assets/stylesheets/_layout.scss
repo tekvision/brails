@@ -22,10 +22,20 @@ body.textsize-825 {font:82.5%/1.5 Arial, sans-serif;}
 body.textsize-1025 {font:102.5%/1.5 Arial, sans-serif;}
 body.textsize-1225 {font:122.5%/1.5 Arial, sans-serif;}
 body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
+.content{
+  background: rgba(255, 255, 255, .9);
+  padding: 20px;
+  input[type='text']{
+    font-size: 1.5em;
+    height: auto;
+    padding: 5px;
+  }
+}
 .main-container{
   margin-top: 20px;
-
 }
+
+
 
 .colored-block {
   @include single-transition(background-color, .75s);
@@ -71,18 +81,19 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 }
 .color-switcher {
   .switch {
-    @include border-radius(10px);
+    background-color:black;
+    // @include border-radius(10px);
     
-    &.yellow {
-      background-color: $yellow;
-    }
-    &.orange {
-      background-color: $orange;
-    }
-    &.black {
-      background-color: black;
-      border: 1px solid white;
-    }
+    // &.yellow {
+    //   background-color: $yellow;
+    // }
+    // &.orange {
+    //   background-color: $orange;
+    // }
+    // &.black {
+    //   background-color: black;
+    //   border: 1px solid white;
+    // }
     &:last-child{
       margin-bottom: 0;
     }
@@ -134,7 +145,27 @@ html.black {
   }
 }
 
+.social-share-icons {
+  @include horizontal-list;
+  float: right;
+  .social {
+    width: 25px;
+    height: 25px;
+    display: block;
+    // margin-left: 5px;
+    background: url(social-icons.png) 0 0 no-repeat;
+    &.linkedin {
+      background-position: -27px 0; 
+    }
+    &.twitter {
+      background-position: -53px 0;
+    }
+
+  }
+}
+
 .score-wrapper {
+  text-align:center;
   .score {
     padding: 5px 0 0 0;
     .score-indicator {
