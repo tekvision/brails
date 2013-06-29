@@ -46,3 +46,4 @@ gem "nested_form"
 gem "ckeditor"
 gem "mediaelement_rails"
 gem "browser"
+gem 'coveralls', require: false
