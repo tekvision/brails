@@ -18,7 +18,7 @@ class HomeController < ApplicationController
 	UserMailer.nominateReport(@nominate, user).deliver
 	redirect_to root_url, notice: 'User was nominate successfully..'
       else
-        render action: "new"
+        render action: "nominate"
       end
     end
   end

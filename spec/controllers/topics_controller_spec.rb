@@ -4,7 +4,8 @@ describe TopicsController do
   describe "GET show a topic" do
     before(:each) do
       @topic = create(:topic)
-      get :show, id: @topic.id
+      @level = create(:level)
+      get :show, level_id: @level.id, id: @topic.id
     end 
 
     it 'Should show the topic' do

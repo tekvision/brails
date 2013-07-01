@@ -9,6 +9,6 @@ class Nominate
   field :description, type: String
 
   #validation
-  validates :name, :mobile, :presence => true
+  validates :name, :mobile, :address, :presence => true
 
 end
