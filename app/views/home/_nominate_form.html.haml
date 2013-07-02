@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :name
-    = f.input :email
+    = f.input :email, :require => false
     = f.input :mobile
     = f.input :phone_number
     = f.input :address, as: :text, :input_html => {:cols => 20, :rows => 5}
