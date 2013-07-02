@@ -25,20 +25,16 @@
       %ul.switcher.color-switcher{:style => "list-style-type:none;"}
         %li.switch.white{:data => {:color => "white"}}
           %a{:href=>'#'}
-            %img{:src =>'/images/white-icon-image.png', :alt => 'White Theme'}
-        .hidden{:id => "white", "aria" => "true"} White
+            %img{:src =>'/images/white-icon-image.png', :alt => 'White theme'}
         %li.switch.yellow{:data => {:color => "yellow"}}
           %a{:href=>'#'}
-            %img{:src =>'/images/yellow-icon-image.png', :alt => 'Yellow Theme'}    
-        .hidden{:id => "yellow", "aria" => "true"} Yellow
+            %img{:src =>'/images/yellow-icon-image.png', :alt => 'Yellow theme'}    
         %li.switch.orange{:data => {:color => "orange"}}
           %a{:href=>'#'}
-            %img{:src =>'/images/orange-icon-image.png', :alt => 'Orange Theme'}
-        .hidden{:id => "orange", "aria" => "true"} Orange
+            %img{:src =>'/images/orange-icon-image.png', :alt => 'Orange theme'}
         %li.switch.black{:data => {:color => "black"}}
           %a{:href=>'#'}
-            %img{:src =>'/images/black-icon-image.png', :alt => 'Black Theme'}
-        .hidden{:id => "black", "aria" => "true"} Black
+            %img{:src =>'/images/black-icon-image.png', :alt => 'Black theme'}
     = render 'header'
     = show_flash_messages if show_flash_messages.present? 
     .container.main-container{:role => "main", :id => "main"}
