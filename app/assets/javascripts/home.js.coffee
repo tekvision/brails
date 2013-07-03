@@ -14,7 +14,6 @@ $(document).ready ->
     $('#summary').show()
   $('audio').mediaelementplayer();
 
-
   # color switcher
   $(".color-switcher .switch").on "click", ->
     t = $(this)

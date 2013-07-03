@@ -1,15 +1,19 @@
-<h2>Sign in</h2>
+<div id="devise">
+  <div class="devise-container colored-block">
+    <h3>Brails Login</h3>
 
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, :required => false, :autofocus => true, :label => false, :placeholder => "Email address" %>
-    <%= f.input :password, :required => false, :label => false, :placeholder => 'Password' %>
-    <%= f.input :remember_me, :as => :boolean, :label => false, :inline_label => 'Remember me' if devise_mapping.rememberable?  %>
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email, :required => false, :autofocus => true, :placeholder => "Email address" %>
+        <%= f.input :password, :required => false, :placeholder => 'Password' %>
+        <%= f.input :remember_me, :as => :boolean,  :label => false, :inline_label => 'Remember me' if devise_mapping.rememberable?  %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Sign in", :class => 'btn btn-large btn-login btn-inverse' %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

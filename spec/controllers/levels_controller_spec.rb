@@ -20,8 +20,7 @@ describe LevelsController do
       level = create(:level)
       4.times {create(:topic, :level => level)}
       cookies = 0
-      level.topics.each {|topic| cookies = cookies + topic.cookies}
-      level_cookies = {level.id => cookies}
+         level_cookies = level.calculate_cookies_count
       get :index
       assigns(:level_cookies).should eq(level_cookies)
     end
@@ -39,40 +38,6 @@ describe LevelsController do
       assigns(:topics).should be_present
       assigns(:topics).each {|topic| topic.level.id.should eq(@level.id)}
     end
-
-    it 'Should mark topic as completed' do
-      level = create(:level)
-      5.times {create(:topic, :level => level)}
-      level.topics.each {|topic| 4.times {create(:question, :topic => topic)}}
-      level.topics[0].questions.each {|question| create(:attempt, :solved => true, :question => question, :user => @user)}
-      get :show, :id => level.id
-      assigns(:topics).each do |topic|
-        topic.questions.each {|question| question.attempt.solved.should be_true}
-      end
-    end
-
-    it 'Should mark the topic as incomplete' do
-      flag = true
-      level = create(:level)
-      5.times {create(:topic, :level => level)}
-      level.topics.each {|topic| 4.times {create(:question, :topic => topic)}}
-      level.topics[0].questions.each {|question| create(:attempt, :solved => (flag = !flag), :count => 2, :question => question, :user => @user)}
-      get :show, :id => level.id
-      assigns(:topics)[0].questions[0].attempt.count.should be > 0
-    end
-
-    it 'Should show how many cookies got for each topic' do
-      level = create(:level)
-      4.times {create(:topic, :level => level)}
-      level.topics.each {|topic| 5.times {create(:question, :topic => topic)}}
-      level.topics[0].questions.each {|question| create(:attempt, :solved => true, :question => question)}
-      cookies = 0
-      level.topics[0].questions.each {|question| cookies = cookies + question.attempt.cookies}
-      get :show, :id => level.id
-      cookies1 = 0
-      assigns(:topics)[0].questions.each {|question| cookies1 = cookies1 + question.attempt.cookies}
-      cookies.should eq(cookies1)
-    end
   end
 
   context 'Only admin can create level' do
@@ -89,8 +54,6 @@ describe LevelsController do
     it 'should create new level and bonus round' do
       level = build(:level)
       bonus_round = build(:bonus_round, :level => level)
-      build(:question, :bonus_round => bonus_round)
-      build(:option, :question => bonus_round.question)
       level.delete("_id")
       post :create, {:level => level.attributes}
       level = assigns(:level)

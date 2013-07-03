@@ -1,6 +1,8 @@
 
 .topic-title{
   text-align: center;
+
+  @include text-shadow(2px 2px 2px #555);
   margin: 15px;
   color: #fff;
 }
