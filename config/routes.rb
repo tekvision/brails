@@ -1,7 +1,5 @@
 Brails::Application.routes.draw do
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
   get "home/index"
   devise_for :users, :path_names => {
     :sign_in => 'login', 

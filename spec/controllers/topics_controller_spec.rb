@@ -112,10 +112,9 @@ describe TopicsController do
       @option = create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
-      question1[:option] = question.options[0].attributes
-      p question1[:option].is_valid
+      question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
-      assigns(:question).attempt.solved.should be_true
+      assigns(:attempt).solved.should be_true
     end
 
     it 'Should give cookies for the topic' do

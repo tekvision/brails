@@ -49,7 +49,7 @@ class TopicsController < ApplicationController
   end
 
   def attempt_question
-    @question = Question.find_by(:id => params[:question_id])
+    @question = Question.find(params[:question_id])
     @answer = @question.options.where(:_id => params["question"]['options']).try(:first) if params['question'].present?
     @attempt = Attempt.where(:user => current_user, :question => @question, :topic => @question.topic).first
     @attempt = Attempt.create(:user => current_user, :question => @question, :topic => @question.topic) if @attempt.nil? 
