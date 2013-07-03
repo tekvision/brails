@@ -14,6 +14,8 @@ RailsAdmin.config do |config|
   # RailsAdmin may need a way to know who the current user is]
   config.current_user_method { current_user } # auto-generated
 
+  config.authorize_with :cancan
+
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
 
