@@ -139,7 +139,7 @@ describe TopicsController do
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1[:option] = question.options[0].attributes
-      xhr :get, :attempt_question, :id => question.id, :question => question1
+      xhr :get, :attempt_question, :question_id => question.id, :question => question1
       count = assigns(:question).attempt.count
       count.should eq(question.attempt.count + 1)
     end
@@ -162,7 +162,7 @@ describe TopicsController do
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1[:option] = question.options[0].attributes
-      xhr :get, :attempt_question, :id => question.id, :question => question1
+      xhr :get, :attempt_question, :question_id => question.id, :question => question1
       assigns(:question).attempt.solved.should be_true
     end
 
