@@ -109,10 +109,11 @@ describe TopicsController do
 
     it 'Should save the state of question' do
       question = create(:question)
-      create(:option, is_valid: true, :question => question)
+      @option = create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1[:option] = question.options[0].attributes
+      p question1[:option].is_valid
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
       assigns(:question).attempt.solved.should be_true
     end
@@ -172,10 +173,10 @@ describe TopicsController do
       questions = [question]
       create(:topic, :questions => questions)
       create(:option, is_valid: true, :question => question)
-      create(:attempt, :count => 1, :question => question, :user => @user)
+      @attempt = create(:attempt, :count => 1, :question => question, :user => @user)
       question1 = question.attributes
       question1[:option] = question.options[0].attributes
-      xhr :get, :attempt_question, :id => question.id, :question => question1
+      xhr :get, :attempt_question, :question_id => question.id, :attempt => @attempt
       cookies = assigns(:attempt).cookies
       cookies.should eq(H_COOKIES[question.question_type] / question.attempt.count.round)
     end

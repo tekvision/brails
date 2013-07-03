@@ -3,10 +3,11 @@
 FactoryGirl.define do
   factory :attempt do
     count '0'
-    solved 'false'
+    solved 'true'
     cookies '2'
 
     association :user
     association :question
+    association :topic
   end
 end
