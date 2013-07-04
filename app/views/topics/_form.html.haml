@@ -29,6 +29,7 @@
       .tab-pane#question
         = f.simple_fields_for :questions do |question|
           %h6 New Question
+          NOTE: minimum 3 options required
           = question.input :question_type, :collection => ["Simple", "Medium", "Hard"],
                            :prompt => "Select question type",
                            :input_html => {:id => "ddr_question_type"}
