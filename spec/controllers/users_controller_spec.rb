@@ -13,4 +13,4 @@ describe UsersController do
       user.should_not be_nil
     end
   end
-end
+end 
