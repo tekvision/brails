@@ -6,4 +6,12 @@ FactoryGirl.define do
     is_valid 'false'
     association :question
   end
+
+  factory :correct, :parent => 'option' do
+    is_valid 'true'
+  end
+
+  factory :incorrect, :parent => 'option' do
+    is_valid 'false'
+  end
 end
