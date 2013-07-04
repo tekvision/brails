@@ -61,6 +61,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy
+    redirect_to level_topics_path(@level)
   end
 
   private
