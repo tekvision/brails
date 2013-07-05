@@ -124,9 +124,9 @@ describe TopicsController do
       create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
-      question1[:option] = question.options[0].attributes
+      question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
-      assigns(:question).attempt.cookies.should  eq(question.cookies)
+      assigns(:attempt).cookies.should  eq(H_COOKIES[question.question_type])
     end
   end
 

@@ -13,15 +13,24 @@
       = p.input :country
       = p.input :state
       = p.input :city
-      = p.input :date_of_birth, :label => 'Date Of Birth', :input_html => {:class => "datepicker"}
+      = p.input :date_of_birth, :label => 'Date Of Birth', :input_html => {:class => "datePicker"}
+      %img{:src =>'/images/Calendar_scheduleHS.png', :id => 'imgCalendar' }
       = p.input :disability, :collection => ["Visually impaired", "hearly handicap", "leg weekness", "muscular weekness", "Mentally retired"], :prompt => "Select disability type"
       = p.input :disability_percentage
       = p.input :facebook
       = p.input :twitter
-
+      %a{:class=>"datePicker", :id=>"dateLnk", :href=>"#"}Calendar(Basic with standard selection)
     .form-actions
     = u.submit"Submit", class: 'btn btn-large btn-success'
     - if current_user.profile.nil?
       = link_to 'Skip', levels_path, class: 'btn btn-large btn-success'
     - else
       = link_to 'Cancel', profile_path(@user), class: 'btn btn-large btn-success'
+
+  :javascript
+
+      InitAccDC = [
+        '/assets/helpers.js',
+        '/assets/users.js.coffee',
+        '/assets/setup.js'
+      ];
