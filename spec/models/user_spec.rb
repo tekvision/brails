@@ -5,7 +5,7 @@ describe User do
   context 'fields' do
      it { should have_field(:email).of_type(String)}
      it { should have_field(:encrypted_password).of_type(String)}
-     it { should have_field(:roles).of_type(String)}
+     it { should have_field(:roles).of_type(Array)}
   end
 
   context 'Mass assignment' do
@@ -16,19 +16,13 @@ describe User do
   end
 
   context 'Required fields' do
-    it { should validate_presence_of(:email)}
-    it { should validate_presence_of(:password)}
     it { should validate_presence_of(:roles)}
   end
 
   context 'Validations' do
-    it { should validate_uniqueness_of(:email).case_insensitive.with_message("is already taken") }
   end
 
   context 'Associations' do
     it { should embed_one :profile }
-    it { should have_many(:requests)}
-    it { should have_many(:questions)}
-    it { should have_many(:bonus_cookies)}
   end
 end
