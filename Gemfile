@@ -23,6 +23,7 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'mongoid-rspec'
+  gem 'database_cleaner'
 end
 
 gem 'jquery-rails'
