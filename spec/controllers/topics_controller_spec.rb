@@ -1,43 +1,28 @@
 require 'spec_helper'
 
 describe TopicsController do
+  before(:each) do
+      @user = create(:user)
+      sign_in @user
+  end
+  
   describe "GET show a topic" do
     before(:each) do
-      @topic = create(:topic)
       @level = create(:level)
-      get :show, level_id: @level.id, id: @topic.id
+      @topic = create(:topic)
+      3.times {create(:content, :topic => @topic)}
     end 
 
     it 'Should show list of contents of the topic' do
-      3.times {create(:content, :topic => @topic)}
-      get :show, level_id: @level.id, id: @topic.id
-      assigns(:content).should be_present
-#      assigns(:contents).each {|content| content.topic.id.should eq(@topic.id)}
+      get :show, :level_id => @level.id, :id => @topic.id
+      assigns(:contents).each {|content| content.topic_id.should be_present}
     end
 
-    it 'should be published' do
-      assigns(:topic).published.should be_true
-    end 
+    it 'should be published' 
 
     it 'Should have associated content' do
+      get :show, :level_id => @level.id, :id => @topic.id
       assigns(:topic).contents.size.should > 0
-    end
-  end
-
-  context "GET take_test action is invoked" do
-    before do
-      @topic = create(:topic)
-      4.times {create(:question, :topic => @topic)}
-      @topic.questions.each {|question| 4.times {create(:option, :question => question)}}
-      get :take_test, :id => @topic.id
-    end
-
-    it 'should show the questions of the topic' do
-      assigns(:questions).should eq(@topic.questions)
-    end
-
-    it 'each question should have multiple options' do
-      assigns(:questions)[0].options.size.should eq(@topic.questions[0].options.size)
     end
   end
 
@@ -102,10 +87,6 @@ describe TopicsController do
   end
 
   context "When attempting the question and it is solved" do
-    before do
-      @user = create(:student)
-      sign_in :user, @user
-    end
 
     it 'Should save the state of question' do
       question = create(:question)
@@ -119,65 +100,50 @@ describe TopicsController do
 
     it 'Should give cookies for the topic' do
       question = create(:question)
-      questions = [question]
-      create(:topic, :questions => questions)
-      create(:option, is_valid: true, :question => question)
+      @option = create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
-      assigns(:attempt).cookies.should  eq(H_COOKIES[question.question_type])
+      assigns(:attempt).cookies.should  eq(H_COOKIES[question1["question_type"]])
     end
   end
 
   context "When attempting the question and is not solved" do
     it 'Should increase attempt count by one' do
       question = create(:question)
-      questions = [question]
-      create(:topic, :questions => questions)
-      create(:option, is_valid: false, :question => question)
+      @option = create(:correct, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
-      question1[:option] = question.options[0].attributes
+      question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
-      count = assigns(:question).attempt.count
-      count.should eq(question.attempt.count + 1)
+      count = assigns(:attempt).count
+      question.reload
+      count.should eq(question.attempts.first.count)
     end
   end
 
   context "When solved the question after some attempts" do
-    before(:each) do
-      @user = create(:student)
-      p @user.errors
-      sign_in :user, @user
-      @user.reload
-       p @user
-    end
 
     it 'Should save the state of question' do
       question = create(:question)
-      questions = [question]
-      create(:topic, :questions => questions)
-      create(:option, is_valid: true, :question => question)
+      @option = create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
-      question1[:option] = question.options[0].attributes
+      question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
-      assigns(:question).attempt.solved.should be_true
+      assigns(:attempt).solved.should be_true
     end
 
     it 'Should give cookies for the topic but reduce according to attempt count' do
       question = create(:question)
-			p question
-      questions = [question]
-      create(:topic, :questions => questions)
-      create(:option, is_valid: true, :question => question)
-      @attempt = create(:attempt, :count => 1, :question => question, :user => @user)
+      @option = create(:option, is_valid: true, :question => question)
+      attempt = create(:attempt, :count => 1, :question => question, :user => @user)
       question1 = question.attributes
-      question1[:option] = question.options[0].attributes
-      xhr :get, :attempt_question, :question_id => question.id, :attempt => @attempt
+      question1["options"] = question.options[0]
+      xhr :get, :attempt_question, :question_id => question.id, :question => question1
       cookies = assigns(:attempt).cookies
-      cookies.should eq(H_COOKIES[question.question_type] / question.attempt.count.round)
+      cookies.should eq(H_COOKIES[question.question_type] / attempt.count.round)
     end
   end
 
