@@ -19,9 +19,6 @@ describe User do
     it { should validate_presence_of(:roles)}
   end
 
-  context 'Validations' do
-  end
-
   context 'Associations' do
     it { should embed_one :profile }
   end
