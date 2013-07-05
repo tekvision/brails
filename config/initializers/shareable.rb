@@ -8,12 +8,12 @@ Shareable.configure do |config|
   config.app_id='631844310160882'
   #config.send= 'false'
   #config.layout=''
-  config.show_faces='true'
+  config.show_faces=''
   #config.width='80'
   #config.action=''
   #config.font=''
   #config.colorscheme=''
-  #config.ref='http://brails.org'
+  #config.ref=''
 
   ##############
   #google_plus

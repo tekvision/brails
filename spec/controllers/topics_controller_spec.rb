@@ -117,9 +117,9 @@ describe TopicsController do
       question1 = question.attributes
       question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
-      count = assigns(:attempt).count
+      count = assigns(:attempt).increase_count
       question.reload
-      count.should eq(question.attempts.first.count)
+      count.should eq(question.attempts.first.increase_count)
     end
   end
 
@@ -138,12 +138,12 @@ describe TopicsController do
     it 'Should give cookies for the topic but reduce according to attempt count' do
       question = create(:question)
       @option = create(:option, is_valid: true, :question => question)
-      attempt = create(:attempt, :count => 1, :question => question, :user => @user)
+      attempt = create(:attempt, :increase_count => 1, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
       cookies = assigns(:attempt).cookies
-      cookies.should eq(H_COOKIES[question.question_type] / attempt.count.round)
+      cookies.should eq(H_COOKIES[question.question_type] / attempt.increase_count.round)
     end
   end
 

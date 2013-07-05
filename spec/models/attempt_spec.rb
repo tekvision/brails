@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Attempt do
   context "Fields" do
-    it { should have_field(:count).of_type(Integer)}
+    it { should have_field(:increase_count).of_type(Integer)}
     it { should have_field(:solved).of_type(Boolean)}
     it { should have_field(:cookies).of_type(Integer)}
   end
