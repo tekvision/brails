@@ -10,7 +10,7 @@ describe TopicsController do
     before(:each) do
       @level = create(:level)
       @topic = create(:topic)
-      3.times {create(:content, :topic => @topic)}
+      3.times {create(:audio_file, :topic => @topic)}
     end 
 
     it 'Should show list of contents of the topic' do
