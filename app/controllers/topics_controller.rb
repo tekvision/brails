@@ -50,13 +50,13 @@ class TopicsController < ApplicationController
     @answer = @question.options.where(:_id => params["question"]['options']).try(:first) if params['question'].present?
     @attempt = Attempt.find_or_create_by(:user => current_user, :question => @question, :topic => @question.topic)
     p @attempt
-    if @answer.is_valid and @attempt.count == 0
+    if @answer.is_valid and @attempt.increase_count == 0
       @attempt.update_attributes({solved: true, cookies: H_COOKIES[@question.question_type]})
-    elsif @answer.is_valid and @attempt.count > 0
-      cookies = (H_COOKIES[@question.question_type] / @attempt.count ).round
+    elsif @answer.is_valid and @attempt.increase_count > 0
+      cookies = (H_COOKIES[@question.question_type] / @attempt.increase_count ).round
       @attempt.update_attributes({solved: true, cookies: cookies})
     else
-      @attempt.inc(:count, 1)
+      @attempt.inc(:increase_count, 1)
     end
   end
 
