@@ -7,13 +7,8 @@ describe Attempt do
     it { should have_field(:cookies).of_type(Integer)}
   end
 
-  context "Required fields" do
-    it { should validate_presence_of(:user_id)}
-    it { should validate_presence_of(:question_id)}
-  end
-
   context "Validations" do
-    it { should validate_numericality_of(:count).to_allow(:only_integer => true)}
+    it { should validate_numericality_of(:increase_count).to_allow(:only_integer => true)}
     it { should validate_numericality_of(:cookies).to_allow(:only_integer => true)}
   end
 

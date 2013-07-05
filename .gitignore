@@ -18,4 +18,6 @@
 # Ignore gemFile.lock
 *.lock
 *.csv
+*.swp
+*.swo
 .rvmrc
