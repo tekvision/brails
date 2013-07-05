@@ -15,15 +15,6 @@ describe LevelsController do
       get :index
       assigns(:levels).should_not be_nil
     end
-
-    it 'Should show number of cookies for each level' do
-      level = create(:level)
-      4.times {create(:topic, :level => level)}
-      cookies = 0
-         level_cookies = level.calculate_cookies_count
-      get :index
-      assigns(:level_cookies).should eq(level_cookies)
-    end
   end
 
   context "Show as a action for logged in user" do
@@ -93,40 +84,4 @@ describe LevelsController do
       assigns(@level.id).should be_nil
     end
   end
-
-  context "When all topics of level are completed" do
-    before do
-      @user = create(:student)
-      sign_in :user, @user
-    end   
-
-    it 'Should un-lock the bonus round' do
-      level = create(:level)
-      topic = create(:topic, :level => level)
-      5.times { create(:attempt, :solved => true, :question => create(:question, :topic => topic))}
-      create(:bonus_round, :level => level)
-      create(:bonus_cookie, :bonus_round => level.bonus_round)
-      get :unLock_bonusRound, :id => level.id
-      assigns(:level).bonus_round.bonus_cookie.is_locked.should be_false
-    end
-  end
-
-  context "When any of the topic is not completed" do
-    before do
-      @user = create(:student)
-      sign_in :user, @user
-    end
-
-    it 'Should not un-lock the bonus round' do
-      flag = true
-      level = create(:level)
-      topic = create(:topic, :level => level)
-      5.times { create(:attempt, :solved => (flag = !flag), :question => create(:question, :topic => topic))}
-      create(:bonus_round, :level => level)
-      create(:bonus_cookie, :bonus_round => level.bonus_round)
-      get :unLock_bonusRound, :id => level.id
-      assigns(:level).bonus_round.bonus_cookie.is_locked.should be_true
-    end
-  end
-
 end

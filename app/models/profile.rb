@@ -19,5 +19,6 @@ class Profile
 
   validates :first_name, :permanent_address, :country, :state, :city, :contact_number, :presence => true
   validates :first_name,  :last_name, :format => {:with => /\A[a-zA-z]+\z/, :message => "Only letters allowed."}  
+  validates :contact_number, :numericality =>true
 end
 
