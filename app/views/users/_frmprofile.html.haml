@@ -1,3 +1,7 @@
+- content_for :javascript do
+  = javascript_include_tag 'global'
+  = stylesheet_link_tag 'calendar'
+
 = simple_form_for @user, url: profile_path(@user), method: :post, html: {:class => 'form-horizontal'} do |u|
   = u.error_notification
 
@@ -13,8 +17,10 @@
       = p.input :country
       = p.input :state
       = p.input :city
-      = p.input :date_of_birth, :label => 'Date Of Birth', :input_html => {:class => "datePicker"}
-      %img{:src =>'/images/Calendar_scheduleHS.png', :id => 'imgCalendar' }
+      %div{:class => 'intro tac'}
+        = p.input :date_of_birth, :label => 'Date Of Birth', :readonly => true
+        %a{:href => '#', :id => 'imgCalendar', :class => 'datePicker'}        
+          %img{:src =>'/images/Calendar_scheduleHS.png' }
       = p.input :disability, :collection => ["Visually impaired", "hearly handicap", "leg weekness", "muscular weekness", "Mentally retired"], :prompt => "Select disability type"
       = p.input :disability_percentage
       = p.input :facebook
@@ -26,11 +32,3 @@
       = link_to 'Skip', levels_path, class: 'btn btn-large btn-success'
     - else
       = link_to 'Cancel', profile_path(@user), class: 'btn btn-large btn-success'
-
-  :javascript
-
-      InitAccDC = [
-        '/assets/helpers.js',
-        '/assets/users.js.coffee',
-        '/assets/setup.js'
-      ];
