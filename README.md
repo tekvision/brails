@@ -19,7 +19,7 @@ Oh! Did we just tell you about the Brails initiative in reverse order or did you
 
 # Walk the Talk
 
-Siddhant Chote, CEO of Techvision, is just another programmer with an advantage - he's blind. This special ability has helped him nurture a team of great programmers, teach them everything that we have just read earlier.
+Siddhant Chothe, CEO of Techvision, is just another programmer with an advantage - he's blind. This special ability has helped him nurture a team of great programmers, teach them everything that we have just read earlier.
 He spoke recently at RubyConf India, 2013 and got a lot of accolades for his presentation about what ARIA is and why it is important.
 
 The punch line: *"Github is not accessible but Google is. So, you've still gotta make your web apps accessible!"*
