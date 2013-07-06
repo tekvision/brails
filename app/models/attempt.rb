@@ -8,4 +8,6 @@ class Attempt
   belongs_to :user
   belongs_to :question
   belongs_to :topic
+
+  validates :cookies, :increase_count, :numericality =>true
 end
