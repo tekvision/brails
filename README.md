@@ -1,19 +1,18 @@
 # Brails [![Build Status](https://travis-ci.org/nitinzd/brails.png?branch=master)](https://travis-ci.org/nitinzd/brails) [![Code Climate](https://codeclimate.com/github/nitinzd/brails.png)](https://codeclimate.com/github/nitinzd/brails) [![Coverage Status](https://coveralls.io/repos/nitinzd/brails/badge.png?branch=master)](https://coveralls.io/r/nitinzd/brails?branch=master)
 
-brails.org is a learning portal for the blind and even built by the blind (mostly). This boasts of extensive adherence to accessibility standards for the visually impaired.
+brails.org is a learning portal for the blind and even built by the blind with support from the Ruby community. This boasts of extensive adherence to accessibility standards for the visually impaired.
 
 # The origin of Brails
 
 A lot of visually impaired children do not get a decent opportunity to learn. Those who do, they have a tough time during graduation because of their visual impairment and the inability or inavailability of teachers skilled in teaching advanced vocational subjects.
-This disadvantage can easily be resolved if we have the right resources available - and what better a teacher that the internet. However, learning on the Internet entails these problems:
+This disadvantage can easily be resolved if we have the right resources available - and what better a teacher than the internet. However, learning on the Internet entails these problems:
 
 * Learning about Rails, Ruby and maybe other programming languages later. But before that ..
 * Learning about programming languages and object oriented concepts. But before that ..
 * Learning to navigate accessibility aware web portals. But before that ..
-* Learning how to use screen readers like NVDA, JAWS or ORCA to be able to "hear" web portals. But before that ..
-* Learning how to start, stop, configure sound readers. But before that ..
 * Learning how to work on a computer and navigate among applications. But before that ..
-* Learning how to touch-type, work with the sound card, etc. But before that ..
+* Learning how to use screen readers like NVDA, JAWS or ORCA to be able to "hear" applications & web portals. But before that ..
+* Learning how to start, stop, configure screen readers. But before that ..
 * Learning what computers are and why we need them!
 
 Oh! Did we just tell you about the Brails initiative in reverse order or did you 'see' that already? ;)
