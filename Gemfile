@@ -26,6 +26,8 @@ group :development, :test do
   gem 'database_cleaner'
 end
 
+# Windows system has some problem for bcrypt-ruby gem, that’s why manually mention the gem version.
+gem 'bcrypt-ruby', '3.0.1'
 gem 'jquery-rails'
 gem "devise", '2.1.2'
 gem 'devise_invitable', '1.1.2'
