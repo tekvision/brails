@@ -16,7 +16,5 @@ class Topic
   has_many :questions, dependent: :destroy
   has_many :attempts
   accepts_nested_attributes_for :contents, allow_destroy: true
-  accepts_nested_attributes_for :questions, allow_destroy: true
-#  accepts_nested_attributes_for :options, allow_destroy: true
 end
 

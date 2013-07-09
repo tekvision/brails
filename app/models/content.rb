@@ -10,6 +10,7 @@ class Content
 
   belongs_to :topic
   has_many :questions, dependent: :destroy
+  accepts_nested_attributes_for :questions, allow_destroy: true
 
   #validations
    validates :title, :content_body, :sq_no, :topic_id, :presence => true   
