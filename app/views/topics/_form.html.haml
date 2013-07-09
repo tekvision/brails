@@ -1,3 +1,4 @@
+= @topic._id
 = simple_nested_form_for [@level, @topic], html:  {:class => 'form-horizontal'} do |f|
   = f.error_notification
 
@@ -31,7 +32,6 @@
             = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
             = question.input :sq_no,  :label => "Sequence number"
             = question.input :query
-            = question.input :topic_id, :as => :hidden, :input_html => {:value => @topic.id }
             = question.simple_fields_for :options do |option|
               %h6 Option
               = option.input :label
