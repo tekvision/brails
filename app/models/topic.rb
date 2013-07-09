@@ -12,8 +12,8 @@ class Topic
   attr_accessible :title,  :description, :contents_attributes, :questions_attributes, :level_id
 
   belongs_to :level
-  has_many :contents, dependent: :destroy
-  has_many :questions, dependent: :destroy
+  has_many :contents, dependent: :destroy, order: 'sq_no ASC'
+  has_many :questions, dependent: :destroy, order: 'sq_no ASC' 
   has_many :attempts
   accepts_nested_attributes_for :contents, allow_destroy: true
 end
