@@ -14,7 +14,5 @@ class Content
   #validations
    validates :title, :content_body, :sq_no, :topic_id, :presence => true   
    validates :sq_no, :numericality => {:only_integer => true}
-#   validates_attachment :topic_content, :presence => true, :content_type => { :content_type => 'audio/mp3'}
-
+   validates_attachment :topic_content, :presence => true
 end
-

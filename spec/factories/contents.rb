@@ -17,7 +17,7 @@ FactoryGirl.define do
   
   factory :vidio_file, :parent => "content" do
     topic_content_file_name {'programming_basic.mp4'}
-    topic_content_content_type { 'vidio/mp4' }
+    topic_content_content_type { 'video/mp4' }
     topic_content_file_size { 1024}
   end
 

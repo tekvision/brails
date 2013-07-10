@@ -17,8 +17,7 @@ class User
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
 
-  validates_presence_of :email
-  validates_presence_of :encrypted_password
+  validates_presence_of :email, :encrypted_password, :roles
   attr_accessible :email, :roles, :password, :password_confirmation
   
   ## Recoverable

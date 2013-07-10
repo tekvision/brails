@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require mediaelement_rails
+//= require Acc.DC.API
+//= require calendar_generator.min
+//= require calendar_generator
+//= require setup
 //= require_directory .
 
   $(document).ready(function() {
