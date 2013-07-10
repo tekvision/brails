@@ -2,18 +2,18 @@ class LevelsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @levels = Level.all
+    @levels = Level.all.order_by("level_number ASC")
   end
 
   def levels_list
-    @levels = Level.all
+    @levels = Level.all.order_by("level_number ASC")
   end
 
   def show
     @count = 0
     @level = Level.find(params[:id])
     @bonus = @level.bonus_round
-    @level_cookies = calculate_cookies(@level.id)
+    @level_coins = calculate_coins(@level.id)
     @topics = @level.topics
   end
 
@@ -61,18 +61,22 @@ class LevelsController < ApplicationController
     end
   end
 
-  def calculate_cookies(level_id)
+  def calculate_coins(level_id)
     level = Level.find_by(:id => level_id)    
-    level_cookies = 0
+    level_coins = 0
     topics = level.topics
     topics.each do |topic|
       questions = topic.questions
-      topic_cookies = 0
+      topic_coins = 0
       questions.each do |question|
-        topic_cookies = topic_cookies + H_COOKIES[question.question_type]
+        topic_coins = topic_coins + H_COOKIES[question.question_type]
       end
+<<<<<<< HEAD
       level_cookies = level_cookies + topic_cookies
+=======
+      level_coins = level_coins + topic_coins          
+>>>>>>> e0843fc495c89cdc9bbc343265681fd98f2caaee
     end
-    return level_cookies
+    return level_coins
   end
 end

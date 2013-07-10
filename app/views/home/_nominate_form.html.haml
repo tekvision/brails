@@ -1,12 +1,12 @@
 = simple_form_for :nominate, html: {:class => 'form-horizontal'}  do |f|
   = @nominate.errors.full_messages.to_sentence
   .form-inputs
-    = f.input :name 
-    = f.input :email, required: false 
-    = f.input :mobile 
+    = f.input :name
+    = f.input :email, required: false
+    = f.input :mobile
     = f.input :phone_number, required: false
     = f.input :address, as: :text, :input_html => {:cols => 20, :rows => 5}
-    = f.input :description, as: :text, required: false , :input_html => {:cols => 20, :rows => 5} 
+    = f.input :description, as: :text, :input_html => {:cols => 20, :rows => 5}, required: false 
 
   .form-actions
     = f.submit "Nominate", class: 'btn-success'

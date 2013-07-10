@@ -6,6 +6,6 @@ FactoryGirl.define do
     query 'What is Ruby?'
     question_type "Hard"
     association :bonus_round
-    association :topic
+    association :content
   end
 end
