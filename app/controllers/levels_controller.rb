@@ -10,7 +10,9 @@ class LevelsController < ApplicationController
   end
 
   def show
+    @count = 0
     @level = Level.find(params[:id])
+    @bonus = @level.bonus_round
     @level_cookies = calculate_cookies(@level.id)
     @topics = @level.topics
   end
@@ -69,7 +71,7 @@ class LevelsController < ApplicationController
       questions.each do |question|
         topic_cookies = topic_cookies + H_COOKIES[question.question_type]
       end
-      level_cookies = level_cookies + topic_cookies          
+      level_cookies = level_cookies + topic_cookies
     end
     return level_cookies
   end

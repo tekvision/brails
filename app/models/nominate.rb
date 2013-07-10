@@ -9,9 +9,7 @@ class Nominate
   field :description, type: String
 
   #validation
-  validates :name, :mobile, :address, :email ,  :presence => true
+  validates :name, :mobile, :address, :presence => true
   validates :mobile , :numericality => "integer" 
   validates :email , :uniqueness => true
-  validates :email, :format => { :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i ,
-                                 :message => "is not valid"}
 end

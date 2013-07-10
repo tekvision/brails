@@ -27,12 +27,38 @@
                 %h2.delta= topic.title
                 %p.topic-description= topic.description  
                 %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
-          .span3
-            -# uses right and wrong classes to toggle
-            - if Attempt.where(:user => current_user, :topic => topic).size == 0
-              .topic-score.wrong
+        .span3
+          - @topics.each do |newtopic|
+            - if newtopic.questions.count == Attempt.where(:user => current_user, :topic => newtopic,
+                                                                :solved => true).collect(&:solved).size           	      
+              .topic-score.right
+                - @count = @count + newtopic.questions.collect { |question| H_COOKIES[question.question_type] }.inject(:+).to_i 
             - else
-              - if topic.questions.count == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size           	      
-                .topic-score.right
-              - else
-                .topic-score.wrong
+              .topic-score.wrong
+             
+      - if @level_cookies == @count
+        %button{:class => "btn-bonus-round unlocked",:href => "#", :onclick => "document.getElementById('bonus_round').style.display = 'block';"} Bonus Round Unlocked
+      - else
+        %button{:disabled => "true", :class => "btn-bonus-round"} Bonus Round Locked
+      #bonus_round{:style => "display: none"}
+        BONUS ROUND QUESTIONS
+        - @bonus.questions.each do |question|
+        - attempt = Attempt.where(:question => question, :user => current_user).first if current_user.attempts.count     > 0
+          - flag = false
+          - if attempt != nil
+            - flag = true if attempt.solved == true
+          - if flag == false
+            .span.question{:id => "q_#{question.id}"}
+              QUESTION:
+              = question.query
+              %br
+              %br
+              = simple_form_for question, :url => attempt_question_path(question), remote: true do |f|
+                .control-group
+                  .controls
+                    OPTIONS:
+                    %br
+                    = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first,     :last
+                    = f.submit 'Submit', :class => 'btn'
+          %p{:id => "answer_#{question.id}"}
+

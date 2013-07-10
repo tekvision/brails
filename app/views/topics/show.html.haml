@@ -12,11 +12,14 @@
         .row
           .tabbable.tabs-left.topic-details.colored-block{:id => "tabpanel", :role => "application"}
             %ul.nav.nav-tabs{:role => "tablist"}
-              %li.tab.active{:id => "t_tab", :role => "tab", "aria-owns" => "t_#{content.id.to_s}", "aria-selected" => "true", "aria-controls" => "t_#{content.id.to_s}"}
+              %li.tab.active{:id => "t_tab", :role => "tab", "aria-owns" => "t_#{content.id.to_s}",
+                              "aria-selected" => "true", "aria-controls" => "t_#{content.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#t_#{content.id.to_s}"} Transcript
-              %li.tab{:id => "s_tab", :role => "tab", "aria-owns" => "s_#{content.id.to_s}", "aria-controls" => "s_#{content.id.to_s}"}
+              %li.tab{:id => "s_tab", :role => "tab", "aria-owns" => "s_#{content.id.to_s}",
+                                                      "aria-controls" => "s_#{content.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#s_#{content.id.to_s}"} Summary
-              %li.tab{:id => "test_tab", :role => "tab", "aria-owns" => "test_#{@topic.id.to_s}", "aria-controls" => "test_#{@topic.id.to_s}"}
+              %li.tab{:id => "test_tab", :role => "tab", "aria-owns" => "test_#{@topic.id.to_s}",
+                      "aria-controls" => "test_#{@topic.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#test_#{@topic.id.to_s}"} Take test
             .tab-content
               .tab-pane.transcript.active{:id => "t_#{content.id.to_s}", :role => "tabpanel", "aria-labelledby" => "t_tab"}
