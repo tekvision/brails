@@ -19,4 +19,12 @@ class Question
   validates :sq_no, :query,  :question_type, :presence => true
   validates :sq_no,  :numericality => {:only_integer => true, :greater_than => 0}
 
+  before_create :setTopic_id
+
+  private
+
+  def setTopic_id
+    self.topic = self.content.topic
+  end
+
 end

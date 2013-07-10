@@ -23,28 +23,28 @@
           .controls= content.file_field :topic_content
           %br
           = content.input :transcript, as: :text, :input_html => {:rows => 2}
-          .pull-right= content.link_to_remove "Remove this content"
           %br
           %hr
-        = f.link_to_add "Add more contents", :contents, :class => 'btn btn-info'
-      .tab-pane#question
-        = f.simple_fields_for :questions do |question|
-          %h6 New Question
-          = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
-          = question.input :sq_no,  :label => "Sequence number"
-          = question.input :query
-          = question.simple_fields_for :options do |option|
-            %h6 Option
-            = option.input :label
-            = option.input :is_valid, as: :boolean
+
+          = content.simple_fields_for :questions do |question|
+            %h6 New Question
+            = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
+            = question.input :sq_no,  :label => "Sequence number"
+            = question.input :query
+            = question.simple_fields_for :options do |option|
+              %h6 Option
+              = option.input :label
+              = option.input :is_valid, as: :boolean
+              %br
+              .pull-right= option.link_to_remove "Remove this option"
+              %hr
+            = question.link_to_add "Add more option", :options, :class => 'pull-right'
             %br
-            .pull-right= option.link_to_remove "Remove this option"
+            .pull-right= question.link_to_remove "Remove this question"
             %hr
-          = question.link_to_add "Add more option", :options, :class => 'pull-right'
-          %br
-          .pull-right= question.link_to_remove "Remove this question"
-          %hr
-        = f.link_to_add "Add more questions", :questions, :class => 'btn btn-info'
+          = content.link_to_add "Add more questions", :questions, :class => 'btn btn-info'
+          .pull-right= content.link_to_remove "Remove this content"
+        = f.link_to_add "Add more contents", :contents, :class => 'btn btn-info'
 
   .form-actions
     = f.button :submit, class: 'btn-success'
