@@ -6,7 +6,7 @@ describe Profile do
       it { should have_field(:first_name).of_type(String)}
       it {should have_field(:last_name).of_type(String)}
       it {should have_field(:nick_name).of_type(String)}
-      it {should have_field(:permanent_address).of_type(String)}
+      it {should have_field(:correspondence_address).of_type(String)}
       it {should have_field(:country).of_type(String)}
       it {should have_field(:state).of_type(String)}
       it {should have_field(:city).of_type(String)}
@@ -20,7 +20,7 @@ describe Profile do
   
   context 'Required fields' do
     it { should validate_presence_of(:first_name)}
-    it { should validate_presence_of(:permanent_address)}
+    it { should validate_presence_of(:correspondence_address)}
     it { should validate_presence_of(:country)}
     it { should validate_presence_of(:state)}
     it { should validate_presence_of(:city)}

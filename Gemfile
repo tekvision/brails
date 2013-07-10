@@ -24,8 +24,12 @@ group :development, :test do
   gem 'shoulda'
   gem 'mongoid-rspec'
   gem 'database_cleaner'
+  gem 'spork-rails'
+  gem 'guard-rspec'
 end
 
+# Windows system has some problem for bcrypt-ruby gem, that’s why manually mention the gem version.
+gem 'bcrypt-ruby', '3.0.1'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.1'
 gem "devise"

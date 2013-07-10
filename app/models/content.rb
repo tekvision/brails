@@ -9,7 +9,8 @@ class Content
   field :transcript, type: String 
 
   belongs_to :topic
-  has_many :questions, dependent: :destroy
+  has_many :questions, dependent: :destroy, order: 'sq_no ASC'
+  accepts_nested_attributes_for :questions, allow_destroy: true
 
   #validations
    validates :title, :content_body, :sq_no, :topic_id, :presence => true   

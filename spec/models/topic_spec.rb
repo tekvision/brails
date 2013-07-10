@@ -21,6 +21,5 @@ describe Topic do
 
   context "Nested attributes" do
     it { should accept_nested_attributes_for(:contents)}
-    it { should accept_nested_attributes_for(:questions)}
   end
 end
