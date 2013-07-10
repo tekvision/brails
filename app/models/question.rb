@@ -22,8 +22,9 @@ class Question
   before_create :setTopic_id
 
   private
+
   def setTopic_id
-    self.topic_id = self.content.topic_id
+    self.topic = self.content.topic
   end
 
 end

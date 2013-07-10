@@ -4,13 +4,13 @@ describe TopicsController do
   before(:each) do
       @user = create(:user)
       sign_in @user
+      @level = create(:level)
   end
   
   describe "GET show a topic" do
     before(:each) do
-      @level = create(:level)
       @topic = create(:topic)
-      3.times {create(:audio_file, :topic => @topic)}
+      3.times {create(:content, :topic => @topic)}
     end 
 
     it 'Should show list of contents of the topic' do
@@ -28,7 +28,6 @@ describe TopicsController do
 
   context 'Only admin can create the topic' do
     before do
-      @level = create(:level)
       @user = create(:admin)
       sign_in :user, @user
     end
@@ -41,8 +40,6 @@ describe TopicsController do
 
     it 'should create new topic' do
       topic = build(:topic, :level => @level )
-      content = build(:content, :topic => topic )
-      question = build(:question, :topic => topic)
       post :create, {:topic => topic.attributes, :level_id => @level.id}
       topic = assigns(:topic)
       topic.persisted?.should be_true
@@ -52,7 +49,6 @@ describe TopicsController do
   context 'Only admin can Edit or Update topic' do
     before(:each) do
       @topic = create(:topic)
-      @level = create(:level)
       @user = create(:admin)
       sign_in :user, @user
     end
@@ -79,7 +75,6 @@ describe TopicsController do
     
     it 'Should delete' do
       @topic = create(:topic)
-      @level = create(:level)
       expect{
         delete :destroy, level_id: @level.id, id: @topic
       }.to change(Topic,:count).by(-1)
@@ -98,14 +93,14 @@ describe TopicsController do
       assigns(:attempt).solved.should be_true
     end
 
-    it 'Should give cookies for the topic' do
+    it 'Should give coins for the topic' do
       question = create(:question)
       @option = create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
-      assigns(:attempt).cookies.should  eq(H_COOKIES[question1["question_type"]])
+      assigns(:attempt).coins.should  eq(H_COOKIES[question1["question_type"]])
     end
   end
 
@@ -135,15 +130,15 @@ describe TopicsController do
       assigns(:attempt).solved.should be_true
     end
 
-    it 'Should give cookies for the topic but reduce according to attempt count' do
+    it 'Should give coins for the topic but reduce according to attempt count' do
       question = create(:question)
       @option = create(:option, is_valid: true, :question => question)
       attempt = create(:attempt, :increase_count => 1, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
       xhr :get, :attempt_question, :question_id => question.id, :question => question1
-      cookies = assigns(:attempt).cookies
-      cookies.should eq(H_COOKIES[question.question_type] / attempt.increase_count.round)
+      coins = assigns(:attempt).coins
+      coins.should eq(H_COOKIES[question.question_type] / attempt.increase_count.round)
     end
   end
 
