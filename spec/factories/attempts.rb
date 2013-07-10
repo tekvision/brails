@@ -2,10 +2,9 @@
 
 FactoryGirl.define do
   factory :attempt do
-    count '0'
+    increase_count '0'
     solved 'true'
-    cookies '2'
-
+    coins '2'
     association :user
     association :question
     association :topic

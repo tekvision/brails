@@ -5,8 +5,7 @@ class Profile
   field :first_name, type: String
   field :last_name, type: String
   field :nick_name, type: String
-  field :permanent_address, type: String
-  field :local_address, type: String
+  field :correspondence_address, type: String
   field :country, type: String
   field :state, type: String
   field :city, type: String
@@ -17,7 +16,8 @@ class Profile
   field :disability, type: String
   field :disability_percentage, type: String
 
-  validates :first_name, :permanent_address, :country, :state, :city, :contact_number, :presence => true
+  validates :first_name, :correspondence_address, :country, :state, :city, :contact_number, :presence => true
   validates :first_name,  :last_name, :format => {:with => /\A[a-zA-z]+\z/, :message => "Only letters allowed."}  
+  validates :contact_number, :numericality =>true
 end
 

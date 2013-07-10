@@ -8,9 +8,9 @@
     .span3.level-scoring
       .score-wrapper
         %ul.unstyled.score.large
-          - @level_cookies.times do |count|
-            %li.score-indicator{ :class => "#{'complete' if count < @topics.collect{|topic| won_topic_cookies(topic)}.inject(:+)}"}
-        %span.delta #{@level_cookies} of #{@topics.collect{|topic| won_topic_cookies(topic)}.inject(:+)} coins to win
+          - @level_coins.times do |count|
+            %li.score-indicator{ :class => "#{'complete' if count < @topics.collect{|topic| won_topic_coins(topic)}.inject(:+)}"}
+        %span.delta #{@level_coins} of #{@topics.collect{|topic| won_topic_coins(topic)}.inject(:+)} coins to win
     .span9
       - @topics.each do |topic|
         .row-fluid.level-topic-wrapper.colored-block
@@ -19,9 +19,9 @@
               .span3
                 .score-wrapper
                   %ul.unstyled.score
-                    - topic_cookies = topic.questions.collect { |question| H_COOKIES[question.question_type] }.inject(:+).to_i
-                    - topic_cookies.times do |count|
-                      %li.score-indicator{ :class => "#{'complete' if count < won_topic_cookies(topic)}"}
+                    - topic_coins = topic.questions.collect { |question| H_COOKIES[question.question_type] }.inject(:+).to_i
+                    - topic_coins.times do |count|
+                      %li.score-indicator{ :class => "#{'complete' if count < won_topic_coins(topic)}"}
 
               .span9.topic-details
                 %h2.delta= topic.title
@@ -36,3 +36,4 @@
                 .topic-score.right
               - else
                 .topic-score.wrong
+  = render_shareable :url => request.url

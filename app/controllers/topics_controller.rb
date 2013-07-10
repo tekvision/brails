@@ -15,7 +15,8 @@ class TopicsController < ApplicationController
     @level = Level.find(params[:level_id])
     @topic = @level.topics.build
     @topic.contents.build
-    @topic.questions.build
+    question = @topic.questions.build
+    question.options.build
     render layout: 'admin'
   end
 
@@ -49,13 +50,13 @@ class TopicsController < ApplicationController
     @answer = @question.options.where(:_id => params["question"]['options']).try(:first) if params['question'].present?
     @attempt = Attempt.find_or_create_by(:user => current_user, :question => @question, :topic => @question.topic)
     p @attempt
-    if @answer.is_valid and @attempt.count == 0
-      @attempt.update_attributes({solved: true, cookies: H_COOKIES[@question.question_type]})
-    elsif @answer.is_valid and @attempt.count > 0
-      cookies = (H_COOKIES[@question.question_type] / @attempt.count ).round
-      @attempt.update_attributes({solved: true, cookies: cookies})
+    if @answer.is_valid and @attempt.increase_count == 0
+      @attempt.update_attributes({solved: true, coins: H_COOKIES[@question.question_type]})
+    elsif @answer.is_valid and @attempt.increase_count > 0
+      coins = (H_COOKIES[@question.question_type] / @attempt.increase_count ).round
+      @attempt.update_attributes({solved: true, coins: coins})
     else
-      @attempt.inc(:count, 1)
+      @attempt.inc(:increase_count, 1)
     end
   end
 

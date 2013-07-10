@@ -40,4 +40,4 @@
     .container.main-container{:role => "main", :id => "main"}
       = yield
     = javascript_include_tag "application"
-
+    =  yield(:javascript) if content_for?(:javascript)
