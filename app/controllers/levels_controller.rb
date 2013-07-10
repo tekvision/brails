@@ -71,11 +71,7 @@ class LevelsController < ApplicationController
       questions.each do |question|
         topic_coins = topic_coins + H_COOKIES[question.question_type]
       end
-<<<<<<< HEAD
-      level_cookies = level_cookies + topic_cookies
-=======
       level_coins = level_coins + topic_coins          
->>>>>>> e0843fc495c89cdc9bbc343265681fd98f2caaee
     end
     return level_coins
   end
