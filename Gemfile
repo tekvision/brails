@@ -27,8 +27,8 @@ group :development, :test do
 end
 
 gem 'jquery-rails'
-gem "devise", '2.1.2'
-gem 'devise_invitable', '1.1.2'
+gem 'bcrypt-ruby', '~> 3.0.1'
+gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem 'mongoid_slug'

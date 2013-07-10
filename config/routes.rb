@@ -6,7 +6,6 @@ Brails::Application.routes.draw do
     :sign_out => 'logout', 
     :password => 'secret', 
     :confirmation => 'verification',
-    :controllers => { :invitations => 'devise/invitations' },
     :root_path => 'home#index'
   }
 
