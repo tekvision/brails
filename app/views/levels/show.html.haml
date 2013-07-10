@@ -36,7 +36,7 @@
             - else
               .topic-score.wrong
              
-      - if @level_cookies == @count
+      - if @level_coins == @count
         %button{:class => "btn-bonus-round unlocked",:href => "#", :onclick => "document.getElementById('bonus_round').style.display = 'block';"} Bonus Round Unlocked
       - else
         %button{:disabled => "true", :class => "btn-bonus-round"} Bonus Round Locked

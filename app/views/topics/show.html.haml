@@ -49,9 +49,6 @@
                               = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
                               = f.submit 'Submit', :class => 'btn'
                     %p{:id => "answer_#{question.id}"}
-<<<<<<< HEAD
         %br             
         .pull-right= link_to "BACK", level_path(@level), :class => "btn"
-=======
->>>>>>> e0843fc495c89cdc9bbc343265681fd98f2caaee
   = render_shareable :url => request.url
