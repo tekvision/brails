@@ -31,7 +31,6 @@ end
 # Windows system has some problem for bcrypt-ruby gem, that’s why manually mention the gem version.
 gem 'bcrypt-ruby', '3.0.1'
 gem 'jquery-rails'
-gem 'bcrypt-ruby', '~> 3.0.1'
 gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
