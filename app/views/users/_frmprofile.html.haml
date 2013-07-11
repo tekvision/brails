@@ -16,10 +16,11 @@
       = p.input :country
       = p.input :state
       = p.input :city
+      = p.input :disability, :collection => ["Visually impaired", "Hearing impairment", "physically handicap",
+                                             "Mentally retarded"], :prompt => "Select disability type"
       = p.input :date_of_birth, :label => 'Date Of Birth', :readonly => true
       %a{:href => '#', :id => 'imgCalendar', :class => 'datePicker'}
         %img{:src =>'/images/Calendar_scheduleHS.png', :alt => 'Pick date from calendar' }
-      = p.input :disability, :collection => ["Visually impaired", "hearly handicap", "leg weekness", "muscular weekness", "Mentally retired"], :prompt => "Select disability type"
       = p.input :disability_percentage
       = p.input :facebook
       = p.input :twitter

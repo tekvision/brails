@@ -1,6 +1,5 @@
 = simple_nested_form_for [@level, @topic], html:  {:class => 'form-horizontal'} do |f|
-  = f.error_notification
-
+  = @topic.errors.full_messages.to_sentence
   .form-inputs
     = f.hidden_field :level_id
     = f.input :title
@@ -23,16 +22,20 @@
           = content.input :transcript, as: :text, :input_html => {:rows => 2}
           %br
           %hr
-
-          = content.simple_fields_for :questions do |question|
-            %h6 New Question
-            = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type", :input_html => {:id => "ddr_question_type"}
-            = question.input :sq_no,  :label => "Sequence number"
-            = question.input :query
-            = question.simple_fields_for :options do |option|
-              %h6 Option
-              = option.input :label
-              = option.input :is_valid, as: :boolean
+        = f.link_to_add "Add more contents", :contents, :class => 'btn btn-info'
+      .tab-pane#question
+        = f.simple_fields_for :questions do |question|
+          %h6 New Question
+          NOTE: minimum 3 options required
+          = question.input :question_type, :collection => ["Simple", "Medium", "Hard"],
+                           :prompt => "Select question type",
+                           :input_html => {:id => "ddr_question_type"}
+          = question.input :sq_no,  :label => "Sequence number"
+          = question.input :query
+          = question.simple_fields_for :options do |option|
+            %h6 Option
+            = option.input :label
+            = option.input :is_valid, as: :boolean
               %br
               .pull-right= option.link_to_remove "Remove this option"
               %hr

@@ -7,5 +7,9 @@ FactoryGirl.define do
     question_type "Hard"
     association :bonus_round
     association :content
+    after(:build) do |question| 
+      FactoryGirl.create(:correct, :question => question)
+      2.times {|i| FactoryGirl.create(:incorrect, :question => question)}
+    end
   end
 end

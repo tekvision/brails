@@ -12,9 +12,11 @@
         .row
           .tabbable.tabs-left.topic-details.colored-block{:id => "tabpanel", :role => "application"}
             %ul.nav.nav-tabs{:role => "tablist"}
-              %li.tab.active{:id => "t_tab", :role => "tab", "aria-owns" => "t_#{content.id.to_s}", "aria-selected" => "true", "aria-controls" => "t_#{content.id.to_s}"}
+              %li.tab.active{:id => "t_tab", :role => "tab", "aria-owns" => "t_#{content.id.to_s}",
+                              "aria-selected" => "true", "aria-controls" => "t_#{content.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#t_#{content.id.to_s}"} Transcript
-              %li.tab{:id => "s_tab", :role => "tab", "aria-owns" => "s_#{content.id.to_s}", "aria-controls" => "s_#{content.id.to_s}"}
+              %li.tab{:id => "s_tab", :role => "tab", "aria-owns" => "s_#{content.id.to_s}",
+                                                      "aria-controls" => "s_#{content.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#s_#{content.id.to_s}"} Summary
               %li.tab{:id => "test_tab", :role => "tab", "aria-owns" => "test_#{content.id.to_s}", "aria-controls" => "test_#{content.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#test_#{content.id.to_s}"} Take test
@@ -47,4 +49,6 @@
                               = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
                               = f.submit 'Submit', :class => 'btn'
                     %p{:id => "answer_#{question.id}"}
+        %br             
+        .pull-right= link_to "BACK", level_path(@level), :class => "btn"
   = render_shareable :url => request.url

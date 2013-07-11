@@ -85,7 +85,6 @@ describe TopicsController do
 
     it 'Should save the state of question' do
       question = create(:question)
-      @option = create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
@@ -95,7 +94,6 @@ describe TopicsController do
 
     it 'Should give coins for the topic' do
       question = create(:question)
-      @option = create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
@@ -107,7 +105,6 @@ describe TopicsController do
   context "When attempting the question and is not solved" do
     it 'Should increase attempt count by one' do
       question = create(:question)
-      @option = create(:correct, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
@@ -122,7 +119,6 @@ describe TopicsController do
 
     it 'Should save the state of question' do
       question = create(:question)
-      @option = create(:option, is_valid: true, :question => question)
       create(:attempt, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
@@ -132,7 +128,6 @@ describe TopicsController do
 
     it 'Should give coins for the topic but reduce according to attempt count' do
       question = create(:question)
-      @option = create(:option, is_valid: true, :question => question)
       attempt = create(:attempt, :increase_count => 1, :question => question, :user => @user)
       question1 = question.attributes
       question1["options"] = question.options[0]
