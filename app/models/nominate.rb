@@ -10,5 +10,6 @@ class Nominate
 
   #validation
   validates :name, :mobile, :address, :presence => true
-
+  validates :mobile , :numericality => "integer" 
+  validates :email , :uniqueness => true
 end
