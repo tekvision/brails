@@ -23,7 +23,6 @@
       = p.input :disability_percentage
       = p.input :facebook
       = p.input :twitter
-      %a{:class=>"datePicker", :id=>"dateLnk", :href=>"#"}Calendar(Basic with standard selection)
     .form-actions
     = u.submit"Submit", class: 'btn btn-large btn-success'
     - if current_user.profile.nil?

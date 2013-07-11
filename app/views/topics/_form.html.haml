@@ -9,8 +9,6 @@
     %ul.nav.nav-tabs
       %li.active
         %a{ href: "#content", 'data-toggle' => "tab"}Content
-      %li
-        %a{ href:"#question", 'data-toggle' => "tab"}Question
     .tab-content.topic-form
       .tab-pane.active#content
         = f.simple_fields_for :contents do |content|
