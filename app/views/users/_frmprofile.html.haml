@@ -19,12 +19,11 @@
       = p.input :disability, :collection => ["Visually impaired", "Hearing impairment", "physically handicap",
                                              "Mentally retarded"], :prompt => "Select disability type"
       = p.input :date_of_birth, :label => 'Date Of Birth', :readonly => true
-      %a{:href => '#', :id => 'imgCalendar', :class => 'datePicker'}        
+      %a{:href => '#', :id => 'imgCalendar', :class => 'datePicker'}
         %img{:src =>'/images/Calendar_scheduleHS.png', :alt => 'Pick date from calendar' }
       = p.input :disability_percentage
       = p.input :facebook
       = p.input :twitter
-      %a{:class=>"datePicker", :id=>"dateLnk", :href=>"#"}Calendar(Basic with standard selection)
     .form-actions
     = u.submit"Submit", class: 'btn btn-large btn-success'
     - if current_user.profile.nil?

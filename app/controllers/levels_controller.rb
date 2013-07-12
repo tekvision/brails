@@ -13,7 +13,6 @@ class LevelsController < ApplicationController
     @count = 0
     @level = Level.find(params[:id])
     @bonus = @level.bonus_round
-    @level_coins = calculate_coins(@level.id)
     @topics = @level.topics
   end
 
@@ -62,17 +61,13 @@ class LevelsController < ApplicationController
   end
 
   def calculate_coins(level_id)
-    level = Level.find_by(:id => level_id)    
-    level_coins = 0
-    topics = level.topics
-    topics.each do |topic|
-      questions = topic.questions
-      topic_coins = 0
-      questions.each do |question|
-        topic_coins = topic_coins + H_COOKIES[question.question_type]
+    @level = Level.find_by(:id => level_id)
+    @level.topics.includes(:contents).inject(0) do |count, topic|
+      count + topic.contents.inject(0) do |count, content|
+        count + content.questions.inject(0) do |count, question|
+          return count + H_COOKIES[question.question_type]
+	end
       end
-      level_coins = level_coins + topic_coins          
     end
-    return level_coins
   end
 end

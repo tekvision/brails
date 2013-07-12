@@ -9,7 +9,6 @@ class Question
 
 
   has_many :options, dependent: :destroy
-  belongs_to :topic
   belongs_to :bonus_round
   belongs_to :content
   has_many :attempts
@@ -19,13 +18,5 @@ class Question
   validates :sq_no, :query,  :question_type, :presence => true
   validates :sq_no,  :numericality => {:only_integer => true, :greater_than => 0}
   validates :options ,:length => {:minimum => 3 , :message => "minimum 3 options required"}
-
-  before_create :setTopic_id
-
-  private
-
-  def setTopic_id
-    self.topic = self.content.topic
-  end
 
 end

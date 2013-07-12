@@ -5,6 +5,7 @@
     = f.input :level_number
     = f.input :level_name
     = f.simple_fields_for :bonus_round do |b|
+      = b.input :level_id, :as => :hidden, :input_html => {:value => "#{@level.id}" }
       = b.link_to_add "Add bonus round questions", :questions
       = b.simple_fields_for :questions do |question|
         = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type"

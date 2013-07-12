@@ -5,6 +5,11 @@
         .row
           .brand
             = link_to "Brails", "/"
+          - if user_signed_in?
+            %ul.nav  
+              %li
+                - if current_user.roles == "Admin"
+                  = link_to "Level", levels_list_path
           .span5.pull-right
             %ul.nav.pull-right
               %li
