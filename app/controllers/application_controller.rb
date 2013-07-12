@@ -7,10 +7,18 @@ class ApplicationController < ActionController::Base
   #TODO: uncomment during development
   before_filter :authenticate_user!
 
-  helper_method :won_topic_coins
+  helper_method :won_topic_coins, :topic_calculate_coins
 
   def won_topic_coins(topic)
     topic.attempts.where(:user => current_user).collect{|attempt| attempt.coins}.inject(:+) || 0
+  end
+
+  def topic_calculate_coins(topic)
+    topic.contents.includes(:questions).inject(0) do |count, content|
+      count + content.questions.inject(0) do |count, question|
+        count + H_COOKIES[question.question_type]
+      end
+    end
   end
 
   def after_sign_in_path_for(resource)

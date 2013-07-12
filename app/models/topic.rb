@@ -13,7 +13,7 @@ class Topic
 
   belongs_to :level
   has_many :contents, dependent: :destroy, order: 'sq_no ASC'
-  has_many :questions, dependent: :destroy, order: 'sq_no ASC' 
+#  has_many :questions, dependent: :destroy, order: 'sq_no ASC' 
   has_many :attempts
   accepts_nested_attributes_for :contents, allow_destroy: true
 end

@@ -13,7 +13,6 @@ class LevelsController < ApplicationController
     @count = 0
     @level = Level.find(params[:id])
     @bonus = @level.bonus_round
-    @level_coins = calculate_coins(@level.id)
     @topics = @level.topics
   end
 
