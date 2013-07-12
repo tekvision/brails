@@ -14,8 +14,8 @@ class TopicsController < ApplicationController
   def new
     @level = Level.find(params[:level_id])
     @topic = @level.topics.build
-    @topic.contents.build
-    question = @topic.questions.build
+    @content = @topic.contents.build
+    question = @content.questions.build
     question.options.build
     render layout: 'admin'
   end
@@ -49,7 +49,6 @@ class TopicsController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer = @question.options.where(:_id => params["question"]['options']).try(:first) if params['question'].present?
     @attempt = Attempt.find_or_create_by(:user => current_user, :question => @question, :topic => @question.content.topic)
-    p @attempt
     if @answer.is_valid and @attempt.increase_count == 0
       @attempt.update_attributes({solved: true, coins: H_COOKIES[@question.question_type]})
     elsif @answer.is_valid and @attempt.increase_count > 0
