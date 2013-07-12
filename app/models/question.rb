@@ -20,5 +20,4 @@ class Question
   validates :sq_no,  :numericality => {:only_integer => true, :greater_than => 0}
   validates :options ,:length => {:minimum => 3 , :message => "minimum 3 options required"}
 
-
 end

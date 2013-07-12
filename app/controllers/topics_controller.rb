@@ -14,8 +14,8 @@ class TopicsController < ApplicationController
   def new
     @level = Level.find(params[:level_id])
     @topic = @level.topics.build
-    @topic.contents.build
-    question = @topic.questions.build
+    @content = @topic.contents.build
+    question = @content.questions.build
     question.options.build
     render layout: 'admin'
   end
