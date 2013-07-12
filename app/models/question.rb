@@ -9,7 +9,6 @@ class Question
 
 
   has_many :options, dependent: :destroy
-#  belongs_to :topic
   belongs_to :bonus_round
   belongs_to :content
   has_many :attempts
