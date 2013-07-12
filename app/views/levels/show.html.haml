@@ -30,11 +30,11 @@
           .span3
             - if topic_questions_count(topic) == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size          
               .topic-score.right
-              - @count = @count + topic_calculate_coins(topic).to_i 
+              - @count = @count + 1 
             - else
               .topic-score.wrong
              
-      - if @level_coins == @count
+      - if @level.topics.count == @count
         %button{:class => "btn-bonus-round unlocked",:href => "#", :onclick => "document.getElementById('bonus_round').style.display = 'block';"} Bonus Round Unlocked
       - else
         %button{:disabled => "true", :class => "btn-bonus-round"} Bonus Round Locked
