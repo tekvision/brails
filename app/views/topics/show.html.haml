@@ -32,19 +32,20 @@
                 %p 
                   - content.questions.each_index do |index|
                     - question = content.questions[index]
+                    .span.question{:id => "q_#{question.id}"}
+                      = question.query
                     - attempt = Attempt.where(:question => question, :user => current_user).first if current_user.attempts.count > 0
-                    - flag = false
-                    - if attempt != nil
-                      - flag = true if attempt.solved == true
-                    - if flag == false
-                      .span.question{:id => "q_#{question.id}"}
-                        = question.query
-                        %br
-                        %br
-                        = simple_form_for question, :url => attempt_question_path(question), remote: true do |f|
-                          .control-group
-                            .controls
-                              = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
-                              = f.submit 'Submit', :class => 'btn'
-                    %p{:id => "answer_#{question.id}"}
+                    = simple_form_for question, :url => attempt_question_path(question), remote: true do |f|
+                      .control-group
+                        .controls
+                          %br
+                          %br
+                          - if attempt == nil or attempt.solved == false
+                            = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
+                            = f.submit 'Submit', :class => 'btn'
+                            %p{:id => "answer_#{question.id}"}
+                          - else
+                            - question.options.each do |option|
+                              = f.label option.label
+
   = render_shareable :url => request.url
