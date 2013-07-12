@@ -18,6 +18,5 @@
               %p.description{id: "level_caption_#{@level.level_number}"}
                 = @level.level_name
               %a.btn.btn-mini.btn-try-now{:href => level_path(@level)} Try now
-    = render_shareable
   - if current_user.roles != "Student"
     .pull-right=link_to "LEVEL LIST" , levels_list_path, class: 'btn btn-large'
