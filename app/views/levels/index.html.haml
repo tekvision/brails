@@ -6,7 +6,9 @@
         - levels.each_with_index do |level, col_index|
           - @level = @levels[level-1]
           - level_coins_count = @level.calculate_coins_count
-          .gridcell{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell', "aria-labelledby"=> "level_number_#{@level.level_number}", "aria-describedby"=>"level_caption_#{@level.level_number}"}
+          .gridcell{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell',
+                    "aria-labelledby"=> "level_number_#{@level.level_number}", 
+                    "aria-describedby"=>"level_caption_#{@level.level_number}"}
             .span2.summary-coin.colored-block
               = "#{level_coins_count}"
             .span4.lesson-summary.colored-block.no-focus
@@ -16,3 +18,6 @@
               %p.description{id: "level_caption_#{@level.level_number}"}
                 = @level.level_name
               %a.btn.btn-mini.btn-try-now{:href => level_path(@level)} Try now
+    = render_shareable
+  - if current_user.roles != "Student"
+    .pull-right=link_to "LEVEL LIST" , levels_list_path, class: 'btn btn-large'
