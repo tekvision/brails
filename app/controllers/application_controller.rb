@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   #TODO: uncomment during development
   before_filter :authenticate_user!
 
-  helper_method :won_topic_coins, :topic_calculate_coins
+  helper_method :won_topic_coins, :topic_calculate_coins, :topic_questions_count
 
   def won_topic_coins(topic)
     topic.attempts.where(:user => current_user).collect{|attempt| attempt.coins}.inject(:+) || 0
@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
       count + content.questions.inject(0) do |count, question|
         count + H_COOKIES[question.question_type]
       end
+    end
+  end
+
+  def topic_questions_count(topic)
+    topic.contents.includes(:questions).inject(0) do |questions_count, content|
+      questions_count + content.questions.count
     end
   end
 

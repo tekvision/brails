@@ -28,7 +28,7 @@
                 %p.topic-description= topic.description  
                 %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
           .span3
-            - if topic.contents.includes(:questions).count == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size           	      
+            - if topic_questions_count(topic) == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size          
               .topic-score.right
               - @count = @count + topic_calculate_coins(topic).to_i 
             - else
