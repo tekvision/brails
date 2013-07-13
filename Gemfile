@@ -26,6 +26,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'spork-rails'
   gem 'guard-rspec'
+  gem 'simplecov'
 end
 
 # Windows system has some problem for bcrypt-ruby gem, that’s why manually mention the gem version.
