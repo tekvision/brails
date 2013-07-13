@@ -1,4 +1,4 @@
-%h1 Topic Details
+%h2.delta Topic Details for #{@level.level_name} level 
 %table.table
   %tr
     %th Title
@@ -12,5 +12,5 @@
       %td= link_to "Edit", edit_level_topic_path(@level, topic)    
       %td= link_to "Show", level_topic_path(@level, topic)
 
-= link_to "New topic", new_level_topic_path
-.pull-right= link_to "BACK" , levels_list_path , class: "btn btn-large"
+= link_to "New topic", new_level_topic_path, class: "btn btn-large"
+= link_to "BACK" , levels_list_path, class: "btn btn-large"

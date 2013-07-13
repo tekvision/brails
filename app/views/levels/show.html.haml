@@ -26,7 +26,10 @@
               .span9.topic-details
                 %h2.delta= topic.title
                 %p.topic-description= topic.description  
-                %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
+                - if topic.contents.count == 0
+                  %p.topic-description Coming soon
+                - else
+                  %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
           .span3
             - if topic_questions_count(topic) == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size          
               .topic-score.right
