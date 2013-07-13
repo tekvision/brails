@@ -60,6 +60,20 @@ class LevelsController < ApplicationController
     end
   end
 
+  def attempt_bonus_question
+    @question = Question.find(params[:question_id])
+    @answer = @question.options.where(:_id => params["question"]['options']).try(:first) if params['question'].present?
+    @attempt = Attempt.find_or_create_by(:user => current_user, :question => @question)
+    if @answer.is_valid and @attempt.increase_count == 0
+      @attempt.update_attributes({solved: true, coins: H_COOKIES[@question.question_type]})
+    elsif @answer.is_valid and @attempt.increase_count > 0
+      coins = (H_COOKIES[@question.question_type] / @attempt.increase_count ).round
+      @attempt.update_attributes({solved: true, coins: coins})
+    else
+      @attempt.inc(:increase_count, 1)
+    end
+  end
+
   def calculate_coins(level_id)
     @level = Level.find_by(:id => level_id)
     @level.topics.includes(:contents).inject(0) do |count, topic|
