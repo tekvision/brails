@@ -37,6 +37,7 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
@@ -46,6 +47,8 @@ GEM
       bson (~> 1.9.0)
     builder (3.0.4)
     cancan (1.6.10)
+    childprocess (0.3.9)
+      ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.2.8)
     ckeditor (4.0.4)
       mime-types
@@ -54,6 +57,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -93,6 +97,7 @@ GEM
       railties (~> 3.0)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     eventmachine (1.0.3-x86-mingw32)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -103,7 +108,23 @@ GEM
       railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
+    ffi (1.9.0)
+    ffi (1.9.0-x86-mingw32)
+    formatador (0.2.4)
     fssm (0.2.10)
+    guard (1.8.1)
+      formatador (>= 0.2.4)
+      listen (>= 1.0.0)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      thor (>= 0.14.6)
+    guard-rspec (3.0.2)
+      guard (>= 1.8)
+      rspec (~> 2.13)
+    guard-spork (1.5.1)
+      childprocess (>= 0.2.3)
+      guard (>= 1.1)
+      spork (>= 0.8.4)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -118,6 +139,11 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    listen (1.2.2)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      rb-kqueue (>= 0.2)
+    lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -133,6 +159,7 @@ GEM
     mediaelement_rails (0.5.1)
       jquery-rails (>= 1.0)
       railties (>= 3.1)
+    method_source (0.8.1)
     mime-types (1.23)
     mina (0.2.1)
       open4
@@ -167,6 +194,15 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     polyglot (0.3.3)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry (0.9.12.2-x86-mingw32)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -192,6 +228,11 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.1.0)
+    rb-fsevent (0.9.3)
+    rb-inotify (0.9.0)
+      ffi (>= 0.5.0)
+    rb-kqueue (0.2.0)
+      ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
     rest-client (1.6.7)
@@ -239,11 +280,14 @@ GEM
     skinny (0.2.3)
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
+    slop (3.4.5)
+    spork (0.9.2)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.7)
     sqlite3 (1.3.7-x86-mingw32)
     stringex (1.5.1)
     thin (1.5.1)
@@ -261,8 +305,10 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
+    win32console (1.3.2-x86-mingw32)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -279,6 +325,8 @@ DEPENDENCIES
   devise_invitable (= 1.1.2)
   factory_girl_rails (~> 4.0)
   faker
+  guard-rspec
+  guard-spork
   haml (>= 3.0.0)
   haml-rails
   jquery-rails
@@ -297,5 +345,6 @@ DEPENDENCIES
   shareable
   shoulda
   simple_form
+  spork
   typeplate-rails!
   uglifier (>= 1.0.3)
