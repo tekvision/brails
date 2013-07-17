@@ -1,5 +1,7 @@
 class LevelsController < ApplicationController
-  load_and_authorize_resource
+  before_filter :authenticate_user!, :except => [:index, :show]
+  load_and_authorize_resource :level, :except => [:index, :show]
+ 
 
   def index
     @levels = Level.all.order_by("level_number ASC")
@@ -80,7 +82,7 @@ class LevelsController < ApplicationController
       count + topic.contents.inject(0) do |count, content|
         count + content.questions.inject(0) do |count, question|
           return count + H_COOKIES[question.question_type]
-	end
+	      end
       end
     end
   end

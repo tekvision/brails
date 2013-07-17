@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
   #TODO: uncomment during development
-  before_filter :authenticate_user!
+#  before_filter :authenticate_user!, :except => [:index, :show]
 
   helper_method :won_topic_coins, :topic_calculate_coins, :topic_questions_count
 
