@@ -37,13 +37,15 @@
               %br
               .pull-right= option.link_to_remove "Remove this option"
               %hr
-            = question.link_to_add "Add more option", :options, :class => 'pull-right'
+            = question.link_to_add  question.object.options.count > 0? "Add More Options" :"Add Option", :options, :class => 'pull-right more_options'
             %br
             .pull-right= question.link_to_remove "Remove this question"
             %hr
-          = content.link_to_add "Add more questions", :questions, :class => 'btn btn-info'
+          = content.link_to_add  content.object.questions.count > 0? "Add More Questions" :"Add questions", :questions, :class => 'btn btn-info more_question'
           .pull-right= content.link_to_remove "Remove this content"
-        = f.link_to_add "Add more contents", :contents, :class => 'btn btn-info'
+        = f.link_to_add f.object.contents.count > 0 ?  "Add More Content" : "Add Content", :contents, :class => 'btn btn-info more_content'
 
   .form-actions
     = f.button :submit, class: 'btn-success'
+
+ 
