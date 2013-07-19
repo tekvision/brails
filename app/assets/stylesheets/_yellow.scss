@@ -3,6 +3,10 @@ body {
   .lesson-summary {
     background-color: $background-color;
   }
+  pre.yellow{
+    background-color: $background-color;
+  }
 }
+
 
 @include setup($background-color, $color);

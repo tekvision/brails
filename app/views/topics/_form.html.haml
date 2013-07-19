@@ -14,7 +14,7 @@
           %h6
             New Content
           = content.input :title, :label => "Content title"
-          = content.input :content_body, as: :ckeditor, :input_html => {:ckeditor => {:toolbar => 'mini'}}
+          = content.input :content_body, as: :text
           = content.input :sq_no, :label => "Sequence number"
           %label.control-label Upload File
           .controls= content.file_field :topic_content
