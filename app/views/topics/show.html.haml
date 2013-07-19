@@ -12,26 +12,25 @@
         .row
           .tabbable.tabs-left.topic-details.colored-block{:id => "tabpanel", :role => "application"}
             %ul.nav.nav-tabs{:role => "tablist"}
+              %li.tab{:id => "s_tab", :role => "tab", "aria-owns" => "s_#{content.id.to_s}",
+                              "aria-controls" => "s_#{content.id.to_s}"}
+                %a{"data-toggle" => "tab", :href => "#s_#{content.id.to_s}"} Summary
               %li.tab.active{:id => "t_tab", :role => "tab", "aria-owns" => "t_#{content.id.to_s}",
                               "aria-selected" => "true", "aria-controls" => "t_#{content.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#t_#{content.id.to_s}"} Transcript
-              %li.tab{:id => "s_tab", :role => "tab", "aria-owns" => "s_#{content.id.to_s}",
-                                                      "aria-controls" => "s_#{content.id.to_s}"}
-                %a{"data-toggle" => "tab", :href => "#s_#{content.id.to_s}"} Summary
               %li.tab{:id => "test_tab", :role => "tab", "aria-owns" => "test_#{content.id.to_s}", "aria-controls" => "test_#{content.id.to_s}"}
                 %a{"data-toggle" => "tab", :href => "#test_#{content.id.to_s}"} Take test
             .tab-content
-              .tab-pane.transcript.active{:id => "t_#{content.id.to_s}", :role => "tabpanel", "aria-labelledby" => "t_tab"}
-                %h3{"tabindex" => "0"}
-                  Transcript
-                  %p
-                    = content.transcript
               .tab-pane.summary{ :id => "s_#{content.id.to_s}", :role => "tabpanel", "aria-labelledby" => "s_tab"}
                 %h3{"tabindex" => "0"} Summary
                 = raw markdown content.content_body
-              .tab-pane.test{:id => "test_#{content.id.to_s}", :role => "tabpanel", "aria-labelledby" => "test_tab"}
+              .tab-pane.transcript.active{:id => "t_#{content.id.to_s}", :role => "tabpanel", "aria-labelledby" => "t_tab"}
                 %h3{"tabindex" => "0"} Take test
-                %p 
+                = raw content.transcript
+              .tab-pane.test{:id =>"test#{content.id.to_s}", :role => "tabpanel", "aria-labelledby" => "t_tab"}
+                %h3{"tabindex" => "0"} Take test
+                - if user_signed_in?
+                  %p 
                   - content.questions.each_index do |index|
                     - question = content.questions[index]
                     .span5.question{:id => "q_#{question.id}"}
@@ -50,6 +49,9 @@
                             - else
                               - question.options.each do |option|
                                 = f.label option.label
+                - else
+                  %p
+                    %b To take test please #{link_to "sign in", new_user_session_path} or #{link_to "sign up", new_user_registration_path} 
 
       %br             
       .pull-right= link_to "BACK", level_path(@level), :class => "btn"

@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
+  before_filter :authenticate_user!, :except => :show
   before_filter :load_topic, :only => [:edit, :update, :destroy, :show] 
-  load_and_authorize_resource
+  load_and_authorize_resource :topic, :except => :show
 
   def index
     @level = Level.find(params[:level_id])
@@ -14,9 +15,9 @@ class TopicsController < ApplicationController
   def new
     @level = Level.find(params[:level_id])
     @topic = @level.topics.build
-    @content = @topic.contents.build
-    question = @content.questions.build
-    question.options.build
+#    @content = @topic.contents.build
+#    question = @content.questions.build
+#    question.options.build
     render layout: 'admin'
   end
 

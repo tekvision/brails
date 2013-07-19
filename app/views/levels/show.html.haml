@@ -26,7 +26,10 @@
               .span9.topic-details
                 %h2.delta= topic.title
                 %p.topic-description= topic.description  
-                %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
+                - if topic.contents.count == 0
+                  %p.topic-description Coming soon
+                - else
+                  %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
           .span3
             - if topic_questions_count(topic) == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size          
               .topic-score.right
@@ -42,24 +45,25 @@
         - if @bonus == nil
           %h3 Sorry !!Bonus Round Question not available for this level!!!!
         - else
-          BONUS ROUND QUESTIONS
-          - @bonus.questions.each do |question|
-          - attempt = Attempt.where(:question => question, :user => current_user).first if current_user.attempts.count     > 0
-            - flag = false
-            - if attempt != nil
-              - flag = true if attempt.solved == true
-            - if flag == false
-              .span.question{:id => "q_#{question.id}"}
-                QUESTION:
-                = question.query
-                %br
-                %br
-                = simple_form_for question, :url => attempt_question_path(question), remote: true do |f|
-                  .control-group
-                    .controls
-                      OPTIONS:
-                      %br
-                      = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first,     :last
+          - if user_signed_in?
+            BONUS ROUND QUESTIONS
+            - @bonus.questions.each do |question|
+              - attempt = Attempt.where(:question => question, :user => current_user).first if current_user.attempts.count     > 0
+              - flag = false
+              - if attempt != nil
+                - flag = true if attempt.solved == true
+              - if flag == false
+                .span.question{:id => "q_#{question.id}"}
+                  QUESTION:
+                  = question.query
+                  %br
+                  %br
+                  = simple_form_for question, :url => attempt_bonus_question_path(question), remote: true do |f|
+                    .control-group
+                      .controls
+                        OPTIONS:
+                        %br
+                        = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first,     :last
                       = f.submit 'Submit', :class => 'btn'
-            %p{:id => "answer_#{question.id}"}
+                %p{:id => "answer_#{question.id}"}
   = render_shareable :url => request.url
