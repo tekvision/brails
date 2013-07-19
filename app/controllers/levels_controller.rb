@@ -12,13 +12,10 @@ class LevelsController < ApplicationController
   def show
     @count = 0
     @level = Level.find(params[:id])
-    @bonus = @level.bonus_round
-    @topics = @level.topics
   end
 
   def new
     @level = Level.new
-    @level.build_bonus_round
   end
 
   def create		

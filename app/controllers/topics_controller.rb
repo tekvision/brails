@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
     @topic = @level.topics.build
     @content = @topic.contents.build
     question = @content.questions.build
-    question.options.build
+    3.times {question.options.build}
     render layout: 'admin'
   end
 
