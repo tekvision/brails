@@ -16,10 +16,10 @@
           = content.input :title, :label => "Content title"
           = content.input :content_body, as: :ckeditor, :input_html => {:ckeditor => {:toolbar => 'mini'}}
           = content.input :sq_no, :label => "Sequence number"
-          %label.control-label Upload File
+          %label.control-label Upload Audio File
           .controls= content.file_field :topic_content
           %br
-          = content.input :transcript, as: :text, :input_html => {:rows => 2}
+          = content.input :transcript, as: :ckeditor, :input_html => {:ckeditor => {:toolbar => 'mini'}}
           %br
           %hr
           = content.simple_fields_for :questions do |question|

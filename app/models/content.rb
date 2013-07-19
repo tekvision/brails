@@ -13,7 +13,7 @@ class Content
   accepts_nested_attributes_for :questions, allow_destroy: true
 
   #validations
-   validates :title, :content_body, :sq_no, :topic_id, :presence => true   
-   validates :sq_no, :numericality => {:only_integer => true}
-   validates_attachment :topic_content, :presence => true
+#   validates :title, :content_body, :sq_no, :topic_id, :presence => true   
+#   validates :sq_no, :numericality => {:only_integer => true}
+#   validates_attachment :topic_content, :presence => true
 end

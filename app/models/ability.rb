@@ -9,6 +9,7 @@ class Ability
      else
        can :read, Level
        can [:show, :attempt_question], Topic
+       can :attempt_bonus_question, Level
        can [:edit, :profile], User, :id => user.id
      end
     # Define abilities for the passed in user here. For example:
@@ -20,7 +21,7 @@ class Ability
     #     can :read, :all
     #   end
     #
-    # The first argument to `can` is the action you are giving the user 
+    # The first argument to `can` is the action you are giving the user on
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.

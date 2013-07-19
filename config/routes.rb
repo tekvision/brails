@@ -6,7 +6,6 @@ Brails::Application.routes.draw do
     :sign_out => 'logout', 
     :password => 'secret', 
     :confirmation => 'verification',
-    :controllers => { :invitations => 'devise/invitations' },
     :root_path => 'home#index'
   }
 
@@ -18,6 +17,7 @@ Brails::Application.routes.draw do
   end  
 
   match '/topics/attempt_question/:question_id' => 'topics#attempt_question', as: :attempt_question
+  match '/level/attempt_question/:question_id' => 'levels#attempt_bonus_question', as: :attempt_bonus_question
   match '/users/:user_id/profile' => 'users#profile', :via => [:get, :post], as: :profile
   match '/levels_list' => 'levels#levels_list', :via => :get, as: :levels_list
   match '/nominate' => 'home#nominate', :via => [:get, :post], as: :nominate

@@ -26,7 +26,10 @@
               .span9.topic-details
                 %h2.delta= topic.title
                 %p.topic-description= topic.description  
-                %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
+                - if topic.contents.count == 0
+                  %p.topic-description Coming soon
+                - else
+                  %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
           .span3
             - if topic_questions_count(topic) == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size          
               .topic-score.right
@@ -38,7 +41,8 @@
         %input{:type => "button",:class => "btn-bonus-round unlocked",:id => "bonus_round_unlocked", :value => "Bonus Round Unlocked"}
       - else
         %button{:disabled => "true", :class => "btn-bonus-round"} Bonus Round Locked
-      #bonus_round{:style => "display: none"}
+    #bonus_round{:style => "display: none"}
+      - if user_signed_in?
         - if @level.questions == nil
           %h3 Sorry !!Bonus Round Question not available for this level!!!!
         - else
@@ -61,7 +65,7 @@
                     .controls
                       OPTIONS:
                       %br
-                      = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first,     :last
+                      = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
                       = f.submit 'Submit', :class => 'btn'
-            %p{:id => "answer_#{question.id}"}
+                %p{:id => "answer_#{question.id}"}
   = render_shareable :url => request.url
