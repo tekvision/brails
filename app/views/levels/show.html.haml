@@ -43,8 +43,8 @@
         %button{:disabled => "true", :class => "btn-bonus-round"} Bonus Round Locked
     #bonus_round{:style => "display: none"}
       - if user_signed_in?
-        - if @level.questions == nil
-          %h3 Sorry !!Bonus Round Question not available for this level!!!!
+        - if @level.questions.blank? == true
+          %h4 Sorry !!Bonus Round Question are not available for this level!!!!
         - else
           %br
           - @level.questions.each do |question|
