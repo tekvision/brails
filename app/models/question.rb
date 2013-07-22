@@ -5,11 +5,10 @@ class Question
   field :query, type: String
   field :question_type, type: String
 
-  attr_accessible :sq_no, :query,  :question_type, :topic_id, :bonus_round_id, :options_attributes
-
+  attr_accessible :sq_no, :query, :question_type, :topic_id, :level_id, :options_attributes
 
   has_many :options, dependent: :destroy
-  belongs_to :bonus_round
+  belongs_to :level
   belongs_to :content
   has_many :attempts
   accepts_nested_attributes_for :options, allow_destroy: true
