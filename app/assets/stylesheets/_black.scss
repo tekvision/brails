@@ -4,7 +4,10 @@ body {
   .lesson-summary {
     background-color: $background-color;
   }
-  
+  pre.black{
+    background-color: $background-color;
+ }
+
 }
 
 @include setup($background-color, $color);

@@ -8,7 +8,7 @@ class Topic
   slug :title
 
   #validation
-#  validates :title, :description, :level_id, :presence => true
+  validates :title, :description, :level_id, :presence => true
   attr_accessible :title,  :description, :contents_attributes, :questions_attributes, :level_id
 
   belongs_to :level

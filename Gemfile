@@ -15,7 +15,8 @@ gem 'mina'
 gem "mongoid", "~> 3.0.0"
 gem 'sass-rails',   '~> 3.2.3'
 gem 'mongoid_slug'
-
+gem 'github-linguist'
+gem 'redcarpet'
 group :development, :test do
   gem 'mailcatcher'
   gem "rspec-rails", ">= 2.0.1"
