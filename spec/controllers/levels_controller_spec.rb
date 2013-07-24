@@ -44,7 +44,6 @@ describe LevelsController do
 
     it 'should create new level and bonus round' do
       level = build(:level)
-      bonus_round = build(:bonus_round, :level => level)
       level.delete("_id")
       post :create, {:level => level.attributes}
       level = assigns(:level)

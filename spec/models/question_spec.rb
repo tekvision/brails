@@ -19,7 +19,7 @@ context "Required fields" do
 
   context "Associations" do
     it { should have_many(:options).with_dependent(:destroy)}
-    it { should belong_to(:bonus_round)}
+    it { should belong_to(:level)}
     it { should belong_to(:content)}
   end
 
