@@ -7,9 +7,9 @@ class Option
   belongs_to :question
 
   #validations
-#  validates :question_id, :label, :presence => true 
+  validates :question_id, :label, :presence => true 
 
-#  validate :validate_options
+  validate :validate_options
 
   def validate_options
     self.errors.add(:base,  "Atleast one option should be valid") if question.options.collect(&:is_valid).count(true) == 0
