@@ -7,7 +7,7 @@
         %section.topic
           .row
             .audio
-              =audio_tag content.topic_content, autoplay: false, controls: true
+              =audio_tag content.topic_content, autoplay: false, controls: true, "aria-hidden" => "true"
         %br
         .row
           .tabbable.tabs-left.topic-details.colored-block{:id => "tabpanel", :role => "application"}
