@@ -10,4 +10,4 @@
       else if assoc == "questions"        
         $('.more_question').html('Add More Questions')
       else if assoc == "options"
-        $('.more_options').html('Add More Options')
+        $('.more_options').html('Add More Options')      
