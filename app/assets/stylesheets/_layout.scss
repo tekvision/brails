@@ -14,7 +14,6 @@ body{
   position:relative;
 }
 
-
 p, a, li, pre{
   font-size: 1.2em;
 }
@@ -25,7 +24,6 @@ body.textsize-825 {font:82.5%/1.5 Arial, sans-serif;}
 body.textsize-1025 {font:102.5%/1.5 Arial, sans-serif;}
 body.textsize-1225 {font:122.5%/1.5 Arial, sans-serif;}
 body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
-
 .content{
   background: rgba(255, 255, 255, .9);
   padding: 20px;
@@ -35,11 +33,9 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
     padding: 5px;
   }
 }
-
 .main-container{
   margin-top: 20px;
 }
-
 
 .colored-block {
   @include single-transition(background-color, .75s);
@@ -60,7 +56,6 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
   padding: 10px 10px 0px 0px;
   @include border-radius(5px 0 0 5px);
 }
-
 .switcher {
   // @include horizontal-list;
   margin-left: 10px;
@@ -76,7 +71,6 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
     cursor: pointer;
   }
 }
-
 .font-switcher {
   .switch {
     text-align:center;
@@ -85,7 +79,6 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
     color: black !important;
   }
 }
-
 .color-switcher {
   .switch {
     background-color:black;
