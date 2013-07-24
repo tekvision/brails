@@ -17,7 +17,6 @@ gem 'sass-rails',   '~> 3.2.3'
 gem 'mongoid_slug'
 gem 'github-linguist'
 gem 'redcarpet'
-gem 'pygments.rb'
 group :development, :test do
   gem 'mailcatcher'
   gem "rspec-rails", ">= 2.0.1"
