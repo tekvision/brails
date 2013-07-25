@@ -60,12 +60,17 @@
                 QUESTION:
                 = question.query
                 %br
+                %br
                 = simple_form_for question, :url => attempt_bonus_question_path(question), remote: true do |f|
                   .control-group
                     .controls
                       OPTIONS:
                       %br
-                      = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first, :last
-                      = f.submit 'Submit', :class => 'btn'
-                %p{:id => "answer_#{question.id}"}
+                      - if attempt == nil or attempt.solved == false 
+                        = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first,     :last
+                        = f.submit 'Submit', :class => 'btn'
+                        %p{:id => "answer_#{question.id}"}
+                      - else
+                        - question.options.each do |option|
+                          = f.label option.label
   = render_shareable :url => request.url
