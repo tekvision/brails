@@ -1,6 +1,7 @@
 - if @answer.is_valid == true
-  console.log($("#q_#{@question.id}"))
-  $("#q_#{@question.id}").hide()
+  $("#q_#{@question.id} .btn").hide()
+  -@question.options.each do |opt|
+    $("#question_options_#{opt.id}").hide()
   $("#answer_#{@question.id}").html('<p>Congratulations! your answer is correct</p>')
 - else
   $("#answer_#{@question.id}").html('<p>Sorry! your answer is wrong</p>')
