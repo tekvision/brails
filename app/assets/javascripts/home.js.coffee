@@ -1,14 +1,15 @@
+@coderay_ele = '.CodeRay pre'
 
 $(document).ready ->
   $.cookie.defaults = { path: '/', expires: 365 }
 
   # set the color, font sizes
-  $('html').removeClass("white yellow orange black").addClass($.cookie('color'));
+  $("html, #{coderay_ele}").removeClass("white yellow orange black").addClass($.cookie('color'));
 
   if $.cookie('font_size') isnt undefined
-    $("body").removeClass (index, css) ->
+    $("body, #{coderay_ele}").removeClass (index, css) ->
       (css.match(/\btextsize-\S+/g) or []).join " "
-    $("body").addClass $.cookie('font_size')
+    $("body, #{coderay_ele}").addClass $.cookie('font_size')
 
   $("#audio").bind "ended", ->
     $('#summary').show()
@@ -19,7 +20,7 @@ $(document).ready ->
     t = $(this)
     color = t.data("color")
     $.cookie 'color', color
-    $('html').removeClass("white yellow orange black").addClass(color);
+    $("html, #{coderay_ele}").removeClass("white yellow orange black").addClass(color);
 
      
   $(".btn-change-font-size").on "click", ->
