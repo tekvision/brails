@@ -5,13 +5,13 @@ FactoryGirl.define do
     label 'computer language'
     is_valid 'false'
     association :question
-  end
 
-  factory :correct, :parent => 'option' do
-    is_valid 'true'
-  end
+    factory :correct do
+      is_valid 'true'
+    end
 
-  factory :incorrect, :parent => 'option' do
-    is_valid 'false'
+    factory :incorrect do
+      is_valid 'false'
+    end
   end
 end

@@ -2,22 +2,21 @@
 
 FactoryGirl.define do
   factory :user do
-   sequence(:email)      {|i | i.to_s + Faker::Internet.email}
+    sequence(:email)      {|i| i.to_s + Faker::Internet.email}
     password 'abcd1234'
-    password_confirmation 'abcd1234'
-		confirmed_at Time.now
+    confirmed_at { Time.now }
     roles "Student"
-  end
 
-  factory :admin, :parent => 'user' do
-    roles "Admin"
-  end
+    factory :admin do
+      roles "Admin"
+    end
 
-  factory :student, :parent => 'user' do
-    roles "Student"
-  end
+    factory :student do
+      roles "Student"
+    end
 
-  factory :contributor, :parent => 'user' do
-    roles "Contributor"
+    factory :contributor do
+      roles "Contributor"
+    end
   end
 end

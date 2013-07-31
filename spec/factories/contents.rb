@@ -8,6 +8,6 @@ FactoryGirl.define do
     content_body 'AudioFile'
     transcript ""
     association :topic
-    topic_content {fixture_file_upload("#{Rails.root}/spec/factories/support/Sample.mp3")}
+    topic_content {fixture_file_upload("#{Rails.root}/spec/fixtures/files/Sample.mp3")}
   end
 end
