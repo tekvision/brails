@@ -44,8 +44,17 @@ Spork.prefork do
 
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
-  require 'coveralls'
-  Coveralls.wear!('rails')
+
+  unless ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
+
+  require "rails/application"
+  require 'rails/mongoid'
+  Spork.trap_class_method(Rails::Mongoid, :load_models)
+  Spork.trap_method(Rails::Application, :eager_load!)
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -58,14 +67,17 @@ Spork.prefork do
   RSpec.configure do |config|
     config.include FactoryGirl::Syntax::Methods
     config.include Devise::TestHelpers, :type => :controller
+    config.include Mongoid::Matchers
+    config.include Paperclip::Shoulda::Matchers
 
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
       DatabaseCleaner.clean_with(:truncation)
+      DatabaseCleaner.orm = 'mongoid'
     end
 
     config.before(:each) do
-      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
 
     config.after(:each) do
@@ -93,19 +105,26 @@ Spork.prefork do
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
+    config.treat_symbols_as_metadata_keys_with_true_values = true
+    config.filter_run :focus => true
+    config.run_all_when_everything_filtered = true
 
     # Run specs in random order to surface order dependencies. If you find an
     # order dependency and want to debug it, you can fix the order by providing
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
-    config.include Mongoid::Matchers
-    config.include Paperclip::Shoulda::Matchers
   end
 
 end
 
 Spork.each_run do
+
+  if ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
+
   # This code will be run each time you run your specs.
   FactoryGirl.reload
 end

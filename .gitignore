@@ -22,3 +22,5 @@
 *.swo
 .rvmrc
 recover
+/coverage
+/public/system
