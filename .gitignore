@@ -13,12 +13,13 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/doc/id_rsa*
 #Ignore files by created Edit+ editer
 *.bak
 # Ignore gemFile.lock
-*.lock
 *.csv
 *.swp
 *.swo
 .rvmrc
 recover
+
