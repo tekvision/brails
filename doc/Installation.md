@@ -84,7 +84,7 @@ Now, ensure you have these settings in `nginx.conf`
 
 ## Mina deployment 
 
-Ensure that the private key is in `doc/id_rsa.brails` as mina expects it there. **NOTE: DO NOT COMMIT the Private key to repository**
+Ensure that the private key is in `doc/id_rsa` as mina expects it there. **NOTE: DO NOT COMMIT the Private key to repository**
 
     mina deploy
     
