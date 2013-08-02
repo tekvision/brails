@@ -8,8 +8,8 @@ class Level
   slug :level_name
 
   has_many :topics, dependent: :destroy 
-  has_one :bonus_round, dependent: :destroy
-  accepts_nested_attributes_for :bonus_round, allow_destroy: true
+  has_many :questions, dependent: :destroy 
+  accepts_nested_attributes_for :questions, allow_destroy: true
 
   #validation
   validates :level_number, :level_name, :presence => true
