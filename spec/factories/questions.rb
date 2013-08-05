@@ -5,7 +5,7 @@ FactoryGirl.define do
     sq_no '2'
     query 'What is Ruby?'
     question_type "Hard"
-    association :bonus_round
+    association :level
     association :content
     after(:build) do |question| 
       FactoryGirl.create(:correct, :question => question)
