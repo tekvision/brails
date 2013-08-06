@@ -1,5 +1,5 @@
-= simple_form_for :nominate, html: {:class => 'form-horizontal'}  do |f|
-  = @nominate.errors.full_messages.to_sentence
+= simple_form_for @nominate, url: nominate_path(@nominate), method: :post, html: {:class => 'form-horizontal'}  do |f|
+  = f.error_notification
   .form-inputs
     = f.input :name
     = f.input :email, required: false
