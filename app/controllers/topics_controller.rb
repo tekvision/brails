@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_filter :authenticate_user!, :except => :show
   before_filter :load_topic, :only => [:edit, :update, :destroy, :show] 
   load_and_authorize_resource :topic, :except => :show
-
+  
   def index
     @level = Level.find(params[:level_id])
     @topics = @level.topics
