@@ -38,6 +38,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
     browser (0.2.0)
@@ -92,6 +93,7 @@ GEM
     diff-lcs (1.2.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    eventmachine (1.0.3-x86-mingw32)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -102,6 +104,7 @@ GEM
     faker (1.1.2)
       i18n (~> 0.5)
     ffi (1.9.0)
+    ffi (1.9.0-x86-mingw32)
     formatador (0.2.4)
     fssm (0.2.10)
     guard (1.8.1)
@@ -187,6 +190,11 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry (0.9.12.2-x86-mingw32)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -277,6 +285,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    sqlite3 (1.3.7-x86-mingw32)
     stringex (1.5.1)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
@@ -296,9 +305,11 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
+    win32console (1.3.2-x86-mingw32)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
