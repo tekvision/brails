@@ -72,3 +72,5 @@
                     - question.options.each do |option|
                       = f.label option.label
   = render_shareable :url => request.url
+  .pull-right
+    = link_to "Back", levels_path, class: 'btn btn-large'
