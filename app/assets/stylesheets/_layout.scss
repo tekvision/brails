@@ -35,6 +35,7 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 }
 .main-container{
   margin-top: 20px;
+  min-height: 670px;
 }
 
 .colored-block {
@@ -163,6 +164,26 @@ html.black {
 
   }
 }
+
+#wrap
+{
+min-height: 100%;
+}
+
+#main
+{
+overflow:auto;
+padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+ 
+.footer{
+    position: relative;
+    margin-top: -150px; /* negative value of footer height */
+    height: 60px;
+    clear:both;
+    padding-top:20px;
+    color:#fff;
+} 
 
 .score-wrapper {
   text-align:center;
