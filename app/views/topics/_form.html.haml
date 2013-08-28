@@ -46,4 +46,5 @@
         = f.link_to_add f.object.contents.count > 0 ?  "Add More Content" : "Add Content", :contents, :class => 'btn btn-info more_content'
 
   .form-actions
-    = f.button :submit, class: 'btn-success'
+    = f.button :submit, class: 'btn btn-large btn-success'
+    = link_to "Cancel", level_topics_path(@level), class: 'btn btn-large btn-success'    

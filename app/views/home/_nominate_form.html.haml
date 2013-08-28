@@ -9,5 +9,5 @@
     = f.input :description, as: :text, :input_html => {:cols => 20, :rows => 5}, required: false 
 
   .form-actions
-    = f.submit "Nominate", class: 'btn-success'
-
+    = f.submit "Nominate", class: 'btn btn-large btn-success'
+    = link_to "Cancel", root_path, class: 'btn btn-large btn-success'
