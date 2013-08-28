@@ -4,7 +4,7 @@ brails.org is a learning portal for the blind and even built by the blind with s
 
 # The origin of Brails
 
-A lot of visually impaired children do not get a decent opportunity to learn. Those who do, they have a tough time during graduation because of their visual impairment and the inability or inavailability of teachers skilled in teaching advanced vocational subjects.
+A lot of visually impaired children do not get a decent opportunity to learn. Those who do, they have a tough time during graduation because of their visual impairment and the inability or unavailability of teachers skilled in teaching advanced vocational subjects.
 This disadvantage can easily be resolved if we have the right resources available - and what better a teacher than the internet. However, learning on the Internet entails these problems:
 
 * Learning about Rails, Ruby and maybe other programming languages later. But before that ..
