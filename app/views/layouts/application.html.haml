@@ -41,3 +41,6 @@
       = yield
     = javascript_include_tag "application"
     =  yield(:javascript) if content_for?(:javascript)
+
+  %footer{:class => "footer", :style => "background-color:black;" }
+    = render 'footer'
