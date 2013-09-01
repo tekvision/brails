@@ -6,7 +6,7 @@ Brails::Application.routes.draw do
     :sign_out => 'logout', 
     :password => 'secret', 
     :confirmation => 'verification',
-    :root_path => 'home#index'
+    :root_path => 'home#index' 
   }
 
   resources :users
@@ -22,6 +22,8 @@ Brails::Application.routes.draw do
   match '/levels_list' => 'levels#levels_list', :via => :get, as: :levels_list
   match '/nominate' => 'home#nominate', :via => [:get, :post], as: :nominate
   match 'nominate_list' => 'home#nominate_list', :via => :get, as: :nominate_list
+  match '/feedback' => 'home#feedback', :via => [:get, :post], as: :feedback
+  match '/feedback_list' => 'home#feedback_list', :via => :get, as: :feedback_list
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

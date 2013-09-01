@@ -14,6 +14,8 @@
             %ul.nav.pull-right
               %li
                 = link_to "Nominate", nominate_path
+              %li
+                = link_to "Feedback", feedback_path
               - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", "aria-haspopup" => "true"}                  

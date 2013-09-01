@@ -21,5 +21,20 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  def feedback
+    @feedback = Feedback.new
+    if request.post?
+      @feedback = Feedback.new(params[:feedback])
+      if @feedback.save
+        user = User.where(:roles => "Admin").collect(&:email)
+        UserMailer.feedbackReport(@feedback, user).deliver
+        redirect_to root_path  
+        
+      else
+        render action: "feedback"
+      end
+    end
+  end
 end
  
