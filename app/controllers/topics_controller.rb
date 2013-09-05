@@ -15,9 +15,6 @@ class TopicsController < ApplicationController
   def new
     @level = Level.find(params[:level_id])
     @topic = @level.topics.build
-    @content = @topic.contents.build
-    question = @content.questions.build
-    question.options.build
     render layout: 'admin'
   end
 
@@ -63,6 +60,19 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     redirect_to level_topics_path(@level)
+  end
+
+  def remove_uploaded_file
+    content = Content.find(params[:content_id])
+    topic = content.topic
+    level = Level.find(params[:level_id])
+    if content.topic_content != nil
+      content.topic_content.clear
+      content.save
+      render :js => "window.location.pathname = '#{edit_level_topic_path(level, topic)}'"
+    else
+      render :action => :edit
+    end
   end
 
   private
