@@ -1,8 +1,19 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
- $(document).ready  ->
- 
+  $(document).ready ->
+    errorElements = $('.content').find('.help-inline').prev()
+    ul = $('<ul id="errorlist"></ul>')
+    errorElements.each (i) ->
+      span = $(this).next()
+      labelText = $(this).parent().parent().find('label')
+      $(' <li> <a href="#' + $(this).attr('id') + '" class="errorlink" >' + labelText.text() + ' ' + '(' + span.text() + ')' + '</a></li>').appendTo(ul)
+    $('#errorcontainer').html(ul)
+    $('.errorlink').bind 'click', (e)->
+      sid = $(this).attr('href').substr(1, $(this).attr('href').length-1)
+      e.stopPropagation
+      $('input[id="' + sid + '"]').focus()
+
     window.nestedFormEvents.insertFields = (content, assoc, link) ->
       $(content).insertBefore(link)
       if assoc == "contents"
@@ -21,5 +32,3 @@
         error: (e) -> 
           console.log 'Error'
     )
-
-
