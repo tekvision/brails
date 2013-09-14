@@ -1,5 +1,7 @@
 = simple_nested_form_for [@level, @topic], html:  {:class => 'form-horizontal'} do |f|
-  = @topic.errors.full_messages.to_sentence
+  = @topic.errors.full_messages
+  - if !@topic.errors.empty?
+    %p#errorcontainer
   .form-inputs
     = f.hidden_field :level_id
     = f.input :title
