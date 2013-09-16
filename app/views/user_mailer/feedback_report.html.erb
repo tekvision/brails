@@ -1,0 +1,28 @@
+<!DOCTYPE html> 
+<html>   
+  <head>     
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />   
+  </head>   
+    <body>
+      <p>
+        <i> Hello sir,</i>
+      </p>
+      <p>
+        <b>Content Feedback</b></br>
+        <%= @feedback.content_feedback %>
+      </p></br>
+      <p>
+        <b> Accessible Feedback</b></br>
+        <%= @feedback.accessible_feedback %>
+      </p></br>    
+      <p>
+        <b> Other Feedback</b></br>
+        <%= @feedback.other_feedback %>
+      </p>    
+
+</br>
+</br>
+Regards</br>
+<%= @feedback.name %>
+</body>
+</html>

@@ -1,0 +1,14 @@
+%h1 Feedback form
+.content
+  = simple_form_for @feedback, url: feedback_path, method: :post, html: {:class => 'form-horizontal'}  do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :name
+      = f.input :email
+      = f.input :content_feedback, as: :text, :input_html => {:cols => 20, :rows => 5} 
+      = f.input :accessible_feedback, as: :text, :input_html => {:cols => 20, :rows => 5}
+      = f.input :other_feedback, as: :text, :input_html => {:cols => 20, :rows => 5}
+
+    .form-actions
+      = f.submit "Submit", class: 'btn btn-large btn-success'
+      = link_to "Cancel", root_path, class: 'btn btn-large btn-success'

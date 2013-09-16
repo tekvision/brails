@@ -12,6 +12,5 @@
       labelText = $(this).parent().parent().find('label')
       $(' <li> <a href="#' + $(this).attr('id') + '" onclick=" " >' + labelText.text() + ' ' + '(' + span.text() + ')' + '</a></li>').appendTo(ul)
     $('#errorcontainer').html(ul)
-
 $("#bonus_round_unlocked").click ->
   $("#bonus_round").show()

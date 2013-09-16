@@ -7,14 +7,20 @@
     errorElements.each (i) ->
       span = $(this).next()
       labelText = $(this).parent().parent().find('label')
-      $(' <li id="will"> <a href="#' + $(this).attr('id') + '" class="errorlink" >' + labelText.text() + ' ' + '(' + span.text() + ')' + '</a></li>').appendTo(ul)
-    $('.errorlink').click ->
-     alert('hello')
+#      $(' <li id="will"> <a href="#' + $(this).attr('id') + '" class="errorlink" >' + labelText.text() + ' ' + '(' + span.text() + ')' + '</a></li>').appendTo(ul)
+#    $('.errorlink').click ->
+#     alert('hello')
 
+#    $('#errorcontainer').html(ul)
+
+#    $(".errorlink").bind "click", (e) ->
+#      alert('hello')
+      $(' <li> <a href="#' + $(this).attr('id') + '" class="errorlink" >' + labelText.text() + ' ' + '(' + span.text() + ')' + '</a></li>').appendTo(ul)
     $('#errorcontainer').html(ul)
-
-    $(".errorlink").bind "click", (e) ->
-      alert('hello')
+    $('.errorlink').bind 'click', (e)->
+      sid = $(this).attr('href').substr(1, $(this).attr('href').length-1)
+      e.stopPropagation
+      $('input[id="' + sid + '"]').focus()
 
     window.nestedFormEvents.insertFields = (content, assoc, link) ->
       $(content).insertBefore(link)
