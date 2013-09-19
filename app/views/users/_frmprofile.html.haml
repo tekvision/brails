@@ -1,11 +1,12 @@
 - content_for :javascript do
   = javascript_include_tag 'global'
+  = javascript_include_tag 'validations'
+
   = stylesheet_link_tag 'calendar'
 = simple_form_for @user, url: profile_path(@user), method: :post, html: {:class => 'form-horizontal'} do |u|
   = u.error_notification
   = u.simple_fields_for :profile do |p|
-    %p#profile
-
+    %p#errorcontainer
     .form-inputs
       = p.input :first_name
       = p.input :last_name

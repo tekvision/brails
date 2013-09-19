@@ -1,3 +1,4 @@
+alert("hello")
 errorElements = $(document).find('.help-inline').prev()
 ul = $('<ul id="errorlist"></ul>')
 errorElements.each (i) ->

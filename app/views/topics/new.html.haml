@@ -1,3 +1,5 @@
 %h1.delta New topic for #{@level.level_name} level 
 .content
   = render 'form'
+- content_for :javascript do
+  = javascript_include_tag 'nested_form'

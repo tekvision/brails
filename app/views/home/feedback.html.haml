@@ -1,7 +1,11 @@
+- content_for :javascript do
+  = javascript_include_tag 'validations'
 %h1 Feedback form
 .content
   = simple_form_for @feedback, url: feedback_path, method: :post, html: {:class => 'form-horizontal'}  do |f|
     = f.error_notification
+    %p#errorcontainer
+
     .form-inputs
       = f.input :name
       = f.input :email
