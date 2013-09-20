@@ -62,14 +62,25 @@ class TopicsController < ApplicationController
     redirect_to level_topics_path(@level)
   end
 
-  def remove_uploaded_file
+  def remove_mp3_file
     content = Content.find(params[:content_id])
     topic = content.topic
     level = Level.find(params[:level_id])
     if content.topic_content != nil
       content.topic_content.clear
       content.save
-      render :js => "window.location.pathname = '#{edit_level_topic_path(level, topic)}'"
+    else
+      render :action => :edit
+    end    
+  end
+
+  def remove_ogg_file
+    content = Content.find(params[:content_id])
+    topic = content.topic
+    level = topic.level
+    if content.content_audio != nil
+      content.content_audio.clear
+      content.save
     else
       render :action => :edit
     end

@@ -24,7 +24,8 @@ Brails::Application.routes.draw do
   match 'nominate_list' => 'home#nominate_list', :via => :get, as: :nominate_list
   match '/feedback' => 'home#feedback', :via => [:get, :post], as: :feedback
   match '/feedback_list' => 'home#feedback_list', :via => :get, as: :feedback_list
-  put '/levels/:level_id/content/:content_id' => 'topics#remove_uploaded_file', as: :remove_uploaded_file
+  put '/levels/:level_id/content/:content_id' => 'topics#remove_mp3_file', as: :remove_mp3_file
+  put '/content/:content_id' => 'topics#remove_ogg_file', as: :remove_ogg_file
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -7,8 +7,8 @@
             = link_to "Brails", "/"
           - if user_signed_in?
             %ul.nav  
-              %li
-                - if current_user.roles == "Admin"
+              - if current_user.roles == "Admin"
+                %li
                   = link_to "Level", levels_list_path
           .span7.pull-right
             %ul.nav.pull-right

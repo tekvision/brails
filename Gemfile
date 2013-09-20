@@ -17,7 +17,6 @@ gem 'sass-rails',   '~> 3.2.3'
 gem 'mongoid_slug'
 gem 'redcarpet'
 gem 'coderay'
-gem 'mina'
 
 group :development, :test do
   gem 'mailcatcher'
@@ -54,3 +53,4 @@ gem "mediaelement_rails"
 gem "browser"
 gem 'coveralls', require: false
 gem 'shareable'
+gem 'jquery-fileupload-rails', github: 'tors/jquery-fileupload-rails'
