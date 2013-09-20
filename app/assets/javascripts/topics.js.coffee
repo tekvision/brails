@@ -27,6 +27,7 @@
       e.stopPropagation
       $('input[id="' + sid + '"]').focus()
 
+  $(document).ready ->
     window.nestedFormEvents.insertFields = (content, assoc, link) ->
       $(content).insertBefore(link)
       if assoc == "contents"

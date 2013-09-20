@@ -1,5 +1,8 @@
+- content_for :javascript do
+  = javascript_include_tag 'validations'
 = simple_nested_form_for [@level, @topic], html:  {:class => 'form-horizontal'} do |f|
   = @topic.errors.full_messages
+
   - if !@topic.errors.empty?
     %p#errorcontainer
   .form-inputs

@@ -6,7 +6,7 @@
     %th Correspondence Address
     %th Date Of Birth
     %th Contact Number
-    %th= @user.profile.disability if @user.profile.disability if @user.profile.disability.present? 
+    %th= @user.profile.disability if @user.profile.disability.present? 
   %tr
     %td= @user.profile.first_name + " " + @user.profile.last_name
     %td= @user.profile.correspondence_address + " " +  @user.profile.city + " " + @user.profile.state + " "  + @user.profile.country

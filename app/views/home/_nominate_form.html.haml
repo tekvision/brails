@@ -1,5 +1,9 @@
+- content_for :javascript do
+  = javascript_include_tag 'validations'
 = simple_form_for @nominate, url: nominate_path(@nominate), method: :post, html: {:class => 'form-horizontal'}  do |f|
   = f.error_notification
+  %p#errorcontainer
+
   .form-inputs
     = f.input :name
     = f.input :email, required: false
