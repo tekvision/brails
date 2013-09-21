@@ -35,4 +35,5 @@
     .container.main-container{role: 'application'}
       = yield
     = javascript_include_tag "application", 'admin/application'
+    =  yield(:javascript) if content_for?(:javascript)
 

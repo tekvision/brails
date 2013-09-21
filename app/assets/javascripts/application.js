@@ -14,11 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require mediaelement_rails
-//= require Acc.DC.API
-//= require calendar_generator.min
-//= require calendar_generator
-//= require setup
-//= require_directory .
+//= require jquery.cookie
+//= require home
 
   $(document).ready(function() {
     // add a click handler to a link
