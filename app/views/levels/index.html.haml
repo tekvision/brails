@@ -1,3 +1,5 @@
+- content_for :javascript do
+  = javascript_include_tag 'levels', 'handle_aria_event'
 #grid-wrapper.lessons{:role => "application"}
   %h1 Select level
   #game-levels.no-focus{role: 'grid', tabindex: '0'}
