@@ -3,30 +3,31 @@
   = javascript_include_tag 'validations', 'Acc.DC.API', 'calendar_generator.min', 'calendar_generator', 'setup', 'users'
 
   = stylesheet_link_tag 'calendar'
-= simple_form_for @user, url: profile_path(@user), method: :post, html: {:class => 'form-horizontal'} do |u|
-  = u.error_notification
-  = u.simple_fields_for :profile do |p|
-    %p#errorcontainer
-    .form-inputs
-      = p.input :first_name
-      = p.input :last_name
-      = p.input :nick_name
-      = p.input :date_of_birth, :label => 'Date Of Birth' do
-        = p.input_field :date_of_birth, :readonly => true
-        %a{:href => '#', :id => 'imgCalendar', :class => 'datePicker'}
-          %img{:src =>'/images/Calendar_scheduleHS.png', :alt => 'Pick date from calendar' }
-      = p.input :contact_number, :label => 'Mobile number'
-      = p.input :correspondence_address, :as => :text, :required => true, :input_html => {:cols => 20, :rows => 5}
-      = p.input :country
-      = p.input :state
-      = p.input :city
-      = p.input :disability, :collection => ["Visually impaired", "Hearing impairment", "physically handicap","Mentally retarded"], :prompt => "Select disability type"
-      = p.input :disability_percentage
-      = p.input :facebook
-      = p.input :twitter
-    .form-actions
-    = u.submit"Submit", class: 'btn btn-large btn-success'
-    - if current_user.profile.nil?
-      = link_to 'Skip', levels_path, class: 'btn btn-large btn-success'
-    - else
-      = link_to 'Cancel', profile_path(@user), class: 'btn btn-large btn-success'
+.content
+  = simple_form_for @user, url: profile_path(@user), method: :post, html: {:class => 'form-horizontal'} do |u|
+    = u.error_notification
+    = u.simple_fields_for :profile do |p|
+      %p#errorcontainer
+      .form-inputs
+        = p.input :first_name
+        = p.input :last_name
+        = p.input :nick_name
+        = p.input :date_of_birth, :label => 'Date Of Birth' do
+          = p.input_field :date_of_birth, :readonly => true
+          %a{:href => '#', :id => 'imgCalendar', :class => 'datePicker'}
+            %img{:src =>'/images/Calendar_scheduleHS.png', :alt => 'Pick date from calendar' }
+        = p.input :contact_number, :label => 'Mobile number'
+        = p.input :correspondence_address, :as => :text, :required => true, :input_html => {:cols => 20, :rows => 5}
+        = p.input :country
+        = p.input :state
+        = p.input :city
+        = p.input :disability, :collection => ["Visually impaired", "Hearing impairment", "physically handicap","Mentally retarded"], :prompt => "Select disability type"
+        = p.input :disability_percentage
+        = p.input :facebook
+        = p.input :twitter
+      .form-actions
+      = u.submit"Submit", class: 'btn btn-large btn-success'
+      - if current_user.profile.nil?
+        = link_to 'Skip', levels_path, class: 'btn btn-large btn-success'
+      - else
+        = link_to 'Cancel', profile_path(@user), class: 'btn btn-large btn-success'

@@ -26,7 +26,7 @@ body.textsize-1225 {font:122.5%/1.5 Arial, sans-serif;}
 body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 .content{
   background: rgba(255, 255, 255, .9);
-  padding: 20px;
+   padding: 20px;
   input[type='text']{
     font-size: 1.5em;
     height: auto;
@@ -47,6 +47,12 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
 .no-focus:focus {
   outline: none;
 }
+.grid-cell:focus{
+  outline: 5px;
+  background: black;
+
+}
+
 .control-panel {
   background: black;
   overflow:hidden;

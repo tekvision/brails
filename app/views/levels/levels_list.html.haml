@@ -12,8 +12,8 @@
     %tr
       %td= link_to level.level_name, level_topics_path(level)
       %td= level.level_number
-      %td= link_to "Edit", edit_level_path(level)
-      %td= link_to "Destroy", level, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= link_to "Edit", edit_level_path(level), :class => 'btn btn-mini'
+      %td= link_to "Destroy", level, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' 
 
 = link_to "New level", new_level_path, class: "btn btn-large"
 = link_to "Cancel", levels_path, class: "btn btn-large"

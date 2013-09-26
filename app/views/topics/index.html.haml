@@ -11,8 +11,8 @@
     %tr  
       %td= topic.title
       %td= topic.description
-      %td= link_to "Edit", edit_level_topic_path(@level, topic)    
-      %td= link_to "Show", level_topic_path(@level, topic)
+      %td= link_to "Edit", edit_level_topic_path(@level, topic), :class => 'btn btn-mini'    
+      %td= link_to "Show", level_topic_path(@level, topic), :class => 'btn btn-mini'
 
 = link_to "New topic", new_level_topic_path, class: "btn btn-large"
 = link_to "BACK" , levels_list_path, class: "btn btn-large"

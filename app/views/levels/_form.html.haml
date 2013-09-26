@@ -7,18 +7,19 @@
   .form-inputs
     = f.input :level_number
     = f.input :level_name
-    = f.link_to_add "Add bonus round questions", :questions
     = f.simple_fields_for :questions do |question|
       = question.input :level_id, :as => :hidden, :input_html => {:value => "#{@level.id}"} 
       = question.input :question_type, :collection => ["Simple", "Medium", "Hard"], :prompt => "Select question type"
       = question.input :sq_no, :label => "Sequence number"
       = question.input :query
-      = question.link_to_remove "Remove this question"
       = question.simple_fields_for :options do |option|
         = option.input :label
         = option.input :is_valid, as: :boolean
-        = option.link_to_remove "Remove this option"
-      = question.link_to_add "Add an option", :options
+        .pull-right= option.link_to_remove "Remove this option", :class => 'btn btn-success'
+      .pull-right= question.link_to_remove "Remove this question", :class => 'btn btn-success'
+      = question.link_to_add question.object.options.count > 0 ? "Add More Option" : "Add an option", :options, :class => 'btn btn-success more_option'
+    = f.link_to_add f.object.questions.count > 0 ?  "Add More Bonus Round Question" : "Add bonus round questions", :questions, :class => 'btn btn-success more_question'
+
 
   .form-actions
     = f.button :submit, class: 'btn btn-large btn-success'

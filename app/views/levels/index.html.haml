@@ -8,7 +8,7 @@
         - levels.each_with_index do |level, col_index|
           - @level = @levels[level-1]
           - level_coins_count = @level.calculate_coins_count
-          .gridcell{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell',
+          .gridcell.grid-cell{id: "row_#{row_index}_col_#{col_index}", role: 'gridcell',
                     "aria-labelledby"=> "level_number_#{@level.level_number}", 
                     "aria-describedby"=>"level_caption_#{@level.level_number}"}
             .span2.summary-coin.colored-block
@@ -18,5 +18,5 @@
                 .counter{class: "counter-#{@level.level_number}"}
                 = @level.level_number
               %p.description{id: "level_caption_#{@level.level_number}"}
-                = @level.level_name
-              %a.btn.btn-mini.btn-try-now{:href => level_path(@level)} Try now
+                = link_to @level.level_name, level_path(@level)
+
