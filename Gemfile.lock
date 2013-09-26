@@ -47,6 +47,7 @@ GEM
     arel (3.0.2)
     atomic (1.1.14)
     bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
     browser (0.2.1)
@@ -102,6 +103,7 @@ GEM
     diff-lcs (1.2.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    eventmachine (1.0.3-x86-mingw32)
     execjs (2.0.1)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -111,6 +113,7 @@ GEM
     faker (1.2.0)
       i18n (~> 0.5)
     ffi (1.9.0)
+    ffi (1.9.0-x86-mingw32)
     fssm (0.2.10)
     guard (1.4.0)
       listen (>= 0.4.2)
@@ -274,6 +277,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.8)
+    sqlite3 (1.3.8-x86-mingw32)
     stringex (1.5.1)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
@@ -298,6 +302,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
