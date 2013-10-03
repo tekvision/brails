@@ -27,19 +27,19 @@
 
               .span9.topic-details
                 %h2.delta= topic.title
-                %p.topic-description= topic.description  
+                %p.topic-description= topic.description
                 - if topic.contents.count == 0
                   %p.topic-description Coming soon
                 - else
-                  %a.btn.btn-start-topic= link_to " Start topic", level_topic_path(@level, topic)
+                  = link_to "Start topic", level_topic_path(@level, topic), class: "btn btn-start-topic"
           .span3
-            - if topic_questions_count(topic) == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size          
+            - if topic_questions_count(topic) == Attempt.where(:user => current_user, :topic => topic, :solved => true).collect(&:solved).size
               .topic-score.right
-              - @count = @count + 1 
+              - @count = @count + 1
             - else
               .topic-score.wrong
-.row{:style => "margin-top: 50px" }                
-  -if @level.questions? and current_user.present?          
+.row{:style => "margin-top: 50px" }
+  -if @level.questions? and current_user.present?
     .span3.level-scoring
       .score-wrapper
         %ul.unstyled.score.large
@@ -66,7 +66,7 @@
                 .controls
                   OPTIONS:
                   %br
-                  - if attempt == nil or attempt.solved == false 
+                  - if attempt == nil or attempt.solved == false
                     = f.collection_radio_buttons :options, question.options.collect{|opt| [opt.id, opt.label]}, :first,     :last
                     = f.submit 'Submit', :class => 'btn'
                     %p{:id => "answer_#{question.id}"}
