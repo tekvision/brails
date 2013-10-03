@@ -6,7 +6,7 @@ body{
   padding-top: 60px;
   color: black;
   font:62.5%/1.5 Arial, helvetica, sans-serif;
-  background: rgb(103, 113, 123) url(bkg.jpg) no-repeat center center fixed; 
+  background: rgb(103, 113, 123) url(bkg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -90,7 +90,7 @@ body.textsize-1425 {font:142.5%/1.5 Arial, sans-serif;}
   .switch {
     background-color:black;
     // @include border-radius(10px);
-    
+
     // &.yellow {
     //   background-color: $yellow;
     // }
@@ -162,7 +162,7 @@ html.black {
     // margin-left: 5px;
     background: url(social-icons.png) 0 0 no-repeat;
     &.linkedin {
-      background-position: -27px 0; 
+      background-position: -27px 0;
     }
     &.twitter {
       background-position: -53px 0;
@@ -181,18 +181,28 @@ min-height: 100%;
 overflow:auto;
 padding-bottom:150px; /* this needs to be bigger than footer height*/
 }
- 
+
 .footer{
-    position: relative;
-    margin-top: -150px; /* negative value of footer height */
-    height: 75px;
-    clear:both;
-    color:#fff;
-    
-    .nav > li > a {
-      display: inline;
+  position: absolute;
+  bottom: 0;
+  height: 85px;
+  clear:both;
+  color:#fff;
+  width: 100%;
+  padding-top: 10px;
+  .nav > li > a {
+    display: inline;
+    &.josh {
+      background: #fff;
+      height: 35px;
+      display: inline-block;
+      padding: 3px;
     }
-} 
+  }
+  .span4 {
+    text-align: center;
+  }
+}
 
 .score-wrapper {
   text-align:center;
